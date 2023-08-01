@@ -1,0 +1,379 @@
+---
+title:  "Ocean Web App! 🌊 Part 1 - JavaScript"
+date:   '2020-03-03'
+---
+It's been a while! I've recently been on holiday to the USA and now I'm back with a new post!
+
+I've been making CLI applications for several months but recently, I've been wondering how to make a web application. Initially, I looked at using a language like Go to do that but I decided I wanted to make something from scratch.
+
+I wrote a program in Go called Ocean; an application that helps the user navigate the London Underground. The user could enter two Underground stations as a start and an end point for Ocean to call the Transport for London (TfL) API to find a route between the two. It also finds the duration, the cost and if there any disruptions along the way.
+
+I wanted to bring this application to the web. A web application that used responsive design so the user could access Ocean anywhere.
+
+And that's what I did!
+
+In fact, here it [is](https://limitless-ravine-34034.herokuapp.com/index.html)! You can use Ocean on your phone or desktop right now! 🌊
+
+This application's repo is [here](https://gitlab.com/JoshBl_/ocean-web) if you want to take a look.
+
+So it won't be winning any design awards soon but I'm proud of what I've achieved here.
+
+Anyway, I wanted to share the overall thought and design process behind this application. As it turns out, the TfL API is a little more confusing than I previously thought.
+
+For those who aren't aware, the London Underground has eleven lines and 270 stations. So there is a need for travel applications to help people navigate around London!
+
+In part 1, this post will be looking at the backend side of things. Next time will be about the front end and response design.
+
+# Checking the (many) lines of the Underground
+The first part of the application is the user can enter a name of a London Underground Line, the application will retrieve the status of the line and display it.
+
+Let's get started!
+
+```
+<div class="search">
+    <h2 class="search_header">Line Status Check</h2>
+    <select id="searchEntry">
+        <option value="Bakerloo">Bakerloo</option>
+        <option value="Central">Central</option>
+        <option value="Circle">Circle</option>
+        <option value="District">District</option>
+        <option value="Hammersmith & City">Hammersmith & City</option>
+        <option value="Jubilee">Jubilee</option>
+        <option value="Metropolitan">Metropolitan</option>
+        <option value="Northern">Northern</option>
+        <option value="Piccadilly">Piccadilly</option>
+        <option value="Victoria">Victoria</option>
+        <option value="Waterloo & City">Waterloo & City</option>
+    </select>
+    <button id="lineStatus" class="button">Go!</button>
+</div>
+```
+
+Above is some HTML of the input and the button the user would interact with. Now let's take a look at behind the scenes.
+
+```
+// once the page has finished loading - run this
+$(document).ready(function () {
+    $(document).on('click', '#lineStatus', function () {
+        // empty the contents in the elements
+        $('.name').empty();
+        $('.status').empty();
+        $('.error').empty();
+        // fetching value and assign it to a variable
+        let stationName = $('#searchEntry').val();
+        lineInfo(stationName);
+    })
+})
+```
+
+Using jquery, I check that once the page has finished loading, and the user presses the button:
+- the HTMl classes of name, status and error are emptied
+- the value held in the text box is assigned to a variable
+- and the lineInfo function (which is held in an external file to help keep things clean is called with the variable passed in as an argument)
+
+Let's take a look at the lineInfo function:
+```
+function lineInfo(tubeName: string | number | string[]) {
+    console.log("Getting line status for " + tubeName + "!");
+    // get request through Ajax
+    $.ajax({
+        url: "https://api.tfl.gov.uk/line/mode/tube/status"
+    }).done(function (data) {
+        // boolean declared - used for checking if the tube status was found
+        let findCheck = false;
+        // iterates through the response for each station
+        data.forEach(station => {
+            // if the name field matches the name specified - run following 
+            if (station.name === tubeName) {
+                // log to console
+                console.log('Current status on ' + tubeName + ' is ' + station.lineStatuses[0].statusSeverityDescription);
+                // new variable which holds the line status
+                let stationStatus = station.lineStatuses[0].statusSeverityDescription;
+                // display the line name and the status onto the screen
+                $('.name').append('<p>Line name: ' + tubeName + '</p>');
+                $('.status').append('<p>Line status: ' + stationStatus + '</p>');
+                // change boolean value to true
+                findCheck = true;
+            }
+        });
+        // if findCheck is false...
+        if (findCheck === false) {
+            // print an error to the user
+            $('.error').append('<p>Error! Invalid name!');
+            // log to console
+            console.log('Error! Invalid name!');
+        };
+    }).fail(function () {
+        // if the GET request fails, print the following to the screen and console
+        console.log("Error! Can't retrieve Underground status!");
+        $('.error').append("<p>Network Error! Can't retrieve Underground status!</p>");
+    });
+}
+```
+
+Using ajax a get request is performed, which one of two things will happen:
+- the request is successful
+- the request fails
+
+If it fails, then a message is displayed to the user (and the console). If it's successful, then we move onto the logic of processing the data.
+
+A boolean is declared (which is needed later) first, which isn't exciting.
+
+But the for each loop is much more exciting! The data variable is a JavaScript object that we can iterate through so we'll check it to see if the value from the user matches any of the results from the get request.
+
+If there is a match, then it will display it to the user and to the console. Then the boolean value will be changed to true.
+
+If the for each loop doesn't return anything, that's when the boolean comes into play. In this scenario, it stays at false. Which will result in a message being displayed to the user and to the console.
+
+Okay, so we can get the line status displayed, but what about displaying a route between two stations? That's a little bit more difficult.
+
+# Getting routes from A to B
+
+Strangely, to get a route from two Underground stations, you need to get their ICS code. To get the ICS code however, you need to search using text to find the ICS code. The difference between the two requests is that the request which uses the ICS codes gives detail on how to get to the destination by showing instructions and any disruptions along the route.
+
+So, let's get started building that then.
+
+First of all, the interface:
+
+```
+<div class="routeSearch">
+    <h2 class="route_header">Route mapper</h2>
+    <h3 class="route_text">Enter two Underground stations into the text boxes to find a route between the two!
+    </h3>
+    <input id="start" placeholder="Start" type="text"></input>
+    <input id="end" placeholder="End" type="text"></input>
+    <button id="routeCheck" class="button">Go!</button>
+</div>
+```
+
+So, the user enters in the text boxes the start and end point and presses the 'Go' button. Then the application begins the long process of finding a route between the two.
+
+First of all, we need to get the values in the text boxes.
+
+```
+// once the page has finished loading - run this
+$(document).ready(function() {
+    $(document).on('click', '#routeCheck', function() {
+        // empty the contents in the elements
+        $('.pricing').empty();
+        $('.duration').empty();
+        $('.step').empty();
+        $('.detail').empty();
+        $('.journeyError').empty();
+        // fetching values and assinging it to variables
+        let start = $('#start').val();
+        let end = $('#end').val();
+        routeChecker(start, end);
+    })
+})
+```
+
+Once everything is in place, we call the routeChecker function.
+
+```
+function routeChecker(start: string | number | string[], end: string | number | string[]) {
+    console.log('Getting route between ' + start + ' and ' + end);
+    let url = "https://api.tfl.gov.uk/journey/journeyresults/" + start + "/to/" + end;
+    console.log("URL is " + url);
+    // this GET request will return 300 multiple choice
+    // new object for XMLHttpRequest
+    let xmlhttp = new XMLHttpRequest();
+
+    // open method called; verb, url and not asychronous (browser will wait for the call to finish before continuing)
+    xmlhttp.open('GET', url, false);
+    xmlhttp.send();
+
+    // log info to console
+    console.log(xmlhttp);
+    console.log(xmlhttp.status);
+    if (xmlhttp.status === 300) {
+        // variable stores the response from GET request
+        let json = xmlhttp.responseText;
+        // decode the data stored in responseText - turn it into a native JS object
+        let icsCodes = JSON.parse(json);
+        // call function with passing object
+        icsCodeFetch(icsCodes);
+    } else {
+        console.log('Error! Please try again!');
+        $('.journeyError').append('<p>Error! Please try again!</p>');
+    }
+}
+```
+
+So we perform a GET request which will return (if it's valid) a response code of 300 (multiple choice) and we decode the JSON into a JavaScript object. We then call our next function...
+
+```
+function icsCodeFetch(data) {
+    console.log('Fetching ICS codes')
+    // create new variables and assign them the ics codes from the response
+    let start = data.fromLocationDisambiguation.disambiguationOptions[0].parameterValue;
+    let end = data.toLocationDisambiguation.disambiguationOptions[0].parameterValue;
+    // print values in variables to console
+    console.log('ICS code for start point is ' + start);
+    console.log('ICS code for end point is ' + end);
+    // call function passing the ics codes
+    getJourney(start, end);
+}
+```
+
+This function just grabs the ICS code for each station the object and assigns them to a variable and prints them to the console. Next, another function....
+
+```
+function getJourney(start: String, end: String) {
+    // build the URL needed using the ics codes
+    let url = 'https://api.tfl.gov.uk/journey/journeyresults/' + start + '/to/' + end;
+
+    // log info to console
+    console.log('Grabbing route!')
+    console.log('URL is ' + url);
+    // ajax to perform get request
+    $.ajax({
+        url: url
+    }).done(function (data) {
+        // call function
+        displayJourney(data);
+    }).fail(function () {
+        // log to console
+        console.log('Error! Unable to find routes!');
+        // display message on screen
+        $('.journeyError').append('<p>Error! Please try again!</p>');
+    });
+}
+```
+
+Now we have the ICS codes for each station, we can then move to finding a route between the two! This ajax will perform a Get request and pass the response to another function (all these functions keep the program clean, I promise you!), if it fails, then an error message is logged to the console and printed to the user.
+
+Next, is the final function of showing a route:
+
+```
+function displayJourney(data) {
+    // object containing all steps of a journey
+    let steps = data.journeys[0].legs
+    // object containing journey data
+    let step = data.journeys[0]
+    // displaying journey duration
+    console.log('Duration will be ' + data.journeys[0].duration + ' minutes');
+    $('.duration').append('<p>Duration will be ' + data.journeys[0].duration + ' minutes</p>');
+    // displaying journey price
+    console.log('Total price for the journey will be ' + data.journeys[0].fare.fares[0].cost);
+    // assigning variable the fare
+    let price = data.journeys[0].fare.fares[0].cost
+    // dividing value by 100
+    price = price / 100;
+    // fixing 2 decimal places to display accurate price
+    price = price.toFixed(2);
+    // display the total price using UTF-8 to display currency symbol
+    $('.pricing').append('<p>Total price for the journey will be &#8356;' + price + '</p>');
+    // counter variable
+    let i = 0;
+    // iterate through the steps object
+    $(steps).each(function() {
+        // checking value stored in the isDisrupted property
+        console.log('isDisrupted has returned ' + data.journeys[0].legs[i].isDisrupted);
+        // display the instruction summary
+        console.log(step.legs[i].instruction.summary);
+        // print the instruction summary
+        $('.step').append('<p>' + step.legs[i].instruction.summary + '</p>');
+        // new object variable which holds the descriptions for a step
+        let details = step.legs[i].instruction.steps;
+        // iterate through each element in details
+        details.forEach(element => {
+            // display the description
+            console.log(element.description);
+            // print the description heading property and the description property
+            $('.step').append('<ul><li class="detail">' + element.descriptionHeading + element.description + '</li></ul>');
+        });
+        // if isDisrupted returns true, run the following
+        if (data.journeys[0].legs[i].isDisrupted === true) {
+            console.log('Disruption detected on step!');
+            // find data and assign to variable
+            let disruptionData = step.legs[i].disruptions[0].description
+            // remove any new line (\n) breaks on a global level
+            let disruptionDescription = disruptionData.replace(/\\n/g, "");
+            // display information
+            console.log(disruptionDescription);
+            $('.step').append('<div class="important"><p class="text">Disruption Alert!</p><p class="text">' + disruptionDescription + '</p></div>')
+        }
+        // increment the counter by 1
+        i = i + 1;
+    })
+}
+```
+
+This function is slightly more interesting!
+
+We create two objects to begin with to hold data from the response, we'll get back to this later.
+
+Then the duration of the journey and display it - not so interesting. But displaying the cost is however! At first, there is no decimal points or formatting in place for the cost. So if a journey would cost £2.40, the response from the TfL API would be 240. We know that a short trip on the Underground isn't going to cost £240! So how do we fix this? Like so:
+
+```
+// assigning variable the fare
+let price = data.journeys[0].fare.fares[0].cost
+// dividing value by 100
+price = price / 100;
+// fixing 2 decimal places to display accurate price
+price = price.toFixed(2);
+// display the total price using UTF-8 to display currency symbol
+$('.pricing').append('<p>Total price for the journey will be &#8356;' + price + '</p>');
+```
+
+We assign the value from the response to a variable, and then divide the value by 100. Going back to our example of if the response was 240, it would now be 2.40! But, if we were to print the value it would just show as £2! To show the decimal place, we use toFixed() method that formats a number using a fixed-point notation. So, we would provide the value of 2 and this now shows £2.40!
+
+Now we move onto the biggest part of the function - iterating through the steps of a journey:
+
+```
+// counter variable
+let i = 0;
+// iterate through the steps object
+$(steps).each(function() {
+    // checking value stored in the isDisrupted property
+    console.log('isDisrupted has returned ' + data.journeys[0].legs[i].isDisrupted);
+    // display the instruction summary
+    console.log(step.legs[i].instruction.summary);
+    // print the instruction summary
+    $('.step').append('<p>' + step.legs[i].instruction.summary + '</p>');
+    // new object variable which holds the descriptions for a step
+    let details = step.legs[i].instruction.steps;
+    // iterate through each element in details
+    details.forEach(element => {
+        // display the description
+        console.log(element.description);
+        // print the description heading property and the description property
+        $('.step').append('<ul><li class="detail">' + element.descriptionHeading + element.description + '</li></ul>');
+    });
+    // if isDisrupted returns true, run the following
+    if (data.journeys[0].legs[i].isDisrupted === true) {
+        console.log('Disruption detected on step!');
+        // find data and assign to variable
+        let disruptionData = step.legs[i].disruptions[0].description
+        // remove any new line (\n) breaks on a global level
+        let disruptionDescription = disruptionData.replace(/\\n/g, "");
+        // display information
+        console.log(disruptionDescription);
+        $('.step').append('<div class="important"><p class="text">Disruption Alert!</p><p class="text">' + disruptionDescription + '</p></div>')
+    }
+    // increment the counter by 1
+    i = i + 1;
+})
+```
+
+So, using jquery to iterate through the steps using the two objects we made earlier, we first check to see if the isDisrupted property is showing true or false and assign it to a variable.
+
+Then, we start the process of displaying the instructions to the user. After displaying the summary of a step, we have a forEach loop to find if there are any details for a step (such as turn right in 50 meters) and if any are found, then it will display them.
+
+Finally, we have our if statement. This looks at if the isDisrupted flag returned true, if it did then the disruption message will be displayed to the user in a red box. If there aren't any disruptions, then this if statement won't run. You'll notice this piece of JavaScript inside the if statement:
+
+```
+// remove any new line (\n) breaks on a global level
+let disruptionDescription = disruptionData.replace(/\\n/g, "");
+```
+
+In the response from TfL, the characters of inserting a new line ('/n') were included. Unfortunately, when assigning this to a paragraph tag in HTML, the rule of inserting a new line isn't carried over. So I had to run a global replace on the variable storing the response to remove it! It didn't look great on the screen initially.
+
+Finally, the counter variable is incremented by 1. This loop will continue until each step is displayed.
+
+And that about covers it for the backend!
+
+Next time, part 2! All about the front end design with responsive design.
+
+Thanks for reading!

@@ -1,0 +1,74 @@
+---
+title:  "Ocean Version 0.1 is now available 🌊"
+date:   '2020-01-21'
+---
+
+As of today, the first initial version of Ocean is now available to use on Windows, Mac and Linux! 🎉🎉🎉
+
+The Repo for this can be found [here](https://gitlab.com/JoshBl_/ocean).
+
+There are several things that I need to highlight with this initial release.
+
+- You can now configure the application with your own API Key from TfL (the application will work without an API Key, but you may get blocked if you create too many journeys, but I think this will be very rare)
+- The structs have undergone a major overhaul and are now much cleaner!
+- Removed a lot of debug messages (such as printing the status code to the console)!
+- Make sure you download the correct executable for your machine. Ocean supports Windows, Mac and Linux!
+- The repo has a README which has documentation.
+
+The biggest change with this release is the configuration of the API Keys. I wanted to use my own keys in this release but for security reasons (thanks to my brother for making me aware) I won't be including the API Key in this release. However, you can still use the application normally and now you can add your own API Key to the application.
+
+You should only need to add your own API Key <i>if</i> you end up getting blocked from finding a journey betweeen two Underground stations.
+
+But how did I manage to do that? 🤔 Well, let's take a look!
+
+```
+var appID = ""
+var appKey = ""
+
+func configureKey() {
+reader := bufio.NewReader(os.Stdin)
+_, _ = reader.ReadString('\n')
+fmt.Println("This will configure the API Keys for this session. If you don't have an API Key please create one on the TfL website.")
+appIDChange(&appID)
+keyChange(&appKey)
+fmt.Println("Keys configured!")
+fmt.Println("App ID:", appID)
+fmt.Println("App Key:", appKey)
+}
+
+// appIdChange - changing the value of appID
+func appIDChange(id *string) {
+reader := bufio.NewReader(os.Stdin)
+fmt.Println("Enter new App ID")
+*id, _ = reader.ReadString('\n')
+*id = strings.TrimSpace(*id)
+}
+
+// keyChange - changing the value of appKey
+func keyChange(key *string) {
+reader := bufio.NewReader(os.Stdin)
+fmt.Println("Enter new App Key")
+*key, _ = reader.ReadString('\n')
+*key = strings.TrimSpace(*key)
+}
+```
+
+So the best way I could think is to use pointers and to have each variable configuration in it's own function to make things clearer. For those who don't know what pointers are, allow me to explain.
+
+A pointer holds the memory address of a value. If you want to get the address of a variable, you need to use the '&' with a variable. If however, you wanted to get the value, you would use '*'. So we can see that I'm passing the address of a variable as an argument but then the value is being updated!
+
+This makes things much simpler instead of trying to fit this functionality within the route finder function somehow. Plus, it makes it easier for the user to configure the API Keys.
+
+I'd also like to stress that this program isn't finished - I'm currently actively working on it.
+
+You may find some bugs or an error that crashes the program (I'm aware of several scenarios already). If you'd like to raise a bug, please get in touch with me via email or LinkedIn.
+
+I'm hoping to release a new version once every 2 weeks. I'll still be updating this blog once a week with my development journey. 👀
+
+I hope you give Ocean a try and enjoy using it! 👏
+
+If you have any feedback etc, please drop me an email or message me on LinkedIn.
+
+My email address and my LinkedIn profile can be found on my [website](https://joshblewitt.dev/).
+
+Thanks for reading!

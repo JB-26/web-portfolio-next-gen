@@ -1,0 +1,190 @@
+---
+title:  "A (very quick) introduction to Cypress JavaScript automation testing"
+date:   '2019-08-18'
+---
+Fairly recently, I heard about [Cypress](https://www.cypress.io/) - a end-to-end testing framework written in JavaScript.
+
+I've been learning JavaScript recently and since I am currently a Software Tester - this caught my eye after hearing about it from a colleague.
+
+Cypress is relatively 'new' in terms of automation so I thought I'd write a quick article serving as somewhat of a crash course and an introduction to Cypress itself. (Along with problems I've found etc)
+
+Alright - let's install it.
+
+The best way to install it is by using node. Simply navigate to the directory you want to install Cypress to and type the following:
+
+```
+npm install cypress
+```
+
+Once it's installed you can open it by typing:
+
+```
+npx cypress open
+```
+
+And you'll see the Cypress menu!
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/7LoDjLs" data-context="false" ><a href="//imgur.com/a/7LoDjLs"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+Here you'll see a collection of all the tests in JavaScript files. To run the tests in the associated file - simply open it!
+
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/8KxYAlx" data-context="false" ><a href="//imgur.com/a/8KxYAlx"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+On the left will have the tests that will run and on the right is the Electron browser that will run the tests in (you can have other browsers like Chrome run the tests if you wish).
+
+One thing that I love about Cypress is that you don't need Selenium! 🎉 So all the tests will just run locally on your machine without having any additional setup required. Neat!
+
+Another feature I dig is the Time Travel capability - you can see a before and after screenshot (if you clicked on a button for example) of each state. I also like the fact that you can see the results for any other method (such as XHR) as well in the test results, so you can see what ran at what time. The results can be printed to the console (Chrome Dev Tools in this case). If anything throws an error, then you can clearly see what happened and investugate further using the console - which makes debugging failing scripts much easier to manage! 👏
+
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/8o64fkb" data-context="false" ><a href="//imgur.com/a/8o64fkb"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+And it does this for <i>every</i> step which is really useful.
+
+So let's get down to the main part - writing tests.
+
+Before we begin - here's what I suggest knowing beforehand:
+- JavaScript <i>As this is what you'll be writing your tests in</i>
+- HTML and CSS <i>Being able to find and select elements and understanding classes and ID's in CSS is necessary for writing tests</i>
+
+With that out of the way, let's begin!
+
+Here's a rough outline of how your file will look:
+```
+Scenario Description
+|
+|-----> Test 1
+|         |------> Test Steps
+|------> Test 2
+|          |-----> Test Steps
+```
+
+And so on for how many tests and steps you want.
+
+And here's the JavaScript file:
+```
+//describe is creating a 'folder' to store tests
+describe('Visit a website', function() {
+    //it creates a test scenario
+    it('Visits the Kitchen Sink', function() {
+        //within the function, you can add test steps. Additional steps are added via a comma
+        cy.visit('https://example.cypress.io')
+    })
+    it('Contains the word "type" and clicks it', function() {
+        cy.contains('type').click()
+    })
+    it('Verify URL', function() {
+        cy.url().should('include', '/commands/actions')
+    })
+    it('Locate an input, type into it, and verify the new value', function() {
+        cy.get('.action-email').type('fake@email.com').should('have.value','fake@email.com')
+    })
+})
+```
+
+As you can probably tell - the JavaScript file is a series of functions.
+
+First things first, we need to describe what scenario you are testing. Which is what the <b>describe</b> function is doing.
+
+After that, all of your tests themselves are functions within the original fucntion. (The diagram above might be a better representation of what I mean)
+
+In a test, you can add steps which are separated with a comma. I'll cover what consists in a test step below.
+
+I found writing the tests themselves to be straightforward and easy to understand. You could say that the layout is similar to BDD (Business Driven Development)!
+
+Now that we understand the layout of a test(s). What about writing them?
+
+All of the tests are written in JavaScript, so use an IDE or text editor (like Visual Studio Code) to write them.
+
+First, you need to declare a name for the test suite. This will be a function and is written like the example below, starting with 'describe':
+
+```
+describe('Visit a website', function() {})
+```
+
+All of your tests will now be contains within the curly brackets. Speaking of which, let's define a test within the suite (which again, will be a function).
+
+```
+describe('Visit a website', function() {
+    it('Visits the Kitchen Sink', function() {}))
+}
+```
+
+A test starts with 'it' followed by the name of the test.
+
+Within the curly brackets of the test that was defined, we can now add a test step! Let's add a test step that will navigate to a website (in this case, a site which is useful for trying out Cypress)
+
+```
+describe('Visit a website', function() {
+    it('Visits the Kitchen Sink', function() {
+        //within the function, you can add test steps. Additional steps are added via a comma
+        cy.visit('https://example.cypress.io')
+    })
+})
+```
+
+To add additional steps, you add a comma at the end of the step and can add an extra step!
+
+```
+describe('Visit a website', function() {
+    it('Visits the Kitchen Sink', function() {
+        //within the function, you can add test steps. Additional steps are added via a comma
+        cy.visit('https://example.cypress.io'),
+        cy.visit('https://example.cypress.io')
+    })
+})
+```
+
+To add an additional test, create a new 'it' function below the existing step. Make sure you create it outside of the curly brackets of the previous step!
+
+```
+describe('Visit a website', function() {
+    it('Visits the Kitchen Sink', function() {
+        //within the function, you can add test steps. Additional steps are added via a comma
+        cy.visit('https://example.cypress.io'),
+        cy.visit('https://example.cypress.io')
+    })
+    it('Contains the word "type" and clicks it', function() {
+        cy.contains('type').click()
+    })
+})
+```
+
+But what about test steps?
+
+Test steps are defined by calling built in methods part of the 'cy' class. As demonstrated above, there is the cy.visit method. This will navigate the webpage to the specified URL in the argument.
+
+To read more about the specific actions that Cypress can do - check out the [documentation](https://example.cypress.io/)
+
+Let's move onto running the tests!
+
+Within the Cypress menu, select the JavaScript file and you'll see the Cypress test runner.
+
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/8KxYAlx" data-context="false" ><a href="//imgur.com/a/8KxYAlx"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+When you open your JavaScript file, the test runner will automatically start running the test.
+
+The panel on the left serves as the timeline for the tests. Hovering your mouse over each individual test step will show a before and after state for the step. Which is honestly a great way to see what your test did if you find any errors.
+
+You can also run tests by using the command line with the following command:
+
+```
+npx cypress run
+```
+
+This will run all the tests in the following location; \Cypress\cypress\integration
+I do suggest using a CLI that supports emojis and colour as the CLI runner uses them heavily.
+
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/wHbSHKZ" data-context="false" ><a href="//imgur.com/a/wHbSHKZ"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+The CLI runner also saves a video for each test run in the video folder. The CLI will also display a total time for all the tests as well.
+
+Overall, I like Cypress. It's much more user friendly than other automation tools out there and I found that writing tests in Cypress was much faster as well. Plus, the documentation and the test website they have is a good way to experiment with different tests.
+
+But, I have had a few issues as well.
+
+My main issue that took me by surprise is that for each step, the browser session is reset. Which means if you log in to a website in one test and attempt to continue the journey in the next test - it will log you out and may result in a 403 Forbidden.
+
+In later posts, I plan to go into more details about writing tests and how to use the tool to select specific HTML elements on a webpage.
+
+I hope this quick introduction has been helpful!
+
+Thanks for reading!

@@ -1,0 +1,163 @@
+---
+title:  "Python! 🐍"
+date:   '2019-12-04'
+---
+
+Apologies for the late post on this one, back on schedule!
+
+If you look at StackOverflow's 2019 developer [survey](https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted), the second most loved and most wanted language is [Python](https://www.python.org/), a general purpose programming language. 
+
+Given the popularity and overall demand for Python - I thought it would be good to get some practice under my belt and understand it more.
+
+The repo for my Python code is located [here](https://gitlab.com/JoshBl_/python) and the tutorial I am using for learning Python is [Learn Python the Hard Way](https://learncodethehardway.org/python/).
+
+One of the main key design philosophies for Python is the use of whitespace. Take a look at the example below for an example: 
+
+```
+# new variables
+people = 30
+cars = 40
+trucks = 15
+
+if cars > people:
+    print("We should take the cars.")
+# else if statement
+elif cars < people:
+    print("We should not take the cars.")
+else:
+    print("We can't decide.")
+```
+
+As you can see, after I define an if statement, the code block to run if it's true is indented. If it's not indented - the code won't run!
+
+Another difference (compared to other languages) is the way of how to print variables to the screen.
+
+```
+age = input("What is your age? ")
+print(f"Ah - your age is {age}")
+```
+
+With the use of 'f' just after the print statement allows for variables to be printed to the screen.
+
+Speaking of printing, here's a way to print as many lines as we want in a variable:
+
+```
+poem = """
+\tThe lovely world
+with logic so firmly planted
+cannot discern \n the needs of love
+nor comprehend passion from intuition
+and requires an explanation
+\n\twhere there is none.
+"""
+```
+
+With the use of three quote marks, we can print as many lines as we want!
+
+Here's a quick code snippet of if and else if (called elif):
+
+```
+door = input("> ")
+
+if door == "1":
+    print("There's a giant bear here eating a cheesecake.")
+    print("What do you do?")
+    print("1. Take the cake.")
+    print("2. Scream at the bear.")
+
+    bear = input("> ")
+
+    if bear == "1":
+        print("The bear eats the cake!")
+    elif bear == "2":
+        print("The bear screams at you!")
+    else:
+        print(f"Well, doing {bear} is probably better.")
+        print("The bear runs away!")
+```
+
+It's also worth noting on the use of the door variable being assigned of 'input' - this will prompt the user for a value.
+
+This is another design philosophy behind Python - which emphasises code readability.
+
+To write Python, I used Visual Studio Code and I decided to explore the uses of using VS Code for writing Python code.
+
+I highly suggest looking at the Python [extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) by Microsoft. Which includes features such as changing the Python interpreter and running tests.
+
+One area I have been trying to improve on is debugging. My main reason is to double check my understanding of code and if I was unsure of something, I can add a breakpoint and step through the code.
+
+Thankfully, VS Code has a good debug tool which supports a variety of languages. In fact, it creates a JSON file when you configure the debugger for a chosen language.
+
+```
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        }
+    ]
+}
+```
+
+I have found that the debugging features in VS Code to have been very useful for helping me understand what is going on in my code.
+
+But anyway, back to the topic at hand - Python!
+
+Let's take a look at importing modules:
+
+```
+from sys import argv
+#when we run this program from a terminal, we need to provide a value for each argument
+script, first, second, third = argv
+
+print("The script is called:", script)
+print("Your first variable is:", first)
+print("Your second variable is:", second)
+print("Your third variable is:", third)
+
+age = input("What is your age? ")
+print(f"Ah - your age is {age}")
+```
+
+We use import to add features to our program from the Python feature set. Instead of giving all the features, Python asks what you want to use. The purpose of this is to keep programs small but also acts as documentation.
+In the example above, we take the arguments in argv and assign it to the variables on the left in order.
+
+Finally, let's take a look at how to create functions!
+
+```
+def cheese_and_crackers(cheese_count, boxes_of_crackers):
+    print(f"You have {cheese_count} cheeses!")
+    print(f"You have {boxes_of_crackers} boxes of crackers!")
+    print("Man that's enough for a party!")
+    print("Get a blanket.\n")
+
+print("We can just give the function numbers directly:")
+cheese_and_crackers(20, 30)
+
+print("OR, we can use variables from our script:")
+amount_of_cheese = 10
+amount_of_crackers = 50
+
+cheese_and_crackers(amount_of_cheese, amount_of_crackers)
+
+print("We can even do math inside too:")
+cheese_and_crackers(10 + 20, 5 + 6)
+
+print("And we can combine the two, variables and math:")
+cheese_and_crackers(amount_of_cheese + 100, amount_of_crackers + 1000)
+```
+
+Functions are defined with 'def' and of course, all code for the function is indented. If you don't indent the code, it won't be part of the function!
+
+Overall, I've been enjoying my time so far with Python and I plan to do more in the language.
+
+But next time, I'll be looking at another popular language right now - Go!
+
+Thanks for reading!

@@ -4,17 +4,21 @@ import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/date";
+import { useRouter } from 'next/router';
+const postsPerPage = 5;
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
+  const numPages = Math.ceil(allPostsData.length / postsPerPage);
   return {
     props: {
       allPostsData,
+      numPages,
     },
   };
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData, numPages }) {
   return (
     <Layout home>
       <Head>
@@ -28,7 +32,7 @@ export default function Home({ allPostsData }) {
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h2 className={utilStyles.headingLg}>Blog - {allPostsData.length} posts</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
@@ -40,6 +44,14 @@ export default function Home({ allPostsData }) {
             </li>
           ))}
         </ul>
+        {/* Pagination links */}
+        <div>
+          {Array.from({ length: numPages }, (_, i) => (
+            <Link style={{ margin: '0.5rem' }} href={`/page/${i + 1}`} key={i + 1}>
+              {i + 1}
+            </Link>
+            ))}
+        </div>
       </section>
     </Layout>
   );
