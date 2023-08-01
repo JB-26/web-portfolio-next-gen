@@ -1,10 +1,10 @@
 module.exports = {
-    async rewrites() {
-        return [
-            {
-                source: '/page/:page',
-                destination: '/page/[page]',
-            },
-            ];
-        },
+  async rewrites() {
+    return [
+      {
+        source: "/page/:pageNumber",
+        destination: "/page/[pageNumber]",
+      },
+    ];
+  },
 };
