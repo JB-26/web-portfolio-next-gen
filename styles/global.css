@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 html,
 body {
     padding: 0;
@@ -6,6 +9,19 @@ body {
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     line-height: 1.6;
     font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    /*ensures the page to be at least as tall as 100% of the viewport height */
+    min-height: 100vh;
+    /*prevents the page from being too narrow to be readable*/
+    min-width: 300px;
+    /*prevents the page from scrolling horizontally while preserving the usual vertical scroll */
+    overflow-x: hidden;
+}
+
+/* fonts */
+@font-face {
+    font-family: 'IBM Plex Serif', serif;
+    font-display: swap;
 }
 
 * {
