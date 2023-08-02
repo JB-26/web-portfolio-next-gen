@@ -1,10 +1,12 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
+import Footer from "../components/footer";
+import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
-import Date from "../components/date";
 const postsPerPage = 5;
+import Script from 'next/script'
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -20,11 +22,13 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ allPostsData, numPages, allPostsNum }) {
+export default function Blog({ allPostsData, numPages, allPostsNum }) {
   return (
     <Layout home>
+      <Script src='https://kit.fontawesome.com/af67ca5a39.js' crossOrigin='anonymous' async></Script>
       <Head>
         <title>{siteTitle}</title>
+        <meta charSet='utf-8' name="The personal website of IT Professional, Joshua Blewitt"/>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>I&apos;m Joshua Blewitt, hobbyist developer!</p> 
@@ -51,6 +55,7 @@ export default function Home({ allPostsData, numPages, allPostsNum }) {
             ))}
         </div>
       </section>
+      <Footer></Footer>
     </Layout>
   );
 }

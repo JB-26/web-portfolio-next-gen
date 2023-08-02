@@ -1,0 +1,19 @@
+/* footer */
+
+ul.footer {
+    padding: 0px;
+    list-style-type: none;
+    text-align: center;
+    font-size: 35px;
+}
+
+li.blog {
+    display: inline;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.footer {
+    font-size: 35px;
+}
