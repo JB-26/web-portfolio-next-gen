@@ -1,8 +1,8 @@
-import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import Footer from "../components/footer";
 import utilStyles from "../styles/utils.module.css";
 import Script from 'next/script'
+import Head from "next/head";
 
 export default function Home() {
   return (

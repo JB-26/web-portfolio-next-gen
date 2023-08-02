@@ -1,3 +1,4 @@
+import Header from "../components/header";
 import Footer from "../components/footer";
 import Script from 'next/script'
 import Head from "next/head";
@@ -20,6 +21,7 @@ export default function Custom404() {
           name="The personal website of IT Professional, Joshua Blewitt"
         />
       </Head>
+      <Header></Header>
       <div className={styles.errorMessage}>
         <h1>
           {" "}
