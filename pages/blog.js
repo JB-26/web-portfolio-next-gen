@@ -3,6 +3,7 @@ import Layout, { siteTitle } from "../components/layout";
 import Footer from "../components/footer";
 import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
+import paginationStyle from "../styles/blog.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 const postsPerPage = 5;
@@ -47,7 +48,7 @@ export default function Blog({ allPostsData, numPages, allPostsNum }) {
           ))}
         </ul>
         {/* Pagination links */}
-        <div>
+        <div className={paginationStyle.pagination}>
           {Array.from({ length: numPages }, (_, i) => (
             <Link style={{ margin: '0.5rem' }} href={`/page/${i + 1}`} key={i + 1}>
               {i + 1}

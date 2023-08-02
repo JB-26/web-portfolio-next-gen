@@ -1,10 +1,11 @@
 import Head from "next/head";
+import Date from "../../components/date";
 import Layout, { siteTitle } from "../../components/layout";
 import Footer from "../../components/footer";
 import utilStyles from "../../styles/utils.module.css";
+import paginationStyle from "../../styles/blog.module.css";
 import { getSortedPostsData } from "../../lib/posts";
 import Link from "next/link";
-import Date from "../../components/date";
 
 const postsPerPage = 5;
 
@@ -59,7 +60,7 @@ export default function BlogPage({ currentPosts, numPages, pageNumber }) {
           ))}
         </ul>
         {/* Pagination links */}
-        <div>
+        <div className={paginationStyle.pagination}>
           {Array.from({ length: numPages }, (_, i) => (
             <Link
               style={{ margin: "0.5rem" }}

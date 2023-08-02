@@ -12,6 +12,10 @@ a:visited.blog {
     color: black;
 }
 
+a:hover.blog {
+    text-decoration: underline;
+}
+
 .icon {
     padding-left: 9px;
     padding-right: 9px;

@@ -41,3 +41,34 @@ img {
     max-width: 100%;
     display: block;
 }
+
+/* displaying code */
+pre {
+    background: #ededed;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
+
+/* displaying quotes */
+blockquote {
+    font-size: 15px;
+    margin: 50px auto;
+    font-style: italic;
+    color: #555555;
+    padding: 1.2em 30px 1.2em;
+    border-left: 3px solid #78c0a8;
+    line-height: 1.6;
+    position: relative;
+    background: #ededed;
+}
