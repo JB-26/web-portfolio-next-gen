@@ -1,0 +1,67 @@
+.signature {
+    margin: 10px 10px 10px 10px;
+    padding: 10px 20px 10px 20px;
+}
+
+.format {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.image {
+    border-radius: 3rem;
+    height: auto;
+    width: 11rem;
+    max-width: 100%;
+    padding: 4px;
+}
+
+.info {
+    font-style: italic;
+    line-height: 1.6;
+    padding: 10px 10px 3px 15px;
+    font-size: 0.9rem;
+}
+
+.link {
+    line-height: 1.6;
+    padding: 19px;
+    font-size: 0.9rem;
+}
+
+.line {
+    color: #0070f3;
+}
+
+/* tablet/desktop design */
+@media (min-width: 768px) {
+    .format {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center;
+    }
+
+    .image {
+        border-radius: 3rem;
+        height: auto;
+        width: 30rem;
+        max-width: 100%;
+        padding: 4px;
+    }
+
+    .info {
+        font-style: italic;
+        line-height: 1.6;
+        padding: 10px 10px 3px 15px;
+        font-size: 1.0rem;
+    }
+
+    .link {
+        line-height: 1.6;
+        padding: 19px;
+        font-size: 0.9rem;
+    }
+}
