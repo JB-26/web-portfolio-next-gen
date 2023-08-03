@@ -5,6 +5,10 @@ module.exports = {
         source: "/page/:pageNumber",
         destination: "/page/[pageNumber]",
       },
+      {
+        source: '/rss.xml',
+        destination: '/api/rss',
+      },
     ];
   },
 };
