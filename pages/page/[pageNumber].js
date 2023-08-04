@@ -47,7 +47,7 @@ export default function BlogPage({ currentPosts, numPages, pageNumber }) {
       <section className={utilStyles.headingMd}>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog - Page {pageNumber}</h2>
+        <h1 className={utilStyles.headingXl}>Blog - Page {pageNumber}</h1>
         <ul className={utilStyles.list}>
           {currentPosts.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>

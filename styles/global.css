@@ -24,6 +24,22 @@ a {
     text-decoration: none;
 }
 
+h1 {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+
+h1::after {
+    content: "";
+    height: .1em;
+    background: #0070f3;
+    width: 100%;
+    margin-left: -100%;
+    position: absolute;
+    bottom: 0;
+}
+
 a:hover {
     text-decoration: underline;
 }
@@ -33,6 +49,14 @@ img {
     display: block;
 }
 
+i {
+    color: black;
+}
+
+
+i:hover {
+    color: #0070f3;
+}
 /* displaying code */
 pre {
     background: #ededed;

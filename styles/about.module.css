@@ -1,0 +1,19 @@
+.imageAboutRight {
+    float: right;
+    border: 5px;
+    border-radius: 10px;
+    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
+    width: 215px;
+    height: 215px;
+    margin: 5px;
+}
+
+@media (min-width: 768px) {
+    .imageAboutRight {
+        border: 5px;
+        border-radius: 25px;
+        width: 350px;
+        height: 350px;
+        margin: 0px 0px 0px 30px;
+    }
+}

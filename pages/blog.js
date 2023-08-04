@@ -31,11 +31,8 @@ export default function Blog({ allPostsData, numPages, allPostsNum }) {
         <title>{siteTitle}</title>
         <meta charSet='utf-8' name="The personal website of IT Professional, Joshua Blewitt"/>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>Read my blog to catch up on what I&apos;m doing. See what my thoughts are on technology, work and more!</p> 
-      </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog - {allPostsNum} posts</h2>
+        <h1 className={utilStyles.headingXl}>Blog - {allPostsNum} posts</h1>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
