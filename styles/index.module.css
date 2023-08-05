@@ -6,6 +6,8 @@
 
 .right {
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .left {
@@ -13,7 +15,7 @@
 }
 
 .left h1 {
-    font-size: 18px;
+    font-size: 31px;
 }
 
 .left p {
@@ -42,7 +44,6 @@
     border: 5px;
     border-radius: 25px;
     box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
-    margin-top: 25px;
     width: 200px;
     height: 200px;
 }
