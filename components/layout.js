@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "./layout.module.css";
 import Link from "next/link";
 import Header from "./header";
+import Footer from "./footer";
 import Signature from "./signature";
 
 export const siteTitle = "Joshua Blewitt";
@@ -32,6 +33,7 @@ export default function Layout({ children, home }) {
           <div className={styles.backToHome}>
             <Link href="/blog">← Back to blog</Link>
           </div>
+        <Footer></Footer>
         </>
       )}
     </div>
