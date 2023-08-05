@@ -1,0 +1,136 @@
+.content {
+    /* both right and left classes are flexbox items */
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.right {
+    text-align: center;
+}
+
+.left {
+    max-width: 20rem;
+}
+
+.left h1 {
+    font-size: 18px;
+}
+
+.left p {
+    font-size: 20px;
+}
+
+.name {
+    display: inline;
+    color: #FFC93C;
+    text-shadow: 4px 1px #155263;
+    font-size: inherit;
+}
+
+.indexHeader {
+    font-size: 21px;
+}
+
+.known {
+    text-align: left;
+    display: block;
+    color: #666;
+    font-style: italic;
+}
+
+.image {
+    border: 5px;
+    border-radius: 25px;
+    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
+    margin-top: 25px;
+    width: 200px;
+    height: 200px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.emailButton {
+    flex-direction: column;
+    color: black;
+    width: 340px;
+    height: 60px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    box-shadow: 10px 10px;
+    word-wrap: break-word;
+    text-align: center;
+    text-decoration: none;
+    font-size: 36px;
+    font-weight: bold;
+    /* allows for smoother animation */
+    transform-origin: center;
+    transition-duration: 150ms;
+}
+
+.emailButton:hover {
+    /* raise the button up */
+    transform: scale(1) translateY(-3px);
+    box-shadow: 15px 15px;
+    animation-duration: 7000ms;
+}
+
+.emailButton:active {
+    /* lower the button down */
+    box-shadow: 5px 5px;
+    transform: scale(0.99) translateY(-1px);
+}
+
+/* tablet/desktop design */
+@media (min-width: 768px) {
+    .content {
+        /* makes the layout vertical */
+        flex-direction: row;
+        /* makes the content centered on the main axis (vertical) */
+        justify-content: center;
+    }
+
+    .left h1 {
+        font-size: 36px;
+    }
+
+    .right {
+        order: 2;
+        width: 100rem;
+    }
+
+    .left {
+        max-width: 29rem;
+    }
+
+    .image {
+        width: 250px;
+        height: 250px;
+        margin-left: 10px;
+    }
+
+    .known {
+        font-size: 18px;
+    }
+
+    .indexHeader {
+        font-size: 36px;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .left {
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+
+    .image {
+        width: 320px;
+        height: 320px;
+        margin-left: 10px;
+    }
+}
