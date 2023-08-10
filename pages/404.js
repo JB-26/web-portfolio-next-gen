@@ -5,6 +5,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { siteTitle } from "../components/layout";
 import styles from '../styles/error.module.css';
+import utilStyles from '../styles/utils.module.css';
 
 export default function Custom404() {
   return (
@@ -23,12 +24,12 @@ export default function Custom404() {
       </Head>
       <Header></Header>
       <div className={styles.errorMessage}>
-        <h1>
+        <h2 className={utilStyles.heading2Xl}>
           {" "}
           <span role="img" aria-label="string">
             ⁉️
           </span>
-        </h1>
+        </h2>
         <h2>You&apos;ve found the error page!</h2>
           <h2>Why not press this <Link href="/">link</Link> to return to the home page</h2>
       </div>
