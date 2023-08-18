@@ -87,3 +87,8 @@ blockquote {
     position: relative;
     background: #ededed;
 }
+
+/* customising font awesome icon */
+.fa-thumbtack {
+    transform: rotate(38deg) !important;
+}
