@@ -92,3 +92,12 @@ blockquote {
 .fa-thumbtack {
     transform: rotate(38deg) !important;
 }
+
+/* iframe config */
+@media screen and (max-width: 750px) {
+    iframe {
+        max-width: 100% !important;
+        width: auto !important;
+        height: auto !important;
+    }
+}
