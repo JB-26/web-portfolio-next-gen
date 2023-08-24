@@ -3,6 +3,7 @@ title: "What a wild few months (and what’s next)"
 date: "2022-10-08"
 description: "How come it is October already?!"
 image: https://images.unsplash.com/photo-1502570149819-b2260483d302?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80
+tags: ["Life"]
 ---
 
 Hey! 👋 

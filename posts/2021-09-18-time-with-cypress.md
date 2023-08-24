@@ -3,6 +3,7 @@ title: "Spending time with Cypress 🤖"
 date: "2021-09-23"
 description: "Taking a look at some web automation with Cypress"
 image: https://images.unsplash.com/photo-1516110833967-0b5716ca1387?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1400&q=80
+tags: ["JavaScript"]
 ---
 
 When it comes to testing, I've had plenty of experience (I mean, seven years of experience) and if there's one thing I stand by it's my view on automation. Automation, in many ways, is the future of testing. Automation helps free time for QA Engineers to explore issues and other work. Plus, the journey to automate your application provides a great opportunity to advance your career. Plus, with applications continuing to grow in size and complexity, automation is key in tackling applications which would normally take a long time to manually test during each regression check. 

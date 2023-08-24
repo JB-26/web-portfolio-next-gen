@@ -3,6 +3,7 @@ title: "The ‘Great Resignation’ - what can we learn? 🤔"
 date: "2021-11-08"
 description: "From watching people leave, to leaving myself. My thoughts about this ongoing event and what we can learn."
 image: https://images.unsplash.com/photo-1510074377623-8cf13fb86c08?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2072&q=80
+tags: ["Life", "Professional"]
 ---
 
 ![Empty desks](https://images.unsplash.com/photo-1510074377623-8cf13fb86c08?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2072&q=80)

@@ -3,6 +3,7 @@ title: "Electric Scooters - the next affordable mode of transport? 🛴"
 date: "2022-01-15"
 description: "A solution to congestion on the roads or a menace to pedestrians?"
 image: https://images.unsplash.com/photo-1566936737687-8f392a237b8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80
+tags: ["Life"]
 ---
 
 ![Electric scooters](https://images.unsplash.com/photo-1566936737687-8f392a237b8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80)

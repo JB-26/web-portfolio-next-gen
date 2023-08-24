@@ -3,6 +3,7 @@ title: "If the Metaverse is the future, then I don’t want to be a part of it"
 date: "2022-10-13"
 description: "And why don't avatars have any legs?"
 image: https://images.unsplash.com/photo-1637664067109-a6a00840d894?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80
+tags: ["Professional"]
 ---
 
 ![](https://images.unsplash.com/photo-1637664067109-a6a00840d894?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80)

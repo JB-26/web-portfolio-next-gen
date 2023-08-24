@@ -3,6 +3,7 @@ title: "My next computer 👨‍💻"
 date: "2023-01-28"
 description: "A blog post years in the making!"
 image: https://images.unsplash.com/photo-1629138144227-c157c21e1674?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=7200
+tags: ["Life"]
 ---
 
 ![](https://images.unsplash.com/photo-1629138144227-c157c21e1674?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=7200)

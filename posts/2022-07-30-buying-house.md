@@ -3,6 +3,7 @@ title: "My long 8 year journey to buying a house and what I’ve learnt"
 date: "2022-07-30"
 description: "And I didn’t even need to cancel Netflix to afford a deposit!"
 image: https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1673&q=80
+tags: ["Life"]
 ---
 
 Hi! It's been a while! 👋

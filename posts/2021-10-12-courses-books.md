@@ -3,6 +3,7 @@ title: "Good courses to do, books to read, and websites to visit 📚"
 date: "2021-10-16"
 description: "Need a helping hand in learning something new? This list should help!"
 image: https://images.unsplash.com/photo-1542319920155-a236a55f1a97?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80
+tags: ["Professional"]
 ---
 
 ![Studying](https://images.unsplash.com/photo-1542319920155-a236a55f1a97?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80)

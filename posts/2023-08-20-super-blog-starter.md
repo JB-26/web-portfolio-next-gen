@@ -1,6 +1,7 @@
 ---
 title: "Introducing Super Blog Starter!"
 date: "2023-08-20" #YYYY-MM-DD
+tags: ["Super Blog Starter"]
 ---
 
 When I launched [version 4](https://www.joshblewitt.dev/posts/2023-08-05-version-4) of this website, I said I would make a template available to use for those who want to make their own blog. Wether you want to make your own blog for professional use, or just simply want to own a small slice of the internet, I wanted to make something that anyone could use.

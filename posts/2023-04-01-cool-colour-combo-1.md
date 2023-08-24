@@ -3,6 +3,7 @@ title: "Cool Colour Combos #1 Ocean blue"
 date: "2023-04-01" #YYYY-MM-DD
 description: "Alliteration is always cool "
 image: https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=7200
+tags: ["UX"]
 ---
 
 Hey! Welcome to a new series all about _cool colour combos_ I’ve found online.

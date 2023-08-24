@@ -3,6 +3,7 @@ title: "Owning a home six months on"
 date: "2023-04-21" #YYYY-MM-DD
 description: "It’s been six months already?!"
 image: https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=6000
+tags: ["Life"]
 ---
 
 ![](https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=6000)

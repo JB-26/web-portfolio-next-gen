@@ -3,6 +3,7 @@ title: "Advent of Code 2022 - days 1, 2 and 3"
 date: "2023-01-03"
 description: "Day 3 was slightly tricky"
 image: https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=4800
+tags: ["Python"]
 ---
 
 ![](https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=4800)

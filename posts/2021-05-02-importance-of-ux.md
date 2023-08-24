@@ -1,6 +1,7 @@
 ---
 title: "The growing importance of UX 👨‍💻"
 date: "2021-05-02"
+tags: ["Professional"]
 ---
 
 Over the years, applications have become larger and more complex, which is because of the advances made in technology. Our applications have transformed into very interactice expierences for the user. For example the rise of digital wallets, like Apple Pay, Google Pay and PayPal. Ensuring our applications have a rich mobile experience as smart phones have become a popular way of viewing web pages. The American Government have this handy [analytics](https://analytics.usa.gov/) page which shows a breakdown of the devices being used to access their websites and mobiles are overtaking desktops.

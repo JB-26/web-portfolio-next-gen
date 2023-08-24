@@ -1,6 +1,7 @@
 ---
 title: "A new coat of paint 🎨"
 date: "2020-04-06"
+tags: ["Blog"]
 ---
 
 #Website 2.0! 👏

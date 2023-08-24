@@ -3,6 +3,7 @@ title: "Exploring Social Media stats around the world with Pandas and Mito"
 date: "2023-06-07" #YYYY-MM-DD
 description: "The ever changing landscape of the internet"
 image: https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=7200
+tags: ["Python"]
 ---
 
 ![](https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=7200)

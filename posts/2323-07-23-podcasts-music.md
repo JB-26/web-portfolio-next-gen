@@ -3,6 +3,7 @@ title: "Some of my favourite albums and podcasts"
 date: "2023-07-23" #YYYY-MM-DD
 description: "And now for something completely different"
 image: https://images.unsplash.com/photo-1511735111819-9a3f7709049c?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=7200
+tags: ["Life"]
 ---
 
 I don’t often talk about my tastes in music or even what podcasts I listen to, so I thought I’d type up some of my favourite albums and podcasts.

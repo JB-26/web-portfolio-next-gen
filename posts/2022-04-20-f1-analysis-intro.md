@@ -3,6 +3,7 @@ title: "An introduction to my new project, Data Science/Analysis meets the 2022 
 date: "2022-04-20"
 description: "Who knew working with time could be so frustrating?"
 image: https://images.unsplash.com/photo-1636089772054-48dc564443d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2498&q=80
+tags: ["Python"]
 ---
 
 Hi! It’s been a while! 👋

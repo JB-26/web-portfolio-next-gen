@@ -3,6 +3,7 @@ title: "The iOS App Icon Book hands on impressions 📖"
 date: "2022-05-21"
 description: "An interesting look at how people craft icons and how much work goes into making icons."
 image: https://i.imgur.com/I8SL2OA.jpg
+tags: ["Life"]
 ---
 
 ![](https://i.imgur.com/I8SL2OA.jpg)

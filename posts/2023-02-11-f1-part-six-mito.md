@@ -3,6 +3,7 @@ title: "F1 Data Science Project Part 6 - Improving data analysis with Mito"
 date: "2023-02-11"
 description: "A new way to supercharge your data analysis work"
 image: https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=7200
+tags: ["Python"]
 ---
 
 ![](https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=7200)
