@@ -3,6 +3,7 @@ title: "Watching ChatGPT write comedies on Twitch"
 date: "2023-02-25"
 description: "A few hours well spent. And a glimpse into the future?"
 image: https://images.unsplash.com/photo-1527334919515-b8dee906a34b?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=7200
+tags: ["Professional", "AI"]
 ---
 
 There’s been plenty of buzz about [ChatGPT](https://openai.com/blog/chatgpt/) lately. 

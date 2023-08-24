@@ -3,6 +3,7 @@ title: "What I’ve learnt about Cypress this month (as a newcomer) 🤖 "
 date: "2022-02-06"
 description: "From creating environment variables to a mystery restart."
 image: https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80
+tags: ["JavaScript"]
 ---
 
 ![Web browser](https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)

@@ -3,6 +3,7 @@ title: "The argument, for and against, of Scope Creep"
 date: "2023-05-10" #YYYY-MM-DD
 description: "A real double-edged sword."
 image: https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=6000
+tags: ["Business Analysis", "Professional"]
 ---
 
 ![](https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=6000)

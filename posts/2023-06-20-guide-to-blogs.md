@@ -3,6 +3,7 @@ title: "A rough step by step guide to getting started with a blog"
 date: "2023-06-20" #YYYY-MM-DD
 description: "Speaking from three years of experience"
 image: https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=4800
+tags: ["Blog"]
 ---
 
 ![](https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=4800)

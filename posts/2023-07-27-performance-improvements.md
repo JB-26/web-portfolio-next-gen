@@ -3,6 +3,7 @@ title: "Making performance improvements on the blog"
 date: "2023-07-27" #YYYY-MM-DD
 description: "Better than ever!"
 image: https://images.unsplash.com/photo-1508962914676-134849a727f0?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=4800
+tags: ["Blog"]
 ---
 
 A while back, I enabled Lighthouse reports on Netlify to get a better understanding of how I can improve this website.

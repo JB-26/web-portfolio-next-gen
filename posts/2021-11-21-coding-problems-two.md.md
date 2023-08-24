@@ -3,6 +3,7 @@ title: "Coding Problems Part 2 - zigzags! 📈"
 date: "2021-11-21"
 description: "Who knew trying to create a zigzag from a string could be so difficult?"
 image: https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80
+tags: ["Python"]
 ---
 
 ![Desk](https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80)

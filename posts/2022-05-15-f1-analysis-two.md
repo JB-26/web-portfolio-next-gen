@@ -3,6 +3,7 @@ title: "F1 2022 Data Science part two - plotting with Seaborn 🧐"
 date: "2022-05-15"
 description: "Wrestling with Time Delta, rotating X labels in Seaborn and visualisation!"
 image: https://images.unsplash.com/photo-1582854050148-651d87fa3319?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80
+tags: ["Python"]
 ---
 
 Welcome back to part 2 of my series on my project about F1 2022 season with Data Science/Analysis! This week, it's a short update as I am very busy with other things on my plate at the moment.

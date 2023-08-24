@@ -3,6 +3,7 @@ title: "Checking the number of syllables in a haiku"
 date: "2023-07-02" #YYYY-MM-DD
 description: "A small Python program!"
 image: https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=4800
+tags: ["Python"]
 ---
 
 It’s been a while since I actually sat down and wrote some Python code. So recently I decided to write a small program that:

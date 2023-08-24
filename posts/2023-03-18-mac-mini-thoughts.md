@@ -3,6 +3,7 @@ title: "My thoughts on the M2 Mac Mini"
 date: "2023-03-18" #YYYY-MM-DD
 description: "Put this computer on your wish list"
 image: https://images.unsplash.com/photo-1553469945-2adfe230284d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=7200&q=80
+tags: ["Life"]
 ---
 
 So, [recently](https://joshblewitt.dev/blog/2023-01-28-next-computer/) I bought a new computer. I ended up buying the M2 Mac Mini. And I also ended up moving away from Windows after using the operating system for over 20 years.

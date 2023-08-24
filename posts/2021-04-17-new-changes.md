@@ -1,6 +1,7 @@
 ---
 title: "New changes and improvements 🔨"
 date: "2021-04-17"
+tags: ["Blog"]
 ---
 
 ###A new font

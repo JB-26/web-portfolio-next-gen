@@ -3,6 +3,7 @@ title: "My year in review - 2021 📅"
 date: "2022-01-07"
 description: "Looking back at the highs and lows of 2021 and looking at the future"
 image: https://images.unsplash.com/photo-1467810563316-b5476525c0f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80
+tags: ["Life"]
 ---
 
 ![New year](https://images.unsplash.com/photo-1467810563316-b5476525c0f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80)

@@ -3,6 +3,7 @@ title: "How I learnt more about problem solving thanks to assembling flat pack f
 date: "2022-10-26"
 description: "I don’t want any more Allen keys!"
 image: https://images.unsplash.com/photo-1623043453741-11aef9cb59b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZmxhdHBhY2t8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60
+tags: ["Life", "Professional"]
 ---
 
 ![](https://images.unsplash.com/photo-1623043453741-11aef9cb59b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZmxhdHBhY2t8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60)
