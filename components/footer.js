@@ -36,11 +36,11 @@ export default function Footer() {
         <li className={styles.blog}>
           <a
             className={styles.blog}
-            href="https://mastodon.social/@jblewitt"
+            href="https://www.threads.net/@jblw1tt"
             rel="noopener noreferrer me"
             target="_blank"
           >
-            <i className="fa-brands fa-mastodon"></i>
+            <i className="fa-brands fa-threads"></i>
           </a>
         </li>
         <li className={styles.blog}>
