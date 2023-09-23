@@ -24,7 +24,7 @@ export default function About() {
       </Head>
       <section className={utilStyles.headingMd}>
         <h1 className={utilStyles.headingXl}>A bit about me</h1>
-        <i>I&apos;m a Test Engineer, hobbyist developer and problem solver.</i>
+        <i>I&apos;m an Application Analyst, hobbyist developer and problem solver.</i>
       </section>
       <section className={`${utilStyles.headingMd}`}>
         <p>
@@ -35,9 +35,9 @@ export default function About() {
             alt="I sure love donuts 🍩"
           />
           I&apos;m an IT Professional with 9 years of experience with a First Class Degree in Computer Science. I&apos;m
-          currently a Software Test Engineer at IQVIA. I&apos;ve previously
-          worked for companies like Domino&apos;s Pizza Group. I&apos;ve mostly
-          worked within testing of software. I enjoy programming as a hobby and
+          currently an Application Analyst at Rightmove. I&apos;ve previously
+          worked for companies like Domino&apos;s Pizza Group and IQVIA. I&apos;ve mostly
+          worked within testing of software, but have moved into a role where I can enable change. I enjoy programming as a hobby and
           problem solving.
           <br />
           <br />I continue to learn by reading, watching videos and taking
@@ -46,6 +46,7 @@ export default function About() {
           skills in being a better problem solver.
           <br />
           <br />
+          Outside of work, I enjoy playing video games, watching TV, reading and planning my next trip.
           I consider myself to be a donut connoisseur.
         </p>
       </section>
