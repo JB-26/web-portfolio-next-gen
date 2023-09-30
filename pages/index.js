@@ -27,8 +27,8 @@ export default function Home() {
             <p className={styles.known}>But you can call me JB.</p>
             <p>
               I&apos;m a hobbyist developer, technology advocate, analyst and curious mind that&apos;s based in the United
-              Kingdom. My current work as an Application Analyst allows me to enable change by defining needs and recommending solutions that deliver value to stakeholders.
-              In my spare time, I enjoy collecting and playing retro games, listening to podcasts, and
+              Kingdom. My current work as an Application Analyst allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders.
+              In my spare time, I enjoy collecting and playing games, listening to podcasts, and
               travelling.
             </p>
             <div className={styles.buttonContainer}>

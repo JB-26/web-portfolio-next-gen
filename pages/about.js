@@ -32,12 +32,12 @@ export default function About() {
             className={styles.imageAboutRight}
             priority
             src={Img}
-            alt="I sure love donuts 🍩"
+            alt="A picture of myself in a restaurant"
           />
           I&apos;m an IT Professional with 9 years of experience with a First Class Degree in Computer Science. I&apos;m
           currently an Application Analyst at Rightmove. I&apos;ve previously
           worked for companies like Domino&apos;s Pizza Group and IQVIA. I&apos;ve mostly
-          worked within testing of software, but have moved into a role where I can enable change. I enjoy programming as a hobby and
+          worked within testing of software, but have moved into a role where I can analyse business problems, design and deliver technical solutions. I enjoy programming as a hobby and
           problem solving.
           <br />
           <br />I continue to learn by reading, watching videos and taking
