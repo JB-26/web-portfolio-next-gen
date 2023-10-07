@@ -6,7 +6,7 @@ import Footer from "../../components/footer";
 
 export async function getServerSideProps({ params }) {
   const tag = params.tag;
-  const posts = getPostsByTag(tag);
+  const posts = await getPostsByTag(tag);
 
   return {
     props: {
