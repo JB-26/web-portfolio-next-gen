@@ -104,7 +104,7 @@
     }
 
     .left {
-        max-width: 29rem;
+        max-width: none;
     }
 
     .image {
