@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import SearchResults from '../components/SearchResults';
+import SearchResults from '../components/searchResults';
 
 const SearchResultsPage = () => {
   const router = useRouter();

@@ -2,7 +2,7 @@ import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import Footer from "../components/footer";
 import Date from "../components/date";
-import Search from '../components/Search';
+import Search from '../components/search';
 import utilStyles from "../styles/utils.module.css";
 import paginationStyle from "../styles/blog.module.css";
 import { getSortedPostsData, getPostDataByName } from "../lib/posts";
