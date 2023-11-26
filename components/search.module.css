@@ -1,11 +1,12 @@
 .searchBox {
-    height: 35px;
+    height: 45px;
+    width: 125px;
 }
 
 .searchButton {
     background-color: #ffffff;
     color: black;
-    width: 200px;
+    width: 125px;
     height: 50px;
     border-color: black;
     border-width: 2px;
@@ -33,4 +34,15 @@
     /* lower the button down */
     box-shadow: 5px 5px;
     transform: scale(0.99) translateY(-1px);
+}
+
+@media (min-width: 768px) {
+    .searchBox {
+        height: 45px;
+        width: auto;
+    }
+
+.searchButton {
+        width: 200px;
+    }
 }
