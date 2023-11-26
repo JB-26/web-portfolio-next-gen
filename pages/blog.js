@@ -70,6 +70,9 @@ export default function Blog({
         />
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h1 className={utilStyles.headingXl}>
+          Search for a post <i className="fa-solid fa-magnifying-glass"></i>
+        </h1>
         <Search onSearch={handleSearch} />
         <h1 className={utilStyles.headingXl}>
           Pinned Post <i className="fa-solid fa-thumbtack"></i>
