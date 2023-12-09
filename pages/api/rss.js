@@ -2,10 +2,10 @@ import RSS from "rss";
 import { metadata } from "../../components/siteMetadata";
 import { getSortedPostsData } from "../../lib/posts";
 
-const posts = getSortedPostsData();
-
 export async function generateRssFeed() {
+  const posts = await Promise.all(await getSortedPostsData()); // Await the promise returned by getSortedPostsData
   const baseUrl = metadata.siteUrl; 
+
   const feed = new RSS({
     title: metadata.title,
     description: metadata.description,
@@ -21,12 +21,13 @@ export async function generateRssFeed() {
     const url = `${baseUrl}/posts/${post.id}`;
     feed.item({
       title: post.title,
-      description: post.excerpt,
+      custom_elements: [{ "content:encoded": post.contentHtml }],
       url,
       guid: post.id,
       date: new Date(post.date),
     });
   });
+
   // Return the XML string for the RSS feed
   return feed.xml();
 }
