@@ -1,26 +1,29 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import SearchResults from '../components/searchResults';
+import SearchResults from '../components/SearchResults';
 
 const SearchResultsPage = () => {
   const router = useRouter();
-  const [parsedResults, setParsedResults] = useState([]);
+  const { results, query } = router.query;
+  const parsedResults = results ? JSON.parse(results) : [];
 
   useEffect(() => {
-    // Retrieve results from localStorage
-    const storedResults =
-      typeof window !== 'undefined' ? localStorage.getItem('searchResults') : null;
+    // Retrieve results from localStorage and do something with them if needed
+    const storedResults = typeof window !== 'undefined' ? localStorage.getItem('searchResults') : null;
 
-    console.log('Stored Results:', storedResults);
+    try {
+      const localStorageParsedResults = storedResults ? JSON.parse(storedResults) : [];
+      console.log('Parsed Results:', localStorageParsedResults);
+    } catch (error) {
+      console.error('Error parsing stored results:', error);
+    }
+  }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
 
-    // Check if storedResults is not undefined and not an empty string before parsing
-    const parsedResults = storedResults !== null && storedResults.trim() !== '' ? JSON.parse(storedResults) : [];
-
-    // Update the state with the parsed results
-    setParsedResults(parsedResults);
-    }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
-
-  return <SearchResults results={parsedResults} />;
+  return (
+    <>
+    <SearchResults results={parsedResults} query={query} />
+    </>
+    );
 };
 
 export default SearchResultsPage;

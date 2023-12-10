@@ -14,21 +14,34 @@ import { useRouter } from "next/router";
 
 
 export async function getStaticProps() {
-  const allPostsData = await getSortedPostsData();
-  const allPostsNum = allPostsData.length;
-  const numPages = Math.ceil(allPostsData.length / postsPerPage);
-  const specificPostName = "2023-03-26-MK-tech"; // Replace with the desired post name, without the .md file extension
-  const specificPostData = await getPostDataByName(specificPostName);
+  try {
+    const allPostsData = await getSortedPostsData();
+    const allPostsNum = allPostsData.length;
+    const numPages = Math.ceil(allPostsData.length / postsPerPage);
+    const specificPostName = "2023-03-26-MK-tech"; // Replace with the desired post name, without the .md file extension
+    const specificPostData = await getPostDataByName(specificPostName);
 
-  return {
-    props: {
-      allPostsData: allPostsData.slice(0, postsPerPage),
-      numPages,
-      allPostsNum,
-      specificPostData,
-    },
-  };
+    return {
+      props: {
+        allPostsData: Array.isArray(allPostsData) ? allPostsData.slice(0, postsPerPage) : [],
+        numPages,
+        allPostsNum,
+        specificPostData,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching posts data:', error);
+    return {
+      props: {
+        allPostsData: [],
+        numPages: 0,
+        allPostsNum: 0,
+        specificPostData: {},
+      },
+    };
+  }
 }
+
 
 export default function Blog({
   allPostsData,
@@ -42,31 +55,18 @@ export default function Blog({
   const handleSearch = async (query) => {
     try {
       const response = await fetch(`/api/search?query=${encodeURIComponent(query)}`);
-
-      if (!response.ok) {
-        throw new Error(`Error fetching search results. Status: ${response.status}`);
-      }
-
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        throw new Error('Expected JSON response, but received an unexpected content type.');
-      }
-
       const data = await response.json();
-      console.log('Raw Search results:', data); // Log the raw data
+      console.log('Search results:', data.results);
 
-      // Check if we're on the client side before using router.push
+      // Store results in localStorage
       if (typeof window !== 'undefined') {
-        router.push({
-          pathname: '/search-results',
-          query: { results: data.results, query }, // Include the query in the route
-        });
+        localStorage.setItem('searchResults', JSON.stringify(data.results));
+        router.push('/search-results');
       }
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
   };
-  
 
   return (
     <Layout home>
@@ -74,7 +74,7 @@ export default function Blog({
         src="https://kit.fontawesome.com/af67ca5a39.js"
         crossOrigin="anonymous"
         async
-      ></Script>
+        ></Script>
       <Head>
         <title>{siteTitle}</title>
         <meta
@@ -110,7 +110,7 @@ export default function Blog({
                 <Date dateString={date} />
               </small>
             </li>
-          ))}
+            ))}
         </ul>
         {/* Pagination links */}
         <div className={paginationStyle.pagination}>
@@ -119,13 +119,13 @@ export default function Blog({
               style={{ margin: "0.5rem" }}
               href={`/page/${i + 1}`}
               key={i + 1}
-            >
+              >
               {i + 1}
             </Link>
-          ))}
+            ))}
         </div>
       </section>
       <Footer></Footer>
     </Layout>
-  );
+    );
 }

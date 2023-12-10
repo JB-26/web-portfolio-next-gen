@@ -15,6 +15,9 @@ export default async function handler(req, res) {
             post.title.toLowerCase().includes(query.toLowerCase())
             );
 
+        console.log('All Posts Data:', allPostsData);
+        console.log('Search Results:', searchResults);
+
         res.status(200).json({ results: searchResults });
     } catch (error) {
         console.error('Error processing search request:', error);
