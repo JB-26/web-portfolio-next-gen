@@ -10,7 +10,7 @@ export default function SearchResults({ results, query }) {
                 <title>Search Results</title>
             </Head>
             <div>
-                <h2>Search Results for "{query}"</h2>
+                <h2>Search Results for &quot;{query}&quot;</h2>
                 <ul>
                     {results.map(({ id, title }) => {
                         console.log('Result:', { id, title }); // Log the details
