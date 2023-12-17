@@ -1,11 +1,13 @@
+// api/rss.js
+
 import RSS from "rss";
 import { metadata } from "../../components/siteMetadata";
-import { getSortedPostsData } from "../../lib/posts";
-
-const posts = getSortedPostsData();
+import { getSortedPostsData, getPostData } from "../../lib/posts";
 
 export async function generateRssFeed() {
+  const posts = await Promise.all(await getSortedPostsData());
   const baseUrl = metadata.siteUrl; 
+
   const feed = new RSS({
     title: metadata.title,
     description: metadata.description,
@@ -16,18 +18,30 @@ export async function generateRssFeed() {
     language: metadata.language,
   });
 
-  // Your code for generating the RSS feed items here...
-  posts.forEach((post) => {
+  // Create a separate array to store post content
+  const postContentArray = [];
+
+  // Retrieve post content and populate the postContentArray
+  await Promise.all(posts.map(async (post) => {
+    const postContent = await getPostData(post.id);
+    postContentArray.push({
+      id: post.id,
+      contentHtml: postContent.contentHtml,
+    });
+  }));
+
+  // Generate the RSS feed items
+  postContentArray.forEach((post) => {
     const url = `${baseUrl}/posts/${post.id}`;
     feed.item({
       title: post.title,
-      description: post.excerpt,
+      custom_elements: [{ "content:encoded": post.contentHtml }],
       url,
       guid: post.id,
       date: new Date(post.date),
     });
   });
-  // Return the XML string for the RSS feed
+
   return feed.xml();
 }
 
