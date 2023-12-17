@@ -26,21 +26,23 @@ export async function generateRssFeed() {
     const postContent = await getPostData(post.id);
     postContentArray.push({
       id: post.id,
+      title: postContent.title, // Add this line to include the title field
       contentHtml: postContent.contentHtml,
     });
   }));
 
+
   // Generate the RSS feed items
-  postContentArray.forEach((post) => {
-    const url = `${baseUrl}/posts/${post.id}`;
-    feed.item({
-      title: post.title,
-      custom_elements: [{ "content:encoded": post.contentHtml }],
-      url,
-      guid: post.id,
-      date: new Date(post.date),
-    });
+ postContentArray.forEach((post) => {
+  const url = `${baseUrl}/posts/${post.id}`;
+  feed.item({
+    title: post.title, // Make sure post.title is populated correctly
+    custom_elements: [{ "content:encoded": post.contentHtml }],
+    url,
+    guid: post.id,
+    date: new Date(post.date),
   });
+ });
 
   return feed.xml();
 }
