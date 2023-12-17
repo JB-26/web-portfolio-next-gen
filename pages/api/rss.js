@@ -28,6 +28,7 @@ export async function generateRssFeed() {
       id: post.id,
       title: postContent.title, // Add this line to include the title field
       contentHtml: postContent.contentHtml,
+      date: postContent.date
     });
   }));
 
@@ -40,7 +41,7 @@ export async function generateRssFeed() {
     custom_elements: [{ "content:encoded": post.contentHtml }],
     url,
     guid: post.id,
-    date: new Date(post.date),
+    date: post.date
   });
  });
 
