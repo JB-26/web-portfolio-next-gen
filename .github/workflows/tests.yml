@@ -18,36 +18,11 @@ jobs:
       with:
         node-version: 18.17.0
 
-    - name: Install Dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y \
-          libvpx6 \
-          libopus0 \
-          libharfbuzz-icu0 \
-          libgstreamer-plugins-base1.0-0 \
-          libgstreamer1.0-0 \
-          libgstreamer-gl1.0-0 \
-          libgstreamer-plugins-base1.0-0 \
-          libgstreamer-plugins-good1.0-0 \
-          libgstreamer-plugins-bad1.0-0 \
-          libgstreamer-plugins-ugly1.0-0 \
-          libgstreamer1.0-plugins-base \
-          libgstreamer1.0-plugins-good \
-          libgstreamer1.0-plugins-bad \
-          libgstreamer1.0-plugins-ugly \
-          libhyphen0 \
-          libmanette-0.2-0 \
-          libflite1 \
-          flite \
-          libgles2-mesa \
-          libx264-160
-
     - name: Build Next.js App
       run: npm run build
 
     - name: Install Playwright browsers
-      run: npx playwright install
+      run: npx playwright install-deps
 
     - name: Run NextJS application
       run: npm run start &
