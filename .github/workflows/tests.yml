@@ -22,7 +22,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y \
-          libvpx5 \
+          libvpx6 \
           libopus0 \
           libharfbuzz-icu0 \
           libgstreamer-plugins-base1.0-0 \
@@ -41,7 +41,7 @@ jobs:
           libflite1 \
           flite \
           libgles2-mesa \
-          libx264-155
+          libx264-160
 
     - name: Build Next.js App
       run: npm run build
