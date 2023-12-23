@@ -27,5 +27,8 @@ jobs:
     - name: Install Playwright browsers
       run: npx playwright install
 
+    - name: Run NextJS application
+      run: next dev
+
     - name: Run Playwright Tests
       run: npx playwright test
