@@ -18,26 +18,26 @@ export default function Home() {
       <section className={utilStyles.headingMd}>
         <div className={styles.content}>
           <div className={styles.left}>
-            <h1 className={utilStyles.heading2Xl}>
+            <h1 data-testid="main-heading" className={utilStyles.heading2Xl}>
               Hey, I&apos;m Joshua Blewitt {"  "}
               <span role='img' aria-label='string'>
                 👋
               </span>
             </h1>
-            <p className={styles.known}>But you can call me JB.</p>
-            <p>
+            <p data-testid="subtitle" className={styles.known}>But you can call me JB.</p>
+            <p data-testid="paragraph">
               I&apos;m a hobbyist developer, technology advocate, analyst and curious mind that&apos;s based in the United
               Kingdom. My current work as an Application Analyst allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders.
               In my spare time, I enjoy collecting and playing games, listening to podcasts, and
               travelling.
             </p>
-            <div className={styles.buttonContainer}>
+            <div data-testid="button" className={styles.buttonContainer}>
               <a className={styles.emailButton} href='mailto:joshblewitt@protonmail.com'>
                 Get in touch! <i className='fa-regular fa-envelope'></i>
               </a>
             </div>
           </div>
-          <div className={styles.right}>
+          <div data-testid="image" className={styles.right}>
             <Image priority className={styles.image} src={indexImage} alt='Me at Dishoom in London!'/>
           </div>
         </div>

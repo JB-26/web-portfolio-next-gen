@@ -4,7 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "playwright": "npx playwright test"
   },
   "dependencies": {
     "@vercel/analytics": "^1.1.1",
@@ -19,6 +20,8 @@
     "rss": "^1.2.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.5",
     "eslint": "8.55.0",
     "eslint-config-next": "^14.0.3"
   }
