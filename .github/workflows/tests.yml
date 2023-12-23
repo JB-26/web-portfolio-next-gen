@@ -24,8 +24,11 @@ jobs:
     - name: Build Next.js App
       run: npm run build
 
-    - name: Install Playwright browsers
+    - name: Install Playwright Dependencies
       run: npx playwright install-deps
+
+    - name: Install Playwright browsers
+      run: npx playwright install
 
     - name: Run NextJS application
       run: npm run start &
