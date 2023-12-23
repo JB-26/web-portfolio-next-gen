@@ -27,12 +27,19 @@ jobs:
     - name: Install Playwright browsers
       run: npx playwright install
 
-    - name: Run NextJS application in the background
+    - name: Run NextJS application
       run: npm run start &
-      background: true
 
     - name: Wait for NextJS app to start
-      run: sleep 10
+      run: |
+        timeout=0
+        until [[ $timeout -eq 30 ]]; do
+          if nc -z localhost 3000; then
+            break
+          fi
+          timeout=$((timeout + 1))
+          sleep 1
+        done
 
     - name: Run Playwright Tests
       run: npx playwright test
