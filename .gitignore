@@ -31,3 +31,7 @@ yarn-error.log*
 
 # template
 template.md
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
