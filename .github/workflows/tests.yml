@@ -28,7 +28,7 @@ jobs:
       run: npx playwright install
 
     - name: Run NextJS application
-      run: next dev
+      run: npm run start
 
     - name: Run Playwright Tests
       run: npx playwright test
