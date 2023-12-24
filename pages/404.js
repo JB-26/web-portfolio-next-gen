@@ -51,7 +51,7 @@ export default function Custom404() {
             ⁉️
           </span>
         </h2>
-        <h2>You&apos;ve found the error page!</h2>
+        <h2 data-testid="error-heading">You&apos;ve found the error page!</h2>
           <h2>Why not press this <Link href="/">link</Link> to return to the home page</h2>
         <h2>Or, why not try and search for the post that you were trying to find?</h2>
         <Search onSearch={handleSearch} />

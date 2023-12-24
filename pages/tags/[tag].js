@@ -22,7 +22,7 @@ export default function TagPage({ tag, posts }) {
       <Head>
         <title>{tag}</title>
       </Head>
-      <h1>Posts tagged with {tag}</h1>
+      <h1 data-testid="tag-heading">Posts tagged with {tag}</h1>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>

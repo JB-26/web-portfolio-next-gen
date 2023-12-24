@@ -18,13 +18,14 @@ export default function Search({ onSearch }) {
     <div>
         <input
             className={styles.searchBox}
+            data-testid="search"
             type="text"
             placeholder="Search..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             required
         />
-        <button className={styles.searchButton} onClick={handleSearch}>Search</button>
+      <button data-testid="button" className={styles.searchButton} onClick={handleSearch}>Search</button>
     </div>
     );
 }

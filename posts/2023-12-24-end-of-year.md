@@ -4,9 +4,7 @@ date: "2023-12-24" #YYYY-MM-DD
 tags: ["Life"]
 ---
 
-# End of year wrap up - 2023 edition
-
-I can’t believe we’ve reached the end of ********another******** year. Where did the time go? And on this post, I’m going to try and answer that question. Plus, a quick look into what I want to do in the new year. So let’s jump in on what I’ve done this year!
+I can’t believe we’ve reached the end of **another** year (and I'm another year older, turning 31 is terrifying). Where did the time go? And on this post, I’m going to try and answer that question. Plus, a quick look into what I want to do in the new year. So let’s jump in on what I’ve done this year!
 
 # This year
 
@@ -14,7 +12,7 @@ I can’t believe we’ve reached the end of ********another******** year. Where
 
 After using Gatsby and Netlify for 3 years, I decided to change to NextJS and Vercel. The new website is much faster, has a new look and features that I’ve been wanting to implement for a while such as pagination, tags and a search bar. Plus, the performance is much improved.
 
-Vercel also provides some great analytics (for free) so I can see what posts are popular.
+Vercel also provides some great analytics (for free) so I can see what posts are popular. And so far, I'm enjoying working with NextJS! And the tools and features on Vercel are great, especially the analytics on views and performance.
 
 And speaking of the new website, I also launched…
 
@@ -24,7 +22,7 @@ Shortly after launching my new website, I launched Super Blog Starter, a starter
 
 It’s very much in development, but anyone can go ahead and start contributing if they wish. However, it is in a state where you could clone the repo, make some changes and deploy to Vercel. It’s been a fun side project to work on and I have plans to improve it next year. Things I want to do include adding automated tests of some kind. I’m hoping that it reaches the big 1.0.0 release next year.
 
-If you’re curious about the project, go ahead and clone the repo!
+If you’re curious about the project, go ahead, clone the repo and give me some feedback!
 
 ## A new job
 
@@ -44,7 +42,7 @@ The cost of living has been the major low point this year. From food to fuel, it
 
 The cost of living has impacted my mental health as well, so improving my mental health is something I want to tackle next year as well.
 
-My mental health in general hasn’t been great these past few years. I’m hoping that it improves next year.
+My mental health in general hasn’t been great these past few years, for various reasons. I’m hoping that it improves next year and it's something that I want to address.
 
 # The next year
 
@@ -52,10 +50,10 @@ My mental health in general hasn’t been great these past few years. I’m hopi
 
 My current car (which is also my first car that I’ve owned) is a [2016 Vauxhall Viva](https://www.autoexpress.co.uk/vauxhall/viva). I bought the car, brand new, with my own money and back when I bought it, I thought it was the greatest car ever made . Especially since I had just got my driver’s licence.
 
-But next year, I would’ve owned it for ******eight****** years and now I want to move onto something that’s better in ******every****** way possible. My main complaints with my car are:
+But next year, I would’ve owned it for **eight** years and now I want to move onto something that’s better in ******every****** way possible. My main complaints with my car are:
 
 - Boot space (because it’s incredibly small, I can’t even go to Ikea in my car and the boot can’t hold the weekly food shop, I frequently have to use the back seats)
-- Power (as there is ***no*** power in my car, it struggles to get to 60mph)
+- Power (as there is **no** power in my car, it struggles to get to 60mph)
 - Lack of a decent infotainment system (I did have the option to get one when I first bought my car, but I turned it down and I regret it every time I drive my car).
 
 So next year, I would like to trade my car in and get a new car. For my next car, I want the above addressed but also I would like to buy an electric car.
@@ -64,6 +62,7 @@ In terms of a car I would like to get, I have eye on the following:
 
 - [BYD Seal](https://www.byd.com/uk/car/seal)
 - [Hyndai IONIQ 6](https://www.hyundai.com/uk/en/models/ioniq6.html)
+- [Hyundai Kona Electric](https://www.hyundai.com/uk/en/models/all-new-kona-electric.html)
 - [MG EV4](https://www.mg.co.uk/new-cars/mg4-ev)
 
 So we’ll see what the new year brings, I would very much want to get a new car (as it’s slowly driving me insane).
@@ -80,7 +79,7 @@ But what phone will I upgrade to is the big question. I’ve seen a lot of folda
 
 Although I’ve made good progress on my home so far, there’s still so much to do.
 
-The main bedroom needs a wardrobe and another chest of draws for starters. Then next on the list is to work on the guest bedroom. And finally, just do some more decorating.
+The main bedroom needs a wardrobe and another chest of draws for starters. Then next on the list is to work on the guest bedroom (and actually make it into a guest bedroom, rather than a spare room filled with stuff I need to unpack). And finally, just do some more decorating.
 
 ## Attend a conference
 
@@ -96,11 +95,11 @@ So I got a Steam Deck for my birthday back in October, and it’s a fantastic de
 
 I said this last year, and I’m saying it again this year. I’m going to read more books!
 
-I read a few books last year, but not as many as I had hoped. So next year, I want to improve that.
+I read a few books last year, but not as many as I had hoped. So next year, I want to improve that. I'm getting a few books for Christmas to get me back into reading.
 
 ## Exercise more(?)
 
-I want to improve my fitness and I’m hoping next year, I can find the time to exercise more. Maybe I’ll get an exercise bike of some kind and work in it multiple times a week.
+I want to improve my fitness and I’m hoping next year, I can find the time to exercise more. Maybe I’ll get an exercise bike of some kind and work in it multiple times a week. I'm hoping this also improves my mental health.
 
 ## Start a podcast(?)
 
