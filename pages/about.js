@@ -6,6 +6,7 @@ import styles from "../styles/about.module.css";
 import Script from "next/script";
 import Image from "next/image";
 import Img from "../public/images/me.webp";
+import Link from "next/link";
 
 export default function About() {
   return (
@@ -48,6 +49,9 @@ export default function About() {
           <br />
           Outside of work, I enjoy playing video games, watching TV, reading and planning my next trip.
           I consider myself to be a donut connoisseur.
+          <br />
+          <br />
+          I also work on a small project, <Link href='https://github.com/JB-26/super-blog-starter'>Super Blog Starter</Link>, which allows anyone to get up and running with a great blog. Filled with features such as pagination, tagging posts, searching for posts and an RSS feed out of the box.
         </p>
       </section>
       <Footer></Footer>

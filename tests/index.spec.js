@@ -24,7 +24,7 @@ test('Check for important content', async ({ page }) => {
 
     // Check if paragraph is present
     const paragraph = await page.textContent('[data-testid="paragraph"]');
-    expect(paragraph).toBe("I'm a hobbyist developer, technology advocate, analyst and curious mind that's based in the United Kingdom. My current work as an Application Analyst allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders. In my spare time, I enjoy collecting and playing games, listening to podcasts, and travelling.");
+    expect(paragraph).toBe("I'm a hobbyist developer, technology advocate, analyst and curious mind that's based in the United Kingdom. My current work as an Application Analyst allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders. In my spare time, I enjoy blogging, collecting and playing games, listening to podcasts, and travelling.");
 });
 
 test('Image is displayed', async ({ page }) => {
