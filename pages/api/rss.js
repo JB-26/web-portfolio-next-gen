@@ -2,7 +2,7 @@
 
 import RSS from "rss";
 import { metadata } from "../../components/siteMetadata";
-import { getSortedPostsData, getPostData } from "../../lib/posts";
+import { getSortedPostsData, getPostDataRss } from "../../lib/posts";
 
 export async function generateRssFeed() {
   const posts = await Promise.all(await getSortedPostsData());
@@ -23,7 +23,7 @@ export async function generateRssFeed() {
 
   // Retrieve post content and populate the postContentArray
   await Promise.all(posts.map(async (post) => {
-    const postContent = await getPostData(post.id);
+    const postContent = await getPostDataRss(post.id);
     postContentArray.push({
       id: post.id,
       title: postContent.title, // Add this line to include the title field
