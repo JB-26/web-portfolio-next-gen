@@ -40,7 +40,7 @@ async function generateRssFeed() {
     feed.item({
       title: post.title,
       custom_elements: [
-        { "content:encoded": `<![CDATA[${post.contentHtml}]]>` },
+        { "content:encoded": `${post.contentHtml}` },
       ],
       url,
       guid: post.id,
