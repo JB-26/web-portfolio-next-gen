@@ -15,6 +15,10 @@ body {
     overflow-x: hidden;
 }
 
+iframe {
+    width: 100%; /* takes precedence over the width set with the HTML width attribute */
+}
+
 * {
     box-sizing: border-box;
 }
