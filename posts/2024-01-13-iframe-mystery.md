@@ -4,8 +4,6 @@ date: "2024-01-11" #YYYY-MM-DD
 tags: ["Blog"]
 ---
 
-# The mystery of trying to get iframes to be rendered
-
 Recently, I’ve been trying to make posts that allow the use of rendering iframes on the page. But it turns out this is trickier than I thought.
 
 What the behaviour I was seeing was that the iframe were not being rendered at all.
