@@ -30,6 +30,13 @@ export default function Post({ postData }) {
     <Layout>
       <Head>
         <title>{postData.title}</title>
+
+        {/* Open Graph meta tags */}
+        <meta property="og:title" content={postData.title} />
+        <meta property="og:description" content={postData.description} />
+        <meta property="og:url" content={`https://www.joshblewitt.dev/posts/${postData.id}`} />
+        <meta property="og:image:alt" content={postData.description} />
+        <meta property="og:type" content="article" />
       </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
