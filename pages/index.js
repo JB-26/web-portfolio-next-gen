@@ -6,6 +6,7 @@ import Script from 'next/script'
 import Head from "next/head";
 import Image from "next/image";
 import indexImage from "../public/images/new_2023.webp";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
               In my spare time, I enjoy blogging, collecting and playing games, listening to podcasts, and
               travelling.
             </p>
+            <p>I&apos;m also the host of the <Link href="https://stuff-i-dont-know.vercel.app/">&ldquo;Stuff I Don&apos;t Know!&ldquo;</Link> podcast.</p>
             <div data-testid="button" className={styles.buttonContainer}>
               <a className={styles.emailButton} href='mailto:joshblewitt@protonmail.com'>
                 Get in touch! <i className='fa-regular fa-envelope'></i>

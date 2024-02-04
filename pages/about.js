@@ -25,7 +25,7 @@ export default function About() {
       </Head>
       <section className={utilStyles.headingMd}>
         <h1 data-testid="heading" className={utilStyles.headingXl}>A bit about me</h1>
-        <i data-testid="intro">I&apos;m an Application Analyst, hobbyist developer and problem solver.</i>
+        <i data-testid="intro">I&apos;m an Application Analyst, hobbyist developer, hobbyist podcaster and problem solver.</i>
       </section>
       <section className={`${utilStyles.headingMd}`}>
         <p>
@@ -52,6 +52,9 @@ export default function About() {
           <br />
           <br />
           I also work on a small project, <Link href='https://github.com/JB-26/super-blog-starter'>Super Blog Starter</Link>, which allows anyone to get up and running with a great blog. Filled with features such as pagination, tagging posts, searching for posts and an RSS feed out of the box.
+          <br />
+          <br />
+          Plus, I work on a related project, called <Link href='https://github.com/JB-26/super-podcast-starter'>Super Podcast Starter</Link>, allowing anyone with a podcast to have a great looking website.
         </p>
       </section>
       <Footer></Footer>
