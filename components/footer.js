@@ -16,16 +16,6 @@ export default function Footer() {
         <li className={styles.blog}>
           <a
             className={styles.blog}
-            href="https://codepen.io/JayBl"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <i className="fa-brands fa-codepen"></i>
-          </a>
-        </li>
-        <li className={styles.blog}>
-          <a
-            className={styles.blog}
             href="https://www.linkedin.com/in/jblewitt/"
             rel="noopener noreferrer"
             target="_blank"
