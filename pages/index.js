@@ -26,22 +26,22 @@ export default function Home() {
               </span>
             </h1>
             <p data-testid="subtitle" className={styles.known}>But you can call me JB.</p>
+            <p><i className="fa-solid fa-location-dot"></i> United Kingdom</p>
+            <p><i className="fa-solid fa-briefcase"></i> Application Analyst @ Rightmove</p>
             <p data-testid="paragraph">
-              I&apos;m a hobbyist developer, technology advocate, analyst and curious mind that&apos;s based in the United
-              Kingdom. My current work as an Application Analyst allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders.
-              In my spare time, I enjoy blogging, collecting and playing games, listening to podcasts, and
-              travelling.
+              I&apos;m a hobbyist developer, technology advocate, analyst and curious mind.
+              My current work allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders.
             </p>
             <p>I&apos;m also the host of the <Link href="https://stuff-i-dont-know.vercel.app/">&ldquo;Stuff I Don&apos;t Know!&ldquo;</Link> podcast.</p>
-            <div data-testid="button" className={styles.buttonContainer}>
-              <a className={styles.emailButton} href='mailto:joshblewitt@protonmail.com'>
-                Get in touch! <i className='fa-regular fa-envelope'></i>
-              </a>
-            </div>
           </div>
           <div data-testid="image" className={styles.right}>
             <Image priority className={styles.image} src={indexImage} alt='Me at Dishoom in London!'/>
           </div>
+        </div>
+        <div data-testid="button" className={styles.buttonContainer}>
+          <a className={styles.emailButton} href='mailto:joshblewitt@protonmail.com'>
+            Get in touch! <i className='fa-regular fa-envelope'></i>
+          </a>
         </div>
       </section>
       <Footer></Footer>

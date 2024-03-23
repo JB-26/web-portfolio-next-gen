@@ -25,7 +25,7 @@ export default function About() {
       </Head>
       <section className={utilStyles.headingMd}>
         <h1 data-testid="heading" className={utilStyles.headingXl}>A bit about me</h1>
-        <i data-testid="intro">I&apos;m an Application Analyst, hobbyist developer, hobbyist podcaster and problem solver.</i>
+        <i data-testid="intro" className={styles.intro}>I&apos;m an Application Analyst, hobbyist developer, hobbyist podcaster and problem solver.</i>
       </section>
       <section className={`${utilStyles.headingMd}`}>
         <p>
