@@ -15,6 +15,25 @@ body {
     overflow-x: hidden;
 }
 
+@font-face {
+    font-family: 'RedditSans-Regular';
+    src: url('../fonts/redditsans/RedditSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'RedditSans-Bold';
+    src: url('../fonts/redditsans/RedditSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'RedditSans-ExtraBold';
+    src: url('../fonts/redditsans/RedditSans-ExtraBold.ttf');
+}
+
+p {
+    font-family: RedditSans-Regular;
+}
+
 iframe {
     width: 100%;
 }
@@ -26,12 +45,14 @@ iframe {
 a {
     color: #0070f3;
     text-decoration: none;
+    font-family: RedditSans-Regular;
 }
 
 h1 {
     position: relative;
     overflow: hidden;
     padding-bottom: 5px;
+    font-family: RedditSans-ExtraBold;
 }
 
 h1::after {
@@ -95,4 +116,16 @@ blockquote {
 /* customising font awesome icon */
 .fa-thumbtack {
     transform: rotate(38deg) !important;
+}
+
+.fa-thumbtack:hover {
+    color: black;
+}
+
+.fa-envelope:hover {
+    color: black;
+}
+
+.fa-magnifying-glass:hover {
+    color: black;
 }

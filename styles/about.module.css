@@ -8,6 +8,10 @@
     margin: 5px;
 }
 
+.intro:hover {
+    color: black;
+}
+
 @media (min-width: 768px) {
     .imageAboutRight {
         border: 5px;

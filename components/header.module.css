@@ -1,5 +1,9 @@
 /* header */
 
+.blog {
+    font-family: RedditSans-Bold;
+}
+
 a:link.blog {
     text-decoration: none;
     text-shadow: none;
