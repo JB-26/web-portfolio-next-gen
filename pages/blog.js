@@ -87,7 +87,7 @@ export default function Blog({
           </small>
         </div>
 
-        <h1 data-testid="blog-posts" className={utilStyles.headingXl}>Blog - {allPostsNum} posts</h1>
+        <h1 data-testid="blog-posts" className={utilStyles.headingXl}>Blog - {allPostsNum} posts <i className="fa-solid fa-blog"></i></h1>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
