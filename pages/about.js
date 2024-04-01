@@ -48,13 +48,15 @@ export default function About() {
           <br />
           <br />
           Outside of work, I enjoy playing video games, watching TV, reading and planning my next trip.
-          I consider myself to be a donut connoisseur.
           <br />
           <br />
           I also work on a small project, <Link href='https://github.com/JB-26/super-blog-starter'>Super Blog Starter</Link>, which allows anyone to get up and running with a great blog. Filled with features such as pagination, tagging posts, searching for posts and an RSS feed out of the box.
           <br />
           <br />
           Plus, I work on a related project, called <Link href='https://github.com/JB-26/super-podcast-starter'>Super Podcast Starter</Link>, allowing anyone with a podcast to have a great looking website.
+          <br />
+          <br />
+          I&apos;m also the host of the <Link href="https://stuff-i-dont-know.vercel.app/">&ldquo;Stuff I Don&apos;t Know!&ldquo;</Link> podcast.
         </p>
       </section>
       <Footer></Footer>
