@@ -6,7 +6,6 @@ import Script from 'next/script'
 import Head from "next/head";
 import Image from "next/image";
 import indexImage from "../public/images/new_2023.webp";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -25,14 +24,13 @@ export default function Home() {
                 👋
               </span>
             </h1>
-            <p data-testid="subtitle" className={styles.known}>But you can call me JB.</p>
+            <p data-testid="subtitle" className={styles.known}>But call me JB.</p>
             <p><i className="fa-solid fa-location-dot"></i> United Kingdom</p>
             <p><i className="fa-solid fa-briefcase"></i> Application Analyst @ Rightmove</p>
             <p data-testid="paragraph">
-              I&apos;m a hobbyist developer, technology advocate, analyst and curious mind.
+              I&apos;m a hobbyist developer, technology advocate, and curious mind.
               My current work allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders.
             </p>
-            <p>I&apos;m also the host of the <Link href="https://stuff-i-dont-know.vercel.app/">&ldquo;Stuff I Don&apos;t Know!&ldquo;</Link> podcast.</p>
           </div>
           <div data-testid="image" className={styles.right}>
             <Image priority className={styles.image} src={indexImage} alt='Me at Dishoom in London!'/>
