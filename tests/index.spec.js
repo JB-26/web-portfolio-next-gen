@@ -24,7 +24,7 @@ test('Check for important content', async ({ page }) => {
 
     // Check if paragraph is present
     const paragraph = await page.textContent('[data-testid="paragraph"]');
-    expect(paragraph).toBe("I'm a hobbyist developer, technology advocate, analyst and curious mind. My current work allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders.");
+    expect(paragraph).toBe("I'm a hobbyist developer, technology advocate, and curious mind. My current work allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders.");
 });
 
 test('Image is displayed', async ({ page }) => {
