@@ -16,7 +16,7 @@ test('Check for important content', async ({ page }) => {
     
     // Check if subtitle is present
     const subtitle = await page.textContent('[data-testid="subtitle"]');
-    expect(subtitle).toBe('But you can call me JB.');
+    expect(subtitle).toBe('But call me JB.');
 
     // Check if the email button is present
     const emailButton = await page.textContent('[data-testid="button"]');
