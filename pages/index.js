@@ -26,7 +26,7 @@ export default function Home() {
             </h1>
             <p data-testid="subtitle" className={styles.known}>But call me JB.</p>
             <p><i className="fa-solid fa-location-dot"></i> United Kingdom</p>
-            <p><i className="fa-solid fa-briefcase"></i> Application Analyst @ Rightmove</p>
+            <p><i className="fa-solid fa-briefcase"></i> Looking for my next opportunity in analysis</p>
             <p data-testid="paragraph">
               I&apos;m a hobbyist developer, technology advocate, and curious mind.
               My current work allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders.
