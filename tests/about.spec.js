@@ -11,5 +11,5 @@ test('Check for important content', async ({ page }) => {
     await page.goto('http://localhost:3000/about'); // Update the URL as needed
 
     const heading = await page.textContent('[data-testid="intro"]');
-    expect(heading).toBe("I'm an Application Analyst, hobbyist developer, hobbyist podcaster and problem solver.");
+    expect(heading).toBe("I'm an analyst, hobbyist developer, hobbyist podcaster and problem solver.");
 });

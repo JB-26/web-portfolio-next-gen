@@ -25,7 +25,7 @@ export default function About() {
       </Head>
       <section className={utilStyles.headingMd}>
         <h1 data-testid="heading" className={utilStyles.headingXl}>A bit about me</h1>
-        <i data-testid="intro" className={styles.intro}>I&apos;m an Application Analyst, hobbyist developer, hobbyist podcaster and problem solver.</i>
+        <i data-testid="intro" className={styles.intro}>I&apos;m an analyst, hobbyist developer, hobbyist podcaster and problem solver.</i>
       </section>
       <section className={`${utilStyles.headingMd}`}>
         <p>
@@ -36,9 +36,9 @@ export default function About() {
             alt="A picture of myself in a restaurant"
           />
           I&apos;m an IT Professional with 9 years of experience with a First Class Degree in Computer Science. I&apos;m
-          currently an Application Analyst at Rightmove. I&apos;ve previously
-          worked for companies like Domino&apos;s Pizza Group and IQVIA. I&apos;ve mostly
-          worked within testing of software, but have moved into a role where I can analyse business problems, design and deliver technical solutions. I enjoy programming as a hobby and
+          currently looking for my next challenge. I&apos;ve previously
+          worked for companies like Domino&apos;s Pizza Group, IQVIA and Rightmove. I&apos;ve mostly
+          worked within testing of software, but have moved into a career where I can analyse business problems, design and deliver technical solutions. I enjoy programming as a hobby and
           problem solving.
           <br />
           <br />I continue to learn by reading, watching videos and taking
