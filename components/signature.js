@@ -15,7 +15,7 @@ export default function Signature() {
           <p className={styles.info}>
             I&apos;m Joshua Blewitt, an analyst, hobbyist developer and writer.
             I&apos;ve worked for companies such as Rightmove, Domino&apos;s Pizza and IQVIA.
-            Currently an Application Analyst.
+            Currently looking for my next opportunity.
           </p>
           <a href="mailto:joshblewitt@protonmail.com" className={styles.link}>
             Let me know your thoughts!
