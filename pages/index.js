@@ -6,6 +6,7 @@ import Script from 'next/script'
 import Head from "next/head";
 import Image from "next/image";
 import indexImage from "../public/images/new_2023.webp";
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
             <p data-testid="subtitle" className={styles.known}>But call me JB.</p>
             <p><i className="fa-solid fa-location-dot"></i> United Kingdom</p>
             <p><i className="fa-solid fa-briefcase"></i> Looking for my next opportunity in analysis</p>
+            <p><i class="fa-solid fa-file"></i> <Link href="https://j-blewitt.notion.site/Joshua-Blewitt-Resume-CV-accea10012824431bc7f8654d77590a2?pvs=4" rel="noopener noreferrer" target="_blank">Online Resume/CV</Link></p>
             <p data-testid="paragraph">
               I&apos;m a hobbyist developer, technology advocate, and curious mind.
               My current work allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders.
