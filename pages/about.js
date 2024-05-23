@@ -24,8 +24,13 @@ export default function About() {
         />
       </Head>
       <section className={utilStyles.headingMd}>
-        <h1 data-testid="heading" className={utilStyles.headingXl}>A bit about me</h1>
-        <i data-testid="intro" className={styles.intro}>I&apos;m an analyst, hobbyist developer, hobbyist podcaster and problem solver.</i>
+        <h1 data-testid="heading" className={utilStyles.headingXl}>
+          A bit about me
+        </h1>
+        <i data-testid="intro" className={styles.intro}>
+          I&apos;m a product manager, technology advocate, customer champion and
+          hobbyist podcaster.
+        </i>
       </section>
       <section className={`${utilStyles.headingMd}`}>
         <p>
@@ -35,10 +40,13 @@ export default function About() {
             src={Img}
             alt="A picture of myself in a restaurant"
           />
-          I&apos;m an IT Professional with 9 years of experience with a First Class Degree in Computer Science. I&apos;m
-          currently looking for my next challenge. I&apos;ve previously
-          worked for companies like Domino&apos;s Pizza Group, IQVIA and Rightmove. I&apos;ve mostly
-          worked within testing of software, but have moved into a career where I can analyse business problems, design and deliver technical solutions. I enjoy programming as a hobby and
+          I&apos;m a product manager with 9 years of experience in software
+          development with a First Class Degree in Computer Science. I&apos;m
+          currently looking for my next challenge. I&apos;ve previously worked
+          for companies like Domino&apos;s Pizza Group, IQVIA and Rightmove.
+          I&apos;ve mostly worked within testing of software, but have moved
+          into a career where I can analyse business problems, design and
+          deliver technical solutions. I enjoy programming as a hobby and
           problem solving.
           <br />
           <br />I continue to learn by reading, watching videos and taking
@@ -47,16 +55,30 @@ export default function About() {
           skills in being a better problem solver.
           <br />
           <br />
-          Outside of work, I enjoy playing video games, watching TV, reading and planning my next trip.
+          Outside of work, I enjoy playing video games, watching TV, reading and
+          planning my next trip.
+          <br />
+          <br />I also work on a small project,{" "}
+          <Link href="https://github.com/JB-26/super-blog-starter">
+            Super Blog Starter
+          </Link>
+          , which allows anyone to get up and running with a great blog. Filled
+          with features such as pagination, tagging posts, searching for posts
+          and an RSS feed out of the box.
           <br />
           <br />
-          I also work on a small project, <Link href='https://github.com/JB-26/super-blog-starter'>Super Blog Starter</Link>, which allows anyone to get up and running with a great blog. Filled with features such as pagination, tagging posts, searching for posts and an RSS feed out of the box.
+          Plus, I work on a related project, called{" "}
+          <Link href="https://github.com/JB-26/super-podcast-starter">
+            Super Podcast Starter
+          </Link>
+          , allowing anyone with a podcast to have a great looking website.
           <br />
           <br />
-          Plus, I work on a related project, called <Link href='https://github.com/JB-26/super-podcast-starter'>Super Podcast Starter</Link>, allowing anyone with a podcast to have a great looking website.
-          <br />
-          <br />
-          I&apos;m also the host of the <Link href="https://stuff-i-dont-know.vercel.app/">&ldquo;Stuff I Don&apos;t Know!&ldquo;</Link> podcast.
+          I&apos;m also the host of the{" "}
+          <Link href="https://stuff-i-dont-know.vercel.app/">
+            &ldquo;Stuff I Don&apos;t Know!&ldquo;
+          </Link>{" "}
+          podcast.
         </p>
       </section>
       <Footer></Footer>
