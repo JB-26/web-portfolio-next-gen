@@ -24,7 +24,7 @@ test("Check for important content", async ({ page }) => {
   // Check if paragraph is present
   const paragraph = await page.textContent('[data-testid="paragraph"]');
   expect(paragraph).toBe(
-    "I'm a product manager, technology advocate, customer champion, and curious mind. My work allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders."
+    "I'm passionate about product, a technology advocate, customer champion, and curious mind. My work allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders."
   );
 });
 

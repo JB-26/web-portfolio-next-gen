@@ -28,7 +28,7 @@ export default function About() {
           A bit about me
         </h1>
         <i data-testid="intro" className={styles.intro}>
-          I&apos;m a product manager, technology advocate, customer champion and
+        I&apos;m passionate about product, a technology advocate, customer champion, and
           hobbyist podcaster.
         </i>
       </section>
@@ -40,7 +40,7 @@ export default function About() {
             src={Img}
             alt="A picture of myself in a restaurant"
           />
-          I&apos;m a product manager with 9 years of experience in software
+          I&apos;m an IT Professional with 9 years of experience in software
           development with a First Class Degree in Computer Science. I&apos;m
           currently looking for my next challenge. I&apos;ve previously worked
           for companies like Domino&apos;s Pizza Group, IQVIA and Rightmove.

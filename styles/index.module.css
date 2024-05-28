@@ -86,6 +86,10 @@
     transform: scale(0.99) translateY(-1px);
 }
 
+.emoji {
+    font-size: xx-large;
+}
+
 /* tablet/desktop design */
 @media (min-width: 768px) {
     .content {
