@@ -36,14 +36,14 @@ export default function Home() {
               But call me JB.
             </p>
             <p>
-              <i className="fa-solid fa-location-dot"></i> United Kingdom
+            <span role="img" aria-label="string" className={styles.emoji}>📍</span> {"  "} United Kingdom
             </p>
             <p>
-              <i className="fa-solid fa-briefcase"></i> Looking for my next
-              opportunity in product management
+            <span role="img" aria-label="string" className={styles.emoji}>💼</span> {"  "} Looking for my next
+              opportunity in product
             </p>
             <p>
-              <i className="fa-solid fa-file"></i>{" "}
+              <span role="img" aria-label="string" className={styles.emoji}>📄</span> {"  "}
               <Link
                 href="https://j-blewitt.notion.site/Joshua-Blewitt-Resume-CV-accea10012824431bc7f8654d77590a2?pvs=4"
                 rel="noopener noreferrer"
@@ -53,7 +53,7 @@ export default function Home() {
               </Link>
             </p>
             <p data-testid="paragraph">
-              I&apos;m a product manager, technology advocate, customer
+              I&apos;m passionate about product, a technology advocate, customer
               champion, and curious mind. My work allows me to analyse business
               problems, design and deliver technical solutions that deliver
               value to stakeholders.

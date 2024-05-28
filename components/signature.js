@@ -13,7 +13,7 @@ export default function Signature() {
         </div>
         <div>
           <p className={styles.info}>
-            I&apos;m Joshua Blewitt, a product manager, technology advocate,
+            I&apos;m Joshua Blewitt, I&apos;m passionate about product, a technology advocate,
             customer champion, curious mind and writer. I&apos;ve worked for
             companies such as Rightmove, Domino&apos;s Pizza and IQVIA.
             Currently looking for my next opportunity.

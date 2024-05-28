@@ -71,11 +71,11 @@ export default function Blog({
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h1 data-testid="search" className={utilStyles.headingXl}>
-          Search for a post <i className="fa-solid fa-magnifying-glass"></i>
+          Search for a post
         </h1>
         <Search onSearch={handleSearch} />
         <h1 data-testid="pinned" className={utilStyles.headingXl}>
-          Pinned Post <i className="fa-solid fa-thumbtack"></i>
+          Pinned Post
         </h1>
         <div className={utilStyles.listItem}>
           <Link href={`/posts/${specificPostData.name}`}>
@@ -87,7 +87,7 @@ export default function Blog({
           </small>
         </div>
 
-        <h1 data-testid="blog-posts" className={utilStyles.headingXl}>Blog - {allPostsNum} posts <i className="fa-solid fa-blog"></i></h1>
+        <h1 data-testid="blog-posts" className={utilStyles.headingXl}>Blog - {allPostsNum} posts</h1>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
