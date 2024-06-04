@@ -59,7 +59,7 @@ export default function About() {
           planning my next trip.
           <br />
           <br />I also work on a small project,{" "}
-          <Link href="https://github.com/JB-26/super-blog-starter">
+          <Link href="https://github.com/JB-26/super-blog-starter" rel="noopener noreferrer" target="_blank">
             Super Blog Starter
           </Link>
           , which allows anyone to get up and running with a great blog. Filled
@@ -68,17 +68,24 @@ export default function About() {
           <br />
           <br />
           Plus, I work on a related project, called{" "}
-          <Link href="https://github.com/JB-26/super-podcast-starter">
+          <Link href="https://github.com/JB-26/super-podcast-starter" rel="noopener noreferrer" target="_blank">
             Super Podcast Starter
           </Link>
           , allowing anyone with a podcast to have a great looking website.
           <br />
           <br />
           I&apos;m also the host of the{" "}
-          <Link href="https://stuff-i-dont-know.vercel.app/">
+          <Link href="https://stuff-i-dont-know.vercel.app/" rel="noopener noreferrer" target="_blank">
             &ldquo;Stuff I Don&apos;t Know!&ldquo;
           </Link>{" "}
           podcast.
+          <br />
+          <br />
+          I&apos;m also active on the following platforms:
+          <ul>
+            <li><Link href="https://www.threads.net/@jblw1tt" rel="noopener noreferrer" target="_blank">Threads</Link></li>
+            <li><Link href="https://mastodon.social/@jblewitt" rel="noopener noreferrer" target="_blank">Mastodon</Link></li>
+          </ul>
         </p>
       </section>
       <Footer></Footer>
