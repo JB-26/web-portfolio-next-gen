@@ -16,6 +16,9 @@ test('Check for important content', async ({ page }) => {
     
     const pinned = await page.textContent('[data-testid="pinned"]');
     expect(pinned).toBe("Pinned Post");
+
+    const newsletter = await page.textContent('[data-testid="newsletter"]');
+    expect(newsletter).toBe("Newsletter");
     
     await expect(page.locator('[data-testid="blog-posts"]')).toContainText('Blog')
 });

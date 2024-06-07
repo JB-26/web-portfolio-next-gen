@@ -2,7 +2,7 @@ import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import Footer from "../components/footer";
 import Date from "../components/date";
-import Search from '../components/search';
+import Search from "../components/search";
 import utilStyles from "../styles/utils.module.css";
 import paginationStyle from "../styles/blog.module.css";
 import { getSortedPostsData, getPostDataByName } from "../lib/posts";
@@ -11,7 +11,6 @@ import Link from "next/link";
 const postsPerPage = 5;
 import Script from "next/script";
 import { useRouter } from "next/router";
-
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -36,22 +35,23 @@ export default function Blog({
   allPostsNum,
   specificPostData,
 }) {
-
   const router = useRouter();
 
   const handleSearch = async (query) => {
     try {
-      const response = await fetch(`/api/search?query=${encodeURIComponent(query)}`);
+      const response = await fetch(
+        `/api/search?query=${encodeURIComponent(query)}`
+      );
       const data = await response.json();
-      console.log('Search results:', data.results);
+      console.log("Search results:", data.results);
 
       // Store results in localStorage
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('searchResults', JSON.stringify(data.results));
-        router.push('/search-results');
+      if (typeof window !== "undefined") {
+        localStorage.setItem("searchResults", JSON.stringify(data.results));
+        router.push("/search-results");
       }
     } catch (error) {
-      console.error('Error fetching search results:', error);
+      console.error("Error fetching search results:", error);
     }
   };
 
@@ -70,6 +70,26 @@ export default function Blog({
         />
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h1 data-testid="newsletter" className={utilStyles.headingXl}>
+          Newsletter
+        </h1>
+        <p>Want to get the latest posts in your inbox? Why not subscribe? It&apos;s free!</p>
+        <form
+          action="https://buttondown.email/api/emails/embed-subscribe/JoshBl"
+          method="post"
+          target="popupwindow"
+          onsubmit="window.open('https://buttondown.email/JoshBl', 'popupwindow')"
+          className={`${paginationStyle.embeddableButtondownForm}`}
+        >
+          <input type="email" name="email" id="bd-email" placeholder="Enter your email" />
+
+          <input type="submit" value="Subscribe" />
+          <p>
+            <a href="https://buttondown.email/refer/JoshBl" target="_blank">
+              Powered by Buttondown.
+            </a>
+          </p>
+        </form>
         <h1 data-testid="search" className={utilStyles.headingXl}>
           Search for a post
         </h1>
@@ -87,7 +107,9 @@ export default function Blog({
           </small>
         </div>
 
-        <h1 data-testid="blog-posts" className={utilStyles.headingXl}>Blog - {allPostsNum} posts</h1>
+        <h1 data-testid="blog-posts" className={utilStyles.headingXl}>
+          Blog - {allPostsNum} posts
+        </h1>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
