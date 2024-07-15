@@ -40,7 +40,7 @@ export default function About() {
             src={Img}
             alt="A picture of myself in a restaurant"
           />
-          I&apos;m an IT Professional with 9 years of experience in software
+          I&apos;m an IT Professional with 10 years of experience in software
           development with a First Class Degree in Computer Science. I&apos;m
           currently looking for my next challenge. I&apos;ve previously worked
           for companies like Domino&apos;s Pizza Group, IQVIA and Rightmove.
@@ -48,6 +48,8 @@ export default function About() {
           into a career where I can analyse business problems, design and
           deliver technical solutions. I enjoy programming as a hobby and
           problem solving.
+          <br />
+          <br /> I am a registered <Link href="https://s3.amazonaws.com/scruminc-certs/RSM-8823626" rel="noopener noreferrer" target="_blank">Scrum Master</Link> and have a foundation level <Link href="https://www.linkedin.com/in/jblewitt/details/certifications/1719413746906/single-media-viewer/?type=DOCUMENT&profileId=ACoAABNnSV0BPiMy5z3Y7_cW0HdDAuKeIs7pH0A" rel="noopener noreferrer" target="_blank">ISTQB certificate.</Link>
           <br />
           <br />I continue to learn by reading, watching videos and taking
           courses to expand my knowledge and way of thinking. Personal
@@ -81,11 +83,7 @@ export default function About() {
           podcast.
           <br />
           <br />
-          I&apos;m also active on the following platforms:
-          <ul>
-            <li><Link href="https://www.threads.net/@jblw1tt" rel="noopener noreferrer" target="_blank">Threads</Link></li>
-            <li><Link href="https://mastodon.social/@jblewitt" rel="noopener noreferrer" target="_blank">Mastodon</Link></li>
-          </ul>
+          I&apos;m active on <Link href="https://www.threads.net/@jblw1tt" rel="noopener noreferrer" target="_blank">Threads</Link>.
         </p>
       </section>
       <Footer></Footer>

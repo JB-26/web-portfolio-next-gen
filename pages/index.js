@@ -27,7 +27,7 @@ export default function Home() {
         <div className={styles.content}>
           <div className={styles.left}>
             <h1 data-testid="main-heading" className={utilStyles.heading2Xl}>
-              Hey, I&apos;m Joshua Blewitt {"  "}
+              Hey, I&apos;m <div className={styles.gradientText}>Joshua Blewitt</div> {"  "}
               <span role="img" aria-label="string">
                 👋
               </span>
