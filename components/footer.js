@@ -26,7 +26,7 @@ export default function Footer() {
         <li className={styles.blog}>
           <a
             className={styles.blog}
-            href="https://www.threads.net/@jblw1tt"
+            href="https://www.threads.net/intent/follow?username=jblw1tt"
             rel="noopener noreferrer me"
             target="_blank"
           >

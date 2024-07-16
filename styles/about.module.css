@@ -2,10 +2,9 @@
     float: right;
     border: 5px;
     border-radius: 10px;
-    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
-    width: 195px;
-    height: 195px;
     margin: 5px;
+    width: auto;
+    height: auto;
 }
 
 .intro:hover {
@@ -16,8 +15,8 @@
     .imageAboutRight {
         border: 5px;
         border-radius: 25px;
-        width: 350px;
-        height: 350px;
+        width: auto;
+        height: auto;
         margin: 0px 0px 0px 30px;
     }
 }

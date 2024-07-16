@@ -5,7 +5,7 @@ import styles from "../styles/index.module.css";
 import Script from "next/script";
 import Head from "next/head";
 import Image from "next/image";
-import indexImage from "../public/images/new_2023.webp";
+import indexImage from "../public/images/new_2024.png";
 import Link from "next/link";
 
 export default function Home() {
@@ -64,7 +64,7 @@ export default function Home() {
               priority
               className={styles.image}
               src={indexImage}
-              alt="Me at Dishoom in London!"
+              alt="Cartoon image of myself"
             />
           </div>
         </div>

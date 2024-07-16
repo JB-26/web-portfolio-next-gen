@@ -5,7 +5,7 @@ import utilStyles from "../styles/utils.module.css";
 import styles from "../styles/about.module.css";
 import Script from "next/script";
 import Image from "next/image";
-import Img from "../public/images/me.webp";
+import Img from "../public/images/me_2024.png";
 import Link from "next/link";
 
 export default function About() {
@@ -49,7 +49,7 @@ export default function About() {
           deliver technical solutions. I enjoy programming as a hobby and
           problem solving.
           <br />
-          <br /> I am a registered <Link href="https://s3.amazonaws.com/scruminc-certs/RSM-8823626" rel="noopener noreferrer" target="_blank">Scrum Master</Link> and have a foundation level <Link href="https://www.linkedin.com/in/jblewitt/details/certifications/1719413746906/single-media-viewer/?type=DOCUMENT&profileId=ACoAABNnSV0BPiMy5z3Y7_cW0HdDAuKeIs7pH0A" rel="noopener noreferrer" target="_blank">ISTQB certificate.</Link>
+          <br /> I am a registered <Link href="https://s3.amazonaws.com/scruminc-certs/RSM-8823626" rel="noopener noreferrer" target="_blank">Scrum Master</Link> and have a foundation level <Link href="https://www.linkedin.com/in/jblewitt/details/certifications/1719413746906/single-media-viewer/?type=DOCUMENT&profileId=ACoAABNnSV0BPiMy5z3Y7_cW0HdDAuKeIs7pH0A" rel="noopener noreferrer" target="_blank">ISTQB certificate.</Link> I also have a certificate in web design from <Link href="https://www.freecodecamp.org/certification/fcc2927573c-68b6-4b92-954b-d97d1ea76b7f/responsive-web-design" rel="noopener noreferrer" target="_blank">freeCodeCamp</Link>.
           <br />
           <br />I continue to learn by reading, watching videos and taking
           courses to expand my knowledge and way of thinking. Personal
@@ -83,7 +83,7 @@ export default function About() {
           podcast.
           <br />
           <br />
-          I&apos;m active on <Link href="https://www.threads.net/@jblw1tt" rel="noopener noreferrer" target="_blank">Threads</Link>.
+          I&apos;m active on <Link href="https://www.threads.net/@jblw1tt" rel="noopener noreferrer" target="_blank">Threads</Link> if you want to follow me and stay informed on what I&apos;m up to!
         </p>
       </section>
       <Footer></Footer>

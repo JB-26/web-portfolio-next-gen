@@ -8,6 +8,7 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .left {
@@ -41,9 +42,7 @@
 }
 
 .image {
-    border: 5px;
     border-radius: 25px;
-    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
     width: 200px;
     height: 200px;
 }
@@ -137,8 +136,6 @@
     .image {
         width: 250px;
         height: 250px;
-        margin-left: 10px;
-        margin-top: 19px;
     }
 
     .known {
@@ -163,8 +160,7 @@
     }
 
     .image {
-        width: 340px;
-        height: 340px;
-        margin-left: 10px;
+        width: 350px;
+        height: 350px;
     }
 }
