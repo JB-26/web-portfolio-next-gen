@@ -1,8 +1,7 @@
 import styles from "./signature.module.css";
 import Image from "next/image";
-import Photo from "../public/images/profile.webp";
+import Photo from "../public/images/new_2024.png";
 import Link from "next/link";
-import utilStyles from "../styles/utils.module.css";
 
 export default function Signature() {
   return (

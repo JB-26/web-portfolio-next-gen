@@ -83,7 +83,7 @@ export default function About() {
           podcast.
           <br />
           <br />
-          I&apos;m active on <Link href="https://www.threads.net/@jblw1tt" rel="noopener noreferrer" target="_blank">Threads</Link> if you want to follow me and stay informed on what I&apos;m up to!
+          I&apos;m active on <Link href="https://www.threads.net/@jblw1tt" rel="noopener noreferrer" target="_blank">Threads</Link> if you want to follow me and stay informed on what I&apos;m up to! Feel free to add me on <Link href="https://www.linkedin.com/in/jblewitt/" rel="noopener noreferrer" target="_blank">LinkedIn</Link>.
         </p>
       </section>
       <Footer></Footer>
