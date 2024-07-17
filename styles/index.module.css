@@ -8,6 +8,7 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .left {
@@ -41,9 +42,7 @@
 }
 
 .image {
-    border: 5px;
     border-radius: 25px;
-    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
     width: 200px;
     height: 200px;
 }
@@ -90,6 +89,28 @@
     font-size: xx-large;
 }
 
+.gradientText {
+    display: inline-block; /* Keep the element inline */
+    background: linear-gradient(90deg, #ff005e, #7303c0, #ff005e);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-animation 10s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 /* tablet/desktop design */
 @media (min-width: 768px) {
     .content {
@@ -115,8 +136,6 @@
     .image {
         width: 250px;
         height: 250px;
-        margin-left: 10px;
-        margin-top: 19px;
     }
 
     .known {
@@ -141,8 +160,7 @@
     }
 
     .image {
-        width: 340px;
-        height: 340px;
-        margin-left: 10px;
+        width: 350px;
+        height: 350px;
     }
 }
