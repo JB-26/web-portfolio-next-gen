@@ -28,8 +28,8 @@ export default function About() {
           A bit about me
         </h1>
         <i data-testid="intro" className={styles.intro}>
-        I&apos;m passionate about product, a technology advocate, customer champion, and
-          hobbyist podcaster.
+          I&apos;m passionate about product, a technology advocate, customer
+          champion, and hobbyist podcaster.
         </i>
       </section>
       <section className={`${utilStyles.headingMd}`}>
@@ -42,14 +42,36 @@ export default function About() {
           />
           I&apos;m an IT Professional with 10 years of experience in software
           development with a First Class Degree in Computer Science. I&apos;m
-          currently looking for my next challenge. I&apos;ve previously worked
-          for companies like Domino&apos;s Pizza Group, IQVIA and Rightmove.
-          I&apos;ve mostly worked within testing of software, but have moved
-          into a career where I can analyse business problems, design and
-          deliver technical solutions. I enjoy programming as a hobby and
-          problem solving.
+          currently an Assessment Systems Executive at the ICAEW. I&apos;ve
+          previously worked for companies like Domino&apos;s Pizza Group, IQVIA
+          and Rightmove. I&apos;ve mostly worked within testing of software. I
+          enjoy programming as a hobby and problem solving.
           <br />
-          <br /> I am a registered <Link href="https://s3.amazonaws.com/scruminc-certs/RSM-8823626" rel="noopener noreferrer" target="_blank">Scrum Master</Link> and have a foundation level <Link href="https://www.linkedin.com/in/jblewitt/details/certifications/1719413746906/single-media-viewer/?type=DOCUMENT&profileId=ACoAABNnSV0BPiMy5z3Y7_cW0HdDAuKeIs7pH0A" rel="noopener noreferrer" target="_blank">ISTQB certificate.</Link> I also have a certificate in web design from <Link href="https://www.freecodecamp.org/certification/fcc2927573c-68b6-4b92-954b-d97d1ea76b7f/responsive-web-design" rel="noopener noreferrer" target="_blank">freeCodeCamp</Link>.
+          <br /> I am a registered{" "}
+          <Link
+            href="https://s3.amazonaws.com/scruminc-certs/RSM-8823626"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Scrum Master
+          </Link>{" "}
+          and have a foundation level{" "}
+          <Link
+            href="https://www.linkedin.com/in/jblewitt/details/certifications/1719413746906/single-media-viewer/?type=DOCUMENT&profileId=ACoAABNnSV0BPiMy5z3Y7_cW0HdDAuKeIs7pH0A"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            ISTQB certificate.
+          </Link>{" "}
+          I also have a certificate in web design from{" "}
+          <Link
+            href="https://www.freecodecamp.org/certification/fcc2927573c-68b6-4b92-954b-d97d1ea76b7f/responsive-web-design"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            freeCodeCamp
+          </Link>
+          .
           <br />
           <br />I continue to learn by reading, watching videos and taking
           courses to expand my knowledge and way of thinking. Personal
@@ -61,7 +83,11 @@ export default function About() {
           planning my next trip.
           <br />
           <br />I also work on a small project,{" "}
-          <Link href="https://github.com/JB-26/super-blog-starter" rel="noopener noreferrer" target="_blank">
+          <Link
+            href="https://github.com/JB-26/super-blog-starter"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             Super Blog Starter
           </Link>
           , which allows anyone to get up and running with a great blog. Filled
@@ -70,20 +96,45 @@ export default function About() {
           <br />
           <br />
           Plus, I work on a related project, called{" "}
-          <Link href="https://github.com/JB-26/super-podcast-starter" rel="noopener noreferrer" target="_blank">
+          <Link
+            href="https://github.com/JB-26/super-podcast-starter"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             Super Podcast Starter
           </Link>
           , allowing anyone with a podcast to have a great looking website.
           <br />
           <br />
           I&apos;m also the host of the{" "}
-          <Link href="https://stuff-i-dont-know.vercel.app/" rel="noopener noreferrer" target="_blank">
+          <Link
+            href="https://stuff-i-dont-know.vercel.app/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             &ldquo;Stuff I Don&apos;t Know!&ldquo;
           </Link>{" "}
           podcast.
           <br />
           <br />
-          I&apos;m active on <Link href="https://www.threads.net/@jblw1tt" rel="noopener noreferrer" target="_blank">Threads</Link> if you want to follow me and stay informed on what I&apos;m up to! Feel free to add me on <Link href="https://www.linkedin.com/in/jblewitt/" rel="noopener noreferrer" target="_blank">LinkedIn</Link>.
+          I&apos;m active on{" "}
+          <Link
+            href="https://www.threads.net/@jblw1tt"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Threads
+          </Link>{" "}
+          if you want to follow me and stay informed on what I&apos;m up to!
+          Feel free to add me on{" "}
+          <Link
+            href="https://www.linkedin.com/in/jblewitt/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            LinkedIn
+          </Link>
+          .
         </p>
       </section>
       <Footer></Footer>
