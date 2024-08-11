@@ -16,7 +16,7 @@ export default function Signature() {
             I&apos;m Joshua Blewitt, I&apos;m passionate about product, a
             technology advocate, customer champion, curious mind and writer.
             I&apos;ve worked for companies such as Rightmove, Domino&apos;s
-            Pizza and IQVIA. Currently looking for my next opportunity.
+            Pizza and IQVIA.
           </p>
           <a href="mailto:joshblewitt@protonmail.com" className={styles.link}>
             Let me know your thoughts!
@@ -39,7 +39,12 @@ export default function Signature() {
         onsubmit="window.open('https://buttondown.email/JoshBl', 'popupwindow')"
         className={`${styles.embeddableButtondownForm}`}
       >
-        <input type="email" name="email" id="bd-email" placeholder="Enter your email" />
+        <input
+          type="email"
+          name="email"
+          id="bd-email"
+          placeholder="Enter your email"
+        />
 
         <input type="submit" value="Subscribe" />
         <p>

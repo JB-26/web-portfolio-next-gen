@@ -27,7 +27,8 @@ export default function Home() {
         <div className={styles.content}>
           <div className={styles.left}>
             <h1 data-testid="main-heading" className={utilStyles.heading2Xl}>
-              Hey, I&apos;m <div className={styles.gradientText}>Joshua Blewitt</div> {"  "}
+              Hey, I&apos;m{" "}
+              <div className={styles.gradientText}>Joshua Blewitt</div> {"  "}
               <span role="img" aria-label="string">
                 👋
               </span>
@@ -36,14 +37,22 @@ export default function Home() {
               But call me JB.
             </p>
             <p>
-            <span role="img" aria-label="string" className={styles.emoji}>📍</span> {"  "} United Kingdom
+              <span role="img" aria-label="string" className={styles.emoji}>
+                📍
+              </span>{" "}
+              {"  "} United Kingdom
             </p>
             <p>
-            <span role="img" aria-label="string" className={styles.emoji}>💼</span> {"  "} Looking for my next
-              opportunity in product
+              <span role="img" aria-label="string" className={styles.emoji}>
+                💼
+              </span>{" "}
+              {"  "} Assessment Systems Executive @ ICAEW
             </p>
             <p>
-              <span role="img" aria-label="string" className={styles.emoji}>📄</span> {"  "}
+              <span role="img" aria-label="string" className={styles.emoji}>
+                📄
+              </span>{" "}
+              {"  "}
               <Link
                 href="https://j-blewitt.notion.site/Joshua-Blewitt-Resume-CV-accea10012824431bc7f8654d77590a2?pvs=4"
                 rel="noopener noreferrer"
