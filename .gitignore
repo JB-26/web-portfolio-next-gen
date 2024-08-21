@@ -35,3 +35,7 @@ template.md
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+
+# zed IDE
+/.zed
