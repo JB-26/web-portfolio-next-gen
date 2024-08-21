@@ -135,6 +135,9 @@ export default function About() {
             LinkedIn
           </Link>
           .
+          <br />
+          <br />
+          The views contained herein are those of my own, not of my employer.
         </p>
       </section>
       <Footer></Footer>

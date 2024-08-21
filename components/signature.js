@@ -28,31 +28,6 @@ export default function Signature() {
         </div>
       </div>
       <hr className={styles.line} />
-      <p>
-        Want to get the latest posts in your inbox? Why not subscribe? It&apos;s
-        free!
-      </p>
-      <form
-        action="https://buttondown.email/api/emails/embed-subscribe/JoshBl"
-        method="post"
-        target="popupwindow"
-        onsubmit="window.open('https://buttondown.email/JoshBl', 'popupwindow')"
-        className={`${styles.embeddableButtondownForm}`}
-      >
-        <input
-          type="email"
-          name="email"
-          id="bd-email"
-          placeholder="Enter your email"
-        />
-
-        <input type="submit" value="Subscribe" />
-        <p>
-          <a href="https://buttondown.email/refer/JoshBl" target="_blank">
-            Powered by Buttondown.
-          </a>
-        </p>
-      </form>
     </div>
   );
 }

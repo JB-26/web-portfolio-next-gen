@@ -40,7 +40,7 @@ export default function Blog({
   const handleSearch = async (query) => {
     try {
       const response = await fetch(
-        `/api/search?query=${encodeURIComponent(query)}`
+        `/api/search?query=${encodeURIComponent(query)}`,
       );
       const data = await response.json();
       console.log("Search results:", data.results);
@@ -70,26 +70,6 @@ export default function Blog({
         />
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h1 data-testid="newsletter" className={utilStyles.headingXl}>
-          Newsletter
-        </h1>
-        <p>Want to get the latest posts in your inbox? Why not subscribe? It&apos;s free!</p>
-        <form
-          action="https://buttondown.email/api/emails/embed-subscribe/JoshBl"
-          method="post"
-          target="popupwindow"
-          onsubmit="window.open('https://buttondown.email/JoshBl', 'popupwindow')"
-          className={`${paginationStyle.embeddableButtondownForm}`}
-        >
-          <input type="email" name="email" id="bd-email" placeholder="Enter your email" />
-
-          <input type="submit" value="Subscribe" />
-          <p>
-            <a href="https://buttondown.email/refer/JoshBl" target="_blank">
-              Powered by Buttondown.
-            </a>
-          </p>
-        </form>
         <h1 data-testid="search" className={utilStyles.headingXl}>
           Search for a post
         </h1>
