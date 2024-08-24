@@ -32,7 +32,6 @@ a:hover.blog {
     justify-content: center;
     flex-direction: row;
     height: 45px;
-    font-size: 30px;
     padding: 10px 0px 0px 0px;
     z-index: 1;
     width: auto;
@@ -43,8 +42,24 @@ a:hover.blog {
 .headerItem {
     padding-left: 9px;
     padding-right: 9px;
-    font-size: 2rem;
+    font-size: 1.6rem;
     line-height: 1.3;
     font-weight: 800;
     letter-spacing: -0.05rem;
+}
+
+.logo {
+    height: 30px;
+    width: 30px;
+}
+
+@media (min-width: 768px) {
+    .headerItem {
+        font-size: 2rem;
+    }
+
+    .logo {
+        height: 32px;
+        width: 32px;
+    }
 }

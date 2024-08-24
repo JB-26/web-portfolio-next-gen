@@ -11,13 +11,24 @@ export default function Header() {
           About
         </Link>
       </div>
+      <div className={styles.headerItem}>
+        <Link href="/links/" className={styles.blog}>
+          Links
+        </Link>
+      </div>
       <div className={styles.icon}>
         <Link href="/" className={styles.blog}>
           <Image
             priority
             src={Icon}
             alt={"My initials - which is also the favicon"}
+            className={styles.logo}
           />
+        </Link>
+      </div>
+      <div className={styles.headerItem}>
+        <Link href="/uses/" className={styles.blog}>
+          Uses
         </Link>
       </div>
       <div className={styles.headerItem}>
