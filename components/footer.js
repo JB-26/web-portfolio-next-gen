@@ -2,7 +2,7 @@ import styles from "./footer.module.css";
 
 export default function Footer() {
   return (
-    <footer>
+    <footer data-testid="footer-component">
       <ul className={styles.footer}>
         <li className={styles.blog}>
           <a

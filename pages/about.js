@@ -6,7 +6,6 @@ import styles from "../styles/about.module.css";
 import Script from "next/script";
 import Image from "next/image";
 import Img from "../public/images/me_2024.png";
-import Link from "next/link";
 
 export default function About() {
   return (
@@ -28,8 +27,8 @@ export default function About() {
           A bit about me
         </h1>
         <i data-testid="intro" className={styles.intro}>
-          I&apos;m passionate about product, a technology advocate, customer
-          champion, and hobbyist podcaster.
+          I&apos;m passionate about product, a technology advocate, and customer
+          champion.
         </i>
       </section>
       <section className={`${utilStyles.headingMd}`}>
@@ -40,101 +39,39 @@ export default function About() {
             src={Img}
             alt="A picture of myself in a restaurant"
           />
-          I&apos;m an IT Professional with 10 years of experience in software
-          development with a First Class Degree in Computer Science. I&apos;m
-          currently an Assessment Systems Executive at the ICAEW. I&apos;ve
-          previously worked for companies like Domino&apos;s Pizza Group, IQVIA
-          and Rightmove. I&apos;ve mostly worked within testing of software. I
-          enjoy programming as a hobby and problem solving.
+          I&apos;m Joshua Blewitt. I currently live in the United Kingdom.
+          I&apos;ve had a fascination with computers and software since I was a
+          child in the 90&apos;s, growing up with Windows 98 and then Windows
+          XP, which introduced me to the information superhighway and the
+          possibilities of web applications.
           <br />
-          <br /> I am a registered{" "}
-          <Link
-            href="https://s3.amazonaws.com/scruminc-certs/RSM-8823626"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Scrum Master
-          </Link>{" "}
-          and have a foundation level{" "}
-          <Link
-            href="https://www.linkedin.com/in/jblewitt/details/certifications/1719413746906/single-media-viewer/?type=DOCUMENT&profileId=ACoAABNnSV0BPiMy5z3Y7_cW0HdDAuKeIs7pH0A"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            ISTQB certificate.
-          </Link>{" "}
-          I also have a certificate in web design from{" "}
-          <Link
-            href="https://www.freecodecamp.org/certification/fcc2927573c-68b6-4b92-954b-d97d1ea76b7f/responsive-web-design"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            freeCodeCamp
-          </Link>
-          .
           <br />
-          <br />I continue to learn by reading, watching videos and taking
-          courses to expand my knowledge and way of thinking. Personal
-          devleopment continues to be important to me as I want to improve my
-          skills in being a better problem solver.
+          I graduated from University with a First Class Degree in Computer
+          Science in 2014, and started work as a software tester for a small
+          firm based in my home city of Milton Keynes.
+          <br />
+          <br />
+          With a 10 year career working at companies like Domino&apos;s Pizza
+          Group, IQVIA and Rightmove, I&apos;ve gained a wealth of experience in
+          testing, software delivery and product management. I&apos;m currently
+          an Assessment Systems Executive at the ICAEW.
+          <br />
+          <br />
+          Writing posts on this blog is one of my favourite hobbies. I&apos;ve
+          been maintaining this blog for five years and have written posts
+          regarding professional work, self development and life. I also enjoy
+          programming and am currently working on improving my skills in
+          JavaScript.
+          <br />
+          <br />
+          I continue to learn by reading, watching videos and taking courses to
+          expand my knowledge and way of thinking. Personal devleopment
+          continues to be important to me as I want to improve my skills in
+          being a better problem solver.
           <br />
           <br />
           Outside of work, I enjoy playing video games, watching TV, reading and
           planning my next trip.
-          <br />
-          <br />I also work on a small project,{" "}
-          <Link
-            href="https://github.com/JB-26/super-blog-starter"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Super Blog Starter
-          </Link>
-          , which allows anyone to get up and running with a great blog. Filled
-          with features such as pagination, tagging posts, searching for posts
-          and an RSS feed out of the box.
-          <br />
-          <br />
-          Plus, I work on a related project, called{" "}
-          <Link
-            href="https://github.com/JB-26/super-podcast-starter"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Super Podcast Starter
-          </Link>
-          , allowing anyone with a podcast to have a great looking website.
-          <br />
-          <br />
-          I&apos;m also the host of the{" "}
-          <Link
-            href="https://stuff-i-dont-know.vercel.app/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            &ldquo;Stuff I Don&apos;t Know!&ldquo;
-          </Link>{" "}
-          podcast.
-          <br />
-          <br />
-          I&apos;m active on{" "}
-          <Link
-            href="https://www.threads.net/@jblw1tt"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Threads
-          </Link>{" "}
-          if you want to follow me and stay informed on what I&apos;m up to!
-          Feel free to add me on{" "}
-          <Link
-            href="https://www.linkedin.com/in/jblewitt/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            LinkedIn
-          </Link>
-          .
           <br />
           <br />
           The views contained herein are those of my own, not of my employer.
