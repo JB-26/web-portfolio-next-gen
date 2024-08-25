@@ -11,6 +11,6 @@ test("Check for important content", async ({ page }) => {
 
   const heading = await page.textContent('[data-testid="intro"]');
   expect(heading).toBe(
-    "I'm passionate about product, a technology advocate, customer champion, and hobbyist podcaster."
+    "I'm passionate about product, a technology advocate, and customer champion.",
   );
 });

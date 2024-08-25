@@ -21,11 +21,11 @@ export default function Links() {
         />
       </Head>
       <section className={utilStyles.headingMd}>
-        <h1 data-testid="heading" className={utilStyles.headingXl}>
+        <h1 data-testid="heading1" className={utilStyles.headingXl}>
           Links
         </h1>
       </section>
-      <section className={`${utilStyles.headingMd}`}>
+      <section data-testid="content" className={`${utilStyles.headingMd}`}>
         <h2 data-testid="heading" className={utilStyles.headingLg}>
           Social Media
         </h2>

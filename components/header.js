@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className={styles.header}>
+    <header data-testid="header-component" className={styles.header}>
       <div className={styles.headerItem}>
         <Link href="/about/" className={styles.blog}>
           About

@@ -21,11 +21,11 @@ export default function Uses() {
         />
       </Head>
       <section className={utilStyles.headingMd}>
-        <h1 data-testid="heading" className={utilStyles.headingXl}>
+        <h1 data-testid="heading1" className={utilStyles.headingXl}>
           Uses
         </h1>
       </section>
-      <section className={`${utilStyles.headingMd}`}>
+      <section data-testid="content" className={`${utilStyles.headingMd}`}>
         <p>
           If you’re wondering what I’m using on a daily basis for hardware and
           software, this page will answer your questions.
@@ -152,6 +152,17 @@ export default function Uses() {
             Sublime Text
           </Link>
           .
+          <p>
+            The font I use in my text editor is{" "}
+            <Link
+              href="https://www.jetbrains.com/lp/mono/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              JetBrains Mono
+            </Link>
+            .
+          </p>
         </p>
         <h2 data-testid="heading" className={utilStyles.headingLg}>
           Photo Editor
