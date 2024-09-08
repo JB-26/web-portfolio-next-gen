@@ -70,6 +70,9 @@ export default function Blog({
         />
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <p className={utilStyles.info}>
+          The views contained herein are those of my own, not of my employer.
+        </p>
         <h1 data-testid="search" className={utilStyles.headingXl}>
           Search for a post
         </h1>

@@ -25,7 +25,7 @@
 
 .name {
     display: inline;
-    color: #FFC93C;
+    color: #ffc93c;
     text-shadow: 4px 1px #155263;
     font-size: inherit;
 }
@@ -43,8 +43,8 @@
 
 .image {
     border-radius: 25px;
-    width: 200px;
-    height: 200px;
+    width: auto;
+    height: auto;
 }
 
 .buttonContainer {
@@ -134,8 +134,8 @@
     }
 
     .image {
-        width: 250px;
-        height: 250px;
+        width: auto;
+        height: auto;
     }
 
     .known {
@@ -148,7 +148,6 @@
 }
 
 @media (min-width: 1024px) {
-
     .left {
         flex-grow: 1;
         flex-shrink: 1;
@@ -160,7 +159,8 @@
     }
 
     .image {
-        width: 350px;
-        height: 350px;
+        width: auto;
+        height: auto;
+        transform: rotate(1.5deg);
     }
 }
