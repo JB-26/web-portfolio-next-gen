@@ -5,7 +5,7 @@ import utilStyles from "../styles/utils.module.css";
 import styles from "../styles/about.module.css";
 import Script from "next/script";
 import Image from "next/image";
-import Img from "../public/images/me_2024.png";
+import Img from "../public/images/about_photo.png";
 
 export default function About() {
   return (
