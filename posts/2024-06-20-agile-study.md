@@ -3,6 +3,7 @@ title: "About that study on the failure rate of projects using Agile…"
 date: "2024-06-20" #YYYY-MM-DD
 tags: ["Blog", "Professional"]
 ogImage: "public/images/opengraph-image.png"
+description: "Take it with a pinch of salt."
 ---
 
 So recently, there was a [study](https://www.engprax.com/post/268-higher-failure-rates-for-agile-software-projects-study-finds) that said software projects adopting Agile are 268% more likely to fail than those that do not.
@@ -22,12 +23,12 @@ This was a part of the report that stood out to me the most:
 > The research also found, disturbingly, that software engineers in the UK were 13% less likely to feel they were able to discuss and address problems than those in the US; the largest difference of all engineering practices between the two countries. The finding comes after November 2023 research by Engprax found that 75% of software engineers in the UK faced retaliation after reporting wrongdoing.
 
 
-I find blaming Agile methodology for the Horizon IT scandal and retaliation for reporting something to be a huge stretch. There can be so many other factors that should be taken into consideration, such as blame culture, unrealistic deadlines and budgets. One of the key pillars of Agile is responding to change, over following a plan. 
+I find blaming Agile methodology for the Horizon IT scandal and retaliation for reporting something to be a huge stretch. There can be so many other factors that should be taken into consideration, such as blame culture, unrealistic deadlines and budgets. One of the key pillars of Agile is responding to change, over following a plan.
 
 I also saw this:
 
 > Projects in which the software engineer reported feeling psychologically safe to discuss and address problems quickly when they emerged were 87% more likely to succeed those which didn’t.
-> 
+>
 
 This again doesn’t feel like an issue with Agile, more about an issue with the workplace environment itself.
 

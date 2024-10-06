@@ -3,6 +3,7 @@ title: "Lessons everyone can learn from the Crowdstrike issue"
 date: "2024-07-25" #YYYY-MM-DD
 tags: ["Blog"]
 ogImage: "public/images/opengraph-image.png"
+description: "Let's not push to production."
 ---
 
 On Friday 19th July 2024, airports, TV stations, banks, shops, healthcare and more around the world were disrupted after cybersecurity firm [Crowdstrike](https://www.crowdstrike.com/en-us/), deployed an update which impacted Windows. Crowdstrike later [said](https://www.crowdstrike.com/blog/statement-on-windows-sensor-update/) it had found a defect in the content update, a fix was deployed, and that Mac and Linux hosts were not impacted.
@@ -18,15 +19,15 @@ Crowdstrike have released a [post incident review](https://www.crowdstrike.com/f
 First, the top level view of what happened:
 
 > Template Instances are created and configured through the use of the Content Configuration System, which includes the Content Validator that performs validation checks on the content before it is published.
-> 
+>
 > On July 19, 2024, two additional IPC Template Instances were deployed. Due to a bug in the Content Validator, one of the two Template Instances passed validation despite containing problematic content data.
 
 Second, what they were planning on doing going forward to stop this event happening again:
 
 > **Software Resiliency and Testing**
-> 
+>
 > Improve Rapid Response Content testing by using testing types such as:
-> 
+>
 > - Local developer testing
 > - Content update and rollback testing
 > - Stress testing, fuzzing and fault injection

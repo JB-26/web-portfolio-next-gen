@@ -44,14 +44,17 @@ export default function BlogPage({ currentPosts, numPages, pageNumber }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-      </section>
+      <section className={utilStyles.headingMd}></section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h1 className={utilStyles.headingXl}>Blog - Page {pageNumber}</h1>
         <ul className={utilStyles.list}>
-          {currentPosts.map(({ id, date, title }) => (
+          {currentPosts.map(({ id, date, title, description }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>{title}</Link>
+              <br />
+              <small className={utilStyles.lightText}>
+                {description || "No description available"}
+              </small>
               <br />
               <small className={utilStyles.lightText}>
                 <Date dateString={date} />

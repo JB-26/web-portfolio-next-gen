@@ -3,6 +3,7 @@ title: "The Fediverse is shaping up to be exciting and interesting"
 date: "2024-03-30" #YYYY-MM-DD
 tags: ["Blog"]
 ogImage: "public/images/opengraph-image.png"
+description: "Maybe the future of social media is protocols."
 ---
 
 
@@ -26,7 +27,7 @@ The key part of the fediverse is the idea of interoperability. This is what is d
 
 Another appeal to the fediverse, is that you own your content, you just lend it to platforms.
 
-Let’s talk a little about this protocol called Activity Pub. 
+Let’s talk a little about this protocol called Activity Pub.
 
 The best way to describe this is that the user can read incoming messages that come from the rest of the world, but the user can also send content to the world.
 
@@ -43,13 +44,13 @@ The essay talks about two current problems on big platforms:
 - one; the drive to acquire an ever increasing amount of data from users, resulting in concerns from users and regulators that platforms are not protecting the data they have collected.
 - and two; these platforms have become larger and more central to everyday life. There has been growing concern at these platforms about the content that can be posted, and the responsibilities that these platforms have in policing content.
 
-These platforms can throw as much money as they want at these problems, but it’s not clear at how this problem ends with enough people being satisfied. 
+These platforms can throw as much money as they want at these problems, but it’s not clear at how this problem ends with enough people being satisfied.
 
 The essay says that although there is no silver bullet, a system of protocols would be better at protecting privacy and free speech, while minimising the impact of abusive behaviour and creating new business models that are aligned with users interests.
 
 However, the essay does mention that there are several points why using protocols might not work. One of them, is complexity. Signing up to platforms such as Mastodon can be a daunting experience for those who are unfamiliar with the fediverse. When you sign up to Mastodon, you pick a server where you want your account to be.
 
-Users don’t want to mess around with settings or anything like that, users want something that works. This is the major advantage that the current platforms have. Plus, the current platforms are too big that using a protocols based approach might not disrupt them. 
+Users don’t want to mess around with settings or anything like that, users want something that works. This is the major advantage that the current platforms have. Plus, the current platforms are too big that using a protocols based approach might not disrupt them.
 
 # Back to the Fediverse…
 
@@ -59,7 +60,7 @@ So what happens during the beta? You can cross post and view likes from other fe
 
 [Peter Cottle](https://www.threads.net/@pcottle) gave a demo of this at [FediForum](https://fediforum.org/) and it’s exciting to see in action.
 
-I’ve seen several accounts I follow on Threads start to post over to Mastodon as well. Giving users the option to share their posts to other platforms will not only boost their audience, but will allow other platforms to interact with them. 
+I’ve seen several accounts I follow on Threads start to post over to Mastodon as well. Giving users the option to share their posts to other platforms will not only boost their audience, but will allow other platforms to interact with them.
 
 But it’s not just Threads which is getting involved with the Fediverse, [Flipboard](https://medium.com/@flipboard/flipboard-begins-to-federate-c56ec788feaa) is making big strides as well. Here’s an [example](https://mastodon.social/@sciencefocus@flipboard.com) of an account that has been federated.
 

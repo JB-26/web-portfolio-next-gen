@@ -3,6 +3,7 @@ title: "Five years of this blog."
 date: "2024-08-09" #YYYY-MM-DD
 tags: ["Blog"]
 ogImage: "public/images/opengraph-image.png"
+description: "Time flies"
 ---
 
 On the [9th August 2019](https://www.joshblewitt.dev/posts/2019-08-10-sega-saturn), I uploaded my first blog post (it was about the Sega Saturn, which is still an amazing machine by the way). This marks **five years** of running this blog. Where did the time go?
