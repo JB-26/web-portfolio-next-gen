@@ -86,6 +86,10 @@ export default function Blog({
           </Link>
           <br />
           <small className={utilStyles.lightText}>
+            {specificPostData.description || "No description available"}
+          </small>
+          <br />
+          <small className={utilStyles.lightText}>
             <Date dateString={specificPostData.date} />
           </small>
         </div>
@@ -94,9 +98,13 @@ export default function Blog({
           Blog - {allPostsNum} posts
         </h1>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, date, title, description }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>{title}</Link>
+              <br />
+              <small className={utilStyles.lightText}>
+                {description || "No description available."}
+              </small>
               <br />
               <small className={utilStyles.lightText}>
                 <Date dateString={date} />
