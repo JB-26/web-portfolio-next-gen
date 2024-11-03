@@ -82,7 +82,7 @@ export default function Home() {
             className={styles.emailButton}
             href="mailto:joshblewitt@protonmail.com"
           >
-            Get in touch! <i className="fa-regular fa-envelope"></i>
+            Email me <i class="fa-solid fa-paper-plane"></i>
           </a>
         </div>
       </section>
