@@ -36,6 +36,16 @@ export default function Footer() {
         <li className={styles.blog}>
           <a
             className={styles.blog}
+            href="https://bsky.app/profile/joshblewitt.dev"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <i class="fa-brands fa-bluesky"></i>
+          </a>
+        </li>
+        <li className={styles.blog}>
+          <a
+            className={styles.blog}
             href="/rss.xml"
             rel="noopener noreferrer"
             target="_blank"

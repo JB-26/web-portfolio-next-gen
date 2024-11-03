@@ -46,7 +46,15 @@ export default function Links() {
           >
             Mastodon
           </Link>{" "}
-          if you prefer. These are the places where I am active the most.
+          if you prefer. I can also be found on{" "}
+          <Link
+            href="https://bsky.app/profile/joshblewitt.dev"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Bluesky
+          </Link>
+          . These are the places where I am active the most.
         </p>
         <h2 data-testid="heading" className={utilStyles.headingLg}>
           Professional
