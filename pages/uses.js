@@ -104,6 +104,22 @@ export default function Uses() {
           phone soon.
         </p>
         <h2 data-testid="heading" className={utilStyles.headingLg}>
+          Camera
+        </h2>
+        <p>
+          I use a{" "}
+          <Link
+            href="https://www.panasonic.com/uk/consumer/cameras-camcorders/lumix-mirrorless-cameras/lumix-g-cameras/dmc-g7keb.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Panasonic Lumix DMC-G7K
+          </Link>
+          . I am also using the stock 14-42mm lens. It&apos;s a fun camera to
+          use. I want to take more photos with it when I go on trips. I am also
+          planning on buying another lens at some point.
+        </p>
+        <h2 data-testid="heading" className={utilStyles.headingLg}>
           Gaming
         </h2>
         <p>

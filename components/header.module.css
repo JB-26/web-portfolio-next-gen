@@ -20,6 +20,23 @@ a:hover.blog {
     text-decoration: underline;
 }
 
+.headerTitle {
+    position: relative;
+    font-size: 2rem;
+    text-align: center;
+    margin: 0px;
+}
+
+.headerTitle::after {
+    content: "";
+    height: 0.1em;
+    background: bottom;
+    width: 100%;
+    margin-left: -100%;
+    position: absolute;
+    bottom: 0;
+}
+
 .icon {
     padding-left: 9px;
     padding-right: 9px;
@@ -36,7 +53,7 @@ a:hover.blog {
     z-index: 1;
     width: auto;
     top: 0px;
-    margin: 0px 0px 50px 0px;
+    margin: 0px 0px 25px 0px;
 }
 
 .headerItem {
