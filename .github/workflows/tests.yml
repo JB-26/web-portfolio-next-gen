@@ -3,46 +3,51 @@ name: Run Playwright Tests
 on:
   push:
     branches:
-      - '*'
+      - "*"
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Set Up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.17.0
+      - name: Set Up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.17.0
 
-    - name: Install Dependencies
-      run: npm install
+      - name: Update apt and Install Missing Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libicu-dev libasound2 libffi-dev libx264-dev
 
-    - name: Build Next.js App
-      run: npm run build
+      - name: Install Dependencies
+        run: npm install
 
-    - name: Install Playwright Dependencies
-      run: npx playwright install-deps
+      - name: Build Next.js App
+        run: npm run build
 
-    - name: Install Playwright browsers
-      run: npx playwright install
+      - name: Install Playwright Dependencies
+        run: npx playwright install-deps
 
-    - name: Run NextJS application
-      run: npm run start &
+      - name: Install Playwright browsers
+        run: npx playwright install
 
-    - name: Wait for NextJS app to start
-      run: |
-        timeout=0
-        until [[ $timeout -eq 30 ]]; do
-          if nc -z localhost 3000; then
-            break
-          fi
-          timeout=$((timeout + 1))
-          sleep 1
-        done
+      - name: Run NextJS application
+        run: npm run start &
 
-    - name: Run Playwright Tests
-      run: npx playwright test
+      - name: Wait for NextJS app to start
+        run: |
+          timeout=0
+          until [[ $timeout -eq 30 ]]; do
+            if nc -z localhost 3000; then
+              break
+            fi
+            timeout=$((timeout + 1))
+            sleep 1
+          done
+
+      - name: Run Playwright Tests
+        run: npx playwright test
