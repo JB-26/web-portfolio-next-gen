@@ -4,6 +4,46 @@
     font-family: RedditSans-Bold;
 }
 
+.blogTitle {
+    font-family: Pridi-SemiBold;
+    font-size: 1.3rem;
+    display: inline-block; /* Keep the element inline */
+    background: linear-gradient(90deg, #ff005e, #7303c0, #ff005e);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-animation 10s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Space between JB and the links */
+    height: min-content;
+    padding: 0;
+    width: 100%; /* Stretch wrapper to fill the header width */
+    max-width: 1150px; /* Optional: add a max-width to limit stretch */
+    margin: 0 auto; /* Center the header content */
+}
+
+.headerItem:first-of-type {
+    margin-right: auto; /* Push the links to the right */
+}
+
 a:link.blog {
     text-decoration: none;
     text-shadow: none;
@@ -21,10 +61,18 @@ a:hover.blog {
 }
 
 .headerTitle {
+    align-items: flex-start;
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0px;
+    height: min-content;
+    justify-content: flex-start;
+    overflow: visible;
+    padding: 0;
     position: relative;
-    font-size: 2rem;
-    text-align: center;
-    margin: 0px;
+    width: min-content;
 }
 
 .headerTitle::after {
@@ -48,18 +96,22 @@ a:hover.blog {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    flex-wrap: nowrap;
     height: 45px;
     padding: 10px 0px 0px 0px;
     z-index: 1;
     width: auto;
     top: 0px;
+    gap: 0px;
     margin: 0px 0px 25px 0px;
+    overflow: visible;
+    position: relative;
 }
 
 .headerItem {
-    padding-left: 5px;
-    padding-right: 5px;
-    font-size: 1.4rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 1.3rem;
     line-height: 1.3;
     font-weight: 800;
     letter-spacing: -0.05rem;
@@ -72,7 +124,7 @@ a:hover.blog {
 
 @media (min-width: 768px) {
     .headerItem {
-        font-size: 2rem;
+        font-size: 1.7rem;
         padding-left: 9px;
         padding-right: 9px;
     }
@@ -80,5 +132,9 @@ a:hover.blog {
     .logo {
         height: 32px;
         width: 32px;
+    }
+
+    .blogTitle {
+        font-size: 1.7rem;
     }
 }

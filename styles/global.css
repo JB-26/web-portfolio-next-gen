@@ -40,6 +40,11 @@ body {
     src: url("../fonts/redditsans/RedditSans-ExtraBold.ttf");
 }
 
+@font-face {
+    font-family: "Pridi-SemiBold";
+    src: url("../fonts/Pridi-Google-Fonts/Pridi-SemiBold.ttf");
+}
+
 p {
     font-family: RedditSans-Regular;
 }
