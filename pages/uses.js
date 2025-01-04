@@ -97,7 +97,7 @@ export default function Uses() {
           >
             iPhone XS
           </Link>
-          . Yes, even in 2024. This was my first iPhone after being an Android
+          . Yes, even in 2025. This was my first iPhone after being an Android
           user for nearly ten years. The performance still holds up for the most
           part but the battery life is awful now. The max capacity of the
           battery is roughly 70% so I’m very much considering upgrading to a new
