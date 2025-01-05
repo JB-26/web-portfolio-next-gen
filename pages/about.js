@@ -60,8 +60,8 @@ export default function About() {
           Writing posts on this blog is one of my favourite hobbies. I&apos;ve
           been maintaining this blog for five years and have written posts
           regarding professional work, self development and life. I also enjoy
-          programming and am currently working on improving my skills in
-          JavaScript.
+          programming as a hobby. I am currently reading books and improving my
+          knowledge of product management and UX.
           <br />
           <br />
           I continue to learn by reading, watching videos and taking courses to
