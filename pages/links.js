@@ -30,23 +30,8 @@ export default function Links() {
           Social Media
         </h2>
         <p>
-          I’m quite active on{" "}
-          <Link
-            href="https://www.threads.net/intent/follow?username=jblw1tt"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Threads
-          </Link>
-          , and the account is federated so you can follow me on{" "}
-          <Link
-            href="https://mastodon.social/@jblw1tt@threads.net"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Mastodon
-          </Link>{" "}
-          if you prefer. I can also be found on{" "}
+          If you want to see my off the cuff remarks, photos and more, I can be
+          found on{" "}
           <Link
             href="https://bsky.app/profile/joshblewitt.dev"
             rel="noopener noreferrer"
@@ -54,7 +39,7 @@ export default function Links() {
           >
             Bluesky
           </Link>
-          . These are the places where I am active the most.
+          .
         </p>
         <h2 data-testid="heading" className={utilStyles.headingLg}>
           Professional
@@ -111,16 +96,9 @@ export default function Links() {
             GitHub
           </Link>{" "}
           where you can see the code for this website and a few other active
-          (and inactive) projects. Why not take a look at{" "}
-          <Link
-            href="https://github.com/JB-26/super-blog-starter"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Super Blog Starter
-          </Link>
-          ? That’s based on this blog so you can have a nice looking blog of
-          your very own!
+          (and inactive) projects. My main passion with work is with writing
+          about product and the software industry. You can view my blog to see
+          examples of my work and my way of thinking.
         </p>
       </section>
       <Footer></Footer>

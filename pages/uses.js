@@ -91,17 +91,15 @@ export default function Uses() {
         <p>
           I use an{" "}
           <Link
-            href="https://www.macrumors.com/roundup/iphone-xs/"
+            href="https://www.macrumors.com/roundup/iphone-16-pro/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            iPhone XS
+            iPhone 16 Pro
           </Link>
-          . Yes, even in 2025. This was my first iPhone after being an Android
-          user for nearly ten years. The performance still holds up for the most
-          part but the battery life is awful now. The max capacity of the
-          battery is roughly 70% so I’m very much considering upgrading to a new
-          phone soon.
+          . I upgraded from my iPhone XS in March 2025, after a little over six
+          years of use. Battery life was the biggest factor for me in upgrading.
+          It is a huge upgrade for me in almost every way possible.
         </p>
         <h2 data-testid="heading" className={utilStyles.headingLg}>
           Camera
@@ -248,21 +246,13 @@ export default function Uses() {
         <p>
           For working with Git, I use{" "}
           <Link
-            href="https://www.gitkraken.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Git Kraken
-          </Link>
-          . Offers a lot of good features but I do sometimes go back to using{" "}
-          <Link
             href="https://fork.dev/"
             target="_blank"
             rel="noopener noreferrer"
           >
             Fork
           </Link>{" "}
-          as its design is more appealing.{" "}
+          as its a fast Git client.
         </p>
         <h2 data-testid="heading" className={utilStyles.headingLg}>
           Travel
