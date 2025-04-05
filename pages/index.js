@@ -5,7 +5,7 @@ import styles from "../styles/index.module.css";
 import Script from "next/script";
 import Head from "next/head";
 import Image from "next/image";
-import indexImage from "../public/images/new_2024_2.png";
+import indexImage from "../public/images/new_2025.png";
 import Link from "next/link";
 
 export default function Home() {

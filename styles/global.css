@@ -25,30 +25,6 @@ body {
     overflow-x: hidden;
 }
 
-@font-face {
-    font-family: "RedditSans-Regular";
-    src: url("../fonts/redditsans/RedditSans-Regular.ttf");
-}
-
-@font-face {
-    font-family: "RedditSans-Bold";
-    src: url("../fonts/redditsans/RedditSans-Bold.ttf");
-}
-
-@font-face {
-    font-family: "RedditSans-ExtraBold";
-    src: url("../fonts/redditsans/RedditSans-ExtraBold.ttf");
-}
-
-@font-face {
-    font-family: "Pridi-SemiBold";
-    src: url("../fonts/Pridi-Google-Fonts/Pridi-SemiBold.ttf");
-}
-
-p {
-    font-family: RedditSans-Regular;
-}
-
 iframe {
     width: 100%;
 }
@@ -60,14 +36,12 @@ iframe {
 a {
     color: #0070f3;
     text-decoration: none;
-    font-family: RedditSans-Regular;
 }
 
 h1 {
     position: relative;
     overflow: hidden;
     padding-bottom: 5px;
-    font-family: RedditSans-ExtraBold;
 }
 
 h1::after {
