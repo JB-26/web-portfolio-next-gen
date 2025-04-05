@@ -1,11 +1,6 @@
 /* header */
 
-.blog {
-    font-family: RedditSans-Bold;
-}
-
 .blogTitle {
-    font-family: Pridi-SemiBold;
     font-size: 1.3rem;
     display: inline-block; /* Keep the element inline */
     background: linear-gradient(90deg, #ff005e, #7303c0, #ff005e);

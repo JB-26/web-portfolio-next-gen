@@ -35,6 +35,7 @@ export default function Footer() {
           </a>
         </li>
       </ul>
+      <p className={styles.copyright}>© 2025</p>
     </footer>
   );
 }

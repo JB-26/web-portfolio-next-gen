@@ -64,8 +64,8 @@
     word-wrap: break-word;
     text-align: center;
     text-decoration: none;
+    font-weight: 700;
     font-size: 36px;
-    font-family: RedditSans-Bold;
     /* allows for smoother animation */
     transform-origin: center;
     transition-duration: 150ms;
