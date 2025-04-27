@@ -2,7 +2,6 @@ import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import Footer from "../components/footer";
 import Date from "../components/date";
-import Search from "../components/search";
 import utilStyles from "../styles/utils.module.css";
 import paginationStyle from "../styles/blog.module.css";
 import { getSortedPostsData, getPostDataByName } from "../lib/posts";
@@ -37,24 +36,6 @@ export default function Blog({
 }) {
   const router = useRouter();
 
-  const handleSearch = async (query) => {
-    try {
-      const response = await fetch(
-        `/api/search?query=${encodeURIComponent(query)}`,
-      );
-      const data = await response.json();
-      console.log("Search results:", data.results);
-
-      // Store results in localStorage
-      if (typeof window !== "undefined") {
-        localStorage.setItem("searchResults", JSON.stringify(data.results));
-        router.push("/search-results");
-      }
-    } catch (error) {
-      console.error("Error fetching search results:", error);
-    }
-  };
-
   return (
     <Layout home>
       <Script
@@ -73,10 +54,6 @@ export default function Blog({
         <p className={utilStyles.info}>
           The views contained herein are those of my own, not of my employer.
         </p>
-        <h1 data-testid="search" className={utilStyles.headingXl}>
-          Search for a post
-        </h1>
-        <Search onSearch={handleSearch} />
         <h1 data-testid="pinned" className={utilStyles.headingXl}>
           Pinned Post
         </h1>
