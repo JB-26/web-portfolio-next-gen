@@ -16,7 +16,7 @@ jobs:
       - name: Set Up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.0.0
+          node-version: 20.3.0
 
       - name: Update apt and Install Missing Dependencies
         run: |
