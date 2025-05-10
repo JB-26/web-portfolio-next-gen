@@ -3,18 +3,12 @@ import Layout, { siteTitle } from "../components/layout";
 import Footer from "../components/footer";
 import utilStyles from "../styles/utils.module.css";
 import styles from "../styles/about.module.css";
-import Script from "next/script";
 import Image from "next/image";
 import Img from "../public/images/about_photo_2.png";
 
 export default function About() {
   return (
     <Layout home>
-      <Script
-        src="https://kit.fontawesome.com/af67ca5a39.js"
-        crossOrigin="anonymous"
-        async
-      ></Script>
       <Head>
         <title>{siteTitle}</title>
         <meta

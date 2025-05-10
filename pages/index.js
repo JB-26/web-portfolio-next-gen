@@ -2,20 +2,15 @@ import Layout, { siteTitle } from "../components/layout";
 import Footer from "../components/footer";
 import utilStyles from "../styles/utils.module.css";
 import styles from "../styles/index.module.css";
-import Script from "next/script";
 import Head from "next/head";
 import Image from "next/image";
 import indexImage from "../public/images/new_2025.png";
+import paperPlane from "../public/icons/paper_plane.svg";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <Layout home>
-      <Script
-        src="https://kit.fontawesome.com/af67ca5a39.js"
-        crossOrigin="anonymous"
-        async
-      ></Script>
       <Head>
         <title>{siteTitle}</title>
         <meta
@@ -82,7 +77,7 @@ export default function Home() {
             className={styles.emailButton}
             href="mailto:joshblewitt@protonmail.com"
           >
-            Email me <i class="fa-solid fa-paper-plane"></i>
+            Email me <Image priority className={styles.icon} src={paperPlane} />
           </a>
         </div>
       </section>

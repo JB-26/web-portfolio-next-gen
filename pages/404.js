@@ -1,6 +1,5 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Script from "next/script";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -13,11 +12,6 @@ export default function Custom404() {
 
   return (
     <div>
-      <Script
-        src="https://kit.fontawesome.com/af67ca5a39.js"
-        crossOrigin="anonymous"
-        async
-      ></Script>
       <Head>
         <title>{siteTitle}</title>
         <meta

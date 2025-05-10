@@ -1,6 +1,5 @@
 import Layout, { siteTitle } from "../components/layout";
 import Footer from "../components/footer";
-import Script from "next/script";
 import Head from "next/head";
 import Link from "next/link";
 import utilStyles from "../styles/utils.module.css";
@@ -8,11 +7,6 @@ import utilStyles from "../styles/utils.module.css";
 export default function Links() {
   return (
     <Layout home>
-      <Script
-        src="https://kit.fontawesome.com/af67ca5a39.js"
-        crossOrigin="anonymous"
-        async
-      ></Script>
       <Head>
         <title>{siteTitle}</title>
         <meta

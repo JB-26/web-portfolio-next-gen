@@ -21,3 +21,14 @@ li.blog {
 .copyright {
     text-align: center;
 }
+
+.icon {
+    width: 36px;
+    height: 36px;
+    display: inline;
+}
+
+.icon:hover {
+    filter: invert(27%) sepia(100%) saturate(7154%) hue-rotate(210deg)
+        brightness(99%) contrast(107%);
+}
