@@ -47,6 +47,13 @@
     height: auto;
 }
 
+.icon {
+    width: 36px;
+    height: 36px;
+    display: inline;
+    vertical-align: sub;
+}
+
 .buttonContainer {
     display: flex;
     justify-content: center;

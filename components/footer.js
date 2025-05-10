@@ -1,4 +1,8 @@
+import Image from "next/image";
 import styles from "./footer.module.css";
+import linkedIn from "../public/icons/linkedin.svg";
+import bluesky from "../public/icons/bluesky.svg";
+import rss from "../public/icons/rss.svg";
 
 export default function Footer() {
   return (
@@ -11,7 +15,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <i className="fa-brands fa-linkedin"></i>
+            <Image priority className={styles.icon} src={linkedIn} />
           </a>
         </li>
         <li className={styles.blog}>
@@ -21,7 +25,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <i class="fa-brands fa-bluesky"></i>
+            <Image priority className={styles.icon} src={bluesky} />
           </a>
         </li>
         <li className={styles.blog}>
@@ -31,7 +35,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <i className="fa-solid fa-square-rss"></i>
+            <Image priority className={styles.icon} src={rss} />
           </a>
         </li>
       </ul>

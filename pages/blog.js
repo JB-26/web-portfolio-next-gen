@@ -8,7 +8,6 @@ import { getSortedPostsData, getPostDataByName } from "../lib/posts";
 import Link from "next/link";
 
 const postsPerPage = 5;
-import Script from "next/script";
 import { useRouter } from "next/router";
 
 export async function getStaticProps() {
@@ -38,11 +37,6 @@ export default function Blog({
 
   return (
     <Layout home>
-      <Script
-        src="https://kit.fontawesome.com/af67ca5a39.js"
-        crossOrigin="anonymous"
-        async
-      ></Script>
       <Head>
         <title>{siteTitle}</title>
         <meta
