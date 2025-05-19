@@ -34,7 +34,7 @@ I used a package called ‘[ncu](https://www.npmjs.com/package/npm-check-updates
 
 ## Removing the search function
 
-I used to have a search function on the blog page, but nobody used it. So I removed it. Having less to load is always a plus. I there’s a need for it, I’ll add it back in at a later date.
+I used to have a search function on the blog page, but nobody used it. So I removed it. Having less to load is always a plus. If there’s a need for it, I’ll add it back in at a later date.
 
 I’m still keeping the tags at the end of each post. I genuinely believe that it adds value and improves post discoverability. Maybe it’s something that I can improve in the future.
 
