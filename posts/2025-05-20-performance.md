@@ -1,6 +1,6 @@
 ---
 title: "Performance improvements"
-date: "2025-05-21" #YYYY-MM-DD
+date: "2025-05-20" #YYYY-MM-DD
 tags: ["Blog"]
 ogImage: "public/images/opengraph-image.png"
 description: "Small changes, big impact."
