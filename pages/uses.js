@@ -101,15 +101,26 @@ export default function Uses() {
         <p>
           I use a{" "}
           <Link
+            href="https://www.ricoh-imaging.co.jp/english/products/gr-3/special/hdf/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ricoh GR IIIx HDF
+          </Link>
+          . I wanted something that was portable, and took great photos so I
+          bought this camera. It&apos;s a great camera to use and can take
+          fantastic photos. I want to take this camera out more and practice my
+          street photography. I also have a{" "}
+          <Link
             href="https://www.panasonic.com/uk/consumer/cameras-camcorders/lumix-mirrorless-cameras/lumix-g-cameras/dmc-g7keb.html"
             target="_blank"
             rel="noopener noreferrer"
           >
             Panasonic Lumix DMC-G7K
           </Link>
-          . I am also using the stock 14-42mm lens. It&apos;s a fun camera to
-          use. I want to take more photos with it when I go on trips. I am also
-          planning on buying another lens at some point.
+          , which has the stock 14-42mm lens. It&apos;s a fun camera to use. I
+          plan to use this camera mostly for video recording, and get a better
+          lens.
         </p>
         <h2 data-testid="heading" className={utilStyles.headingLg}>
           Gaming

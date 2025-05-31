@@ -1,10 +1,12 @@
 ---
 title: "Paris trip, May 2025"
-date: "2025-05-30" #YYYY-MM-DD
+date: "2025-05-31" #YYYY-MM-DD
 tags: ["Blog", "Life", "Travel"]
 ogImage: "public/images/opengraph-image.png"
 description: A long weekend away.
 ---
+
+![](https://i.imgur.com/2JQG86Y.jpeg)
 
 Not long after my trip to the United States, it was my wife’s birthday. Visiting Paris and Disneyland Paris was something that she’s always wanted to do, so we booked a trip on the Eurostar for four days. It’s a shame there isn’t a direct train to Disneyland Paris anymore, so we went to Paris first, and caught the RER train to the park. Not a bad journey honestly.
 The last time I had visited Paris and Disneyland Paris was well over twenty years ago, and I don’t remember much about it. So after some research, we had a plan in place. We would split our trip on spending time in Disneyland Paris and the city of Paris itself. There was a lot to cover in a few days!
@@ -17,6 +19,8 @@ I just wish that St Pancras was a little bigger. It was slightly cramped and des
 
 ## Bonjour RATP mobile application
 This is genuinely a good mobile application. Being able to view train times, and reload your ticket via NFC is extremely useful. Plus being able to bookmark favourites and configure alerts is a nice bonus as well. And of course, it’s in English, the biggest benefit of them all. Definitely removes some anxiety when it comes to using public transport in another country you’re not familiar with.
+
+![](https://i.imgur.com/dsEV4Xa.jpeg)
 
 ## Disneyland Paris
 I don’t remember much about Disneyland Paris when I visited it twenty years ago. I do remember being disappointed by it. I think I got a Mickey Mouse plush of some kind? My wife has been to the park in Orlando plenty of times, so she would be my expert when it comes to Disney.
@@ -32,6 +36,8 @@ The food throughout the park is pretty decent as well, but slightly expensive (i
 Speaking of souvenirs, there is always plenty of merchandise for sale, pretty much everywhere you look. From the expected shirt to jewellery by Pandora, Disneyland has everything you possibly want. I can see how people can spend a lot of money in the Park.
 I think I’ll visit Disneyland Paris again in a few years, and possibly stay in a different hotel. I genuinely think Disneyland Paris is worth a visit, and was definitely better than my first visit.
 
+![](https://i.imgur.com/9I0sFAY.jpeg)
+
 ## City of Paris
 Paris is a truly exceptional experience. From the architecture, the shops to the food and culture. There’s so much to see and do (partially why we want to go back for a weekend trip in the future).
 
@@ -42,7 +48,11 @@ No trip to Paris is complete without visiting the Louvre, the famous art museum.
 
 Then there’s the food, it’s great as expected. There are so many different restaurants and bakeries to try, it’s one reason why I want to go back. I want to visit a bakery first thing in the morning next time and get a croissant. Plus, the exteriors of these places provide a great photo opportunity. Did we go to some touristy spots? Yes, but we had a great time regardless.
 
+![](https://i.imgur.com/4hpTsaH.jpeg)
+
 ## Until next time, Paris.
 I definitely want to visit Paris again in the near future. But, there’s one thing I must do which is improve my French and speak it more. I tried to speak French whenever I could but there were a few occasions where my mind went blank and I stumbled, I know I could definitely do better.
 So the next time I’m visiting Paris, I want to be better prepared for conversions in French. I strongly recommend anyone visiting France to have some basic phrases and sentences practiced. The French language is also used in Belgium, another country I plan to visit soon.
 Because why not? The Eurostar can take us to places like Brussels, or Bruges, which is perfect for a weekend away. Maybe the urge to travel has awoken in me once again.
+
+![](https://i.imgur.com/59XZ14u.jpeg)
