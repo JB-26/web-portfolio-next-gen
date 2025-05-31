@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import utilStyles from "../styles/utils.module.css";
 import styles from "../styles/about.module.css";
 import Image from "next/image";
-import Img from "../public/images/about_photo_2.png";
+import Img from "../public/images/about_photo_3.png";
 
 export default function About() {
   return (

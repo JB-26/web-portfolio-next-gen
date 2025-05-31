@@ -1,6 +1,6 @@
 import styles from "./signature.module.css";
 import Image from "next/image";
-import Photo from "../public/images/profile@0.5x.png";
+import Photo from "../public/images/profile_2.png";
 import Link from "next/link";
 
 export default function Signature() {

@@ -4,7 +4,7 @@ import utilStyles from "../styles/utils.module.css";
 import styles from "../styles/index.module.css";
 import Head from "next/head";
 import Image from "next/image";
-import indexImage from "../public/images/new_2025.png";
+import indexImage from "../public/images/profile_photo_2.png";
 import paperPlane from "../public/icons/paper_plane.svg";
 import Link from "next/link";
 
