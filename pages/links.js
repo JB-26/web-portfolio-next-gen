@@ -75,6 +75,22 @@ export default function Links() {
           >
             freeCodeCamp
           </Link>
+          , Digital Product Management from the{" "}
+          <Link
+            href="https://www.coursera.org/account/accomplishments/verify/LGPKX3EFN3M9"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            University of Virginia and Coursera
+          </Link>
+          , and AI Fluency from{" "}
+          <Link
+            href="https://www.linkedin.com/in/jblewitt/details/certifications/1750283172984/single-media-viewer?type=IMAGE&profileId=ACoAABNnSV0BPiMy5z3Y7_cW0HdDAuKeIs7pH0A&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3Btq9jTWOPSZSqRhjCgAk0iw%3D%3D"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Anthropic
+          </Link>
           .
         </p>
         <h2 data-testid="heading" className={utilStyles.headingLg}>
