@@ -1,0 +1,22 @@
+/* using a pseudo-class and a pseudo-element to ensure we target only the first paragraph and the first letter  */
+.dropCap p:first-of-type::first-letter {
+    float: left; /* allows text to wrap around it */
+    font-size: 4em; /* 4 times current font size */
+    line-height: 0.8; /* tightens vertical space */
+    margin-right: 8px; /* breathing room */
+    /* font styling */
+    font-weight: bold;
+    font-style: normal;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        Segoe UI,
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        Fira Sans,
+        Droid Sans,
+        Helvetica Neue,
+        sans-serif;
+}
