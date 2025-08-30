@@ -1,5 +1,6 @@
 /* using a pseudo-class and a pseudo-element to ensure we target only the first paragraph and the first letter  */
-.dropCap p:first-of-type::first-letter {
+/* updated to apply drop cap to paragraphs that are direct children, and not part of the block quote tag */
+.dropCap > p:first-of-type::first-letter {
     float: left; /* allows text to wrap around it */
     font-size: 4em; /* 4 times current font size */
     line-height: 0.8; /* tightens vertical space */
