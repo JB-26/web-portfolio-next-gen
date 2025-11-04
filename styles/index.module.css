@@ -54,44 +54,6 @@
     vertical-align: sub;
 }
 
-.buttonContainer {
-    display: flex;
-    justify-content: center;
-}
-
-.emailButton {
-    flex-direction: column;
-    color: black;
-    width: 340px;
-    height: 60px;
-    border-color: black;
-    border-width: 2px;
-    border-style: solid;
-    box-shadow: 10px 10px;
-    word-wrap: break-word;
-    text-align: center;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 36px;
-    /* allows for smoother animation */
-    transform-origin: center;
-    transition-duration: 150ms;
-}
-
-.emailButton:hover {
-    /* raise the button up */
-    transform: scale(1) translateY(-3px);
-    box-shadow: 15px 15px;
-    animation-duration: 7000ms;
-    text-decoration: none;
-}
-
-.emailButton:active {
-    /* lower the button down */
-    box-shadow: 5px 5px;
-    transform: scale(0.99) translateY(-1px);
-}
-
 .emoji {
     font-size: xx-large;
 }

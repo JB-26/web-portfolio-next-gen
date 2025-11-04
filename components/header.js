@@ -14,13 +14,13 @@ export default function Header() {
             </Link>
           </div>
           <div className={styles.headerItem}>
-            <Link href="/about/" className={styles.blog}>
-              About
+            <Link href="/blog/" className={styles.blog}>
+              Blog
             </Link>
           </div>
           <div className={styles.headerItem}>
-            <Link href="/links/" className={styles.blog}>
-              Links
+            <Link href="/resume/" className={styles.blog}>
+              Resume
             </Link>
           </div>
           <div className={styles.headerItem}>
@@ -29,8 +29,8 @@ export default function Header() {
             </Link>
           </div>
           <div className={styles.headerItem}>
-            <Link href="/blog/" className={styles.blog}>
-              Blog
+            <Link href="/contact/" className={styles.blog}>
+              Contact
             </Link>
           </div>
         </div>

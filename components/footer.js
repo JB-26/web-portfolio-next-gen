@@ -39,7 +39,7 @@ export default function Footer() {
           </a>
         </li>
       </ul>
-      <p className={styles.copyright}>© 2025</p>
+      <p className={styles.copyright}>© {new Date().getFullYear()}</p>
     </footer>
   );
 }
