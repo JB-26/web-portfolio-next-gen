@@ -1,7 +1,5 @@
 import styles from "./header.module.css";
 import Link from "next/link";
-import Icon from "../public/icon.webp";
-import Image from "next/image";
 
 export default function Header() {
   return (

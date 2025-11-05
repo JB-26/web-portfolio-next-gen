@@ -7,10 +7,10 @@ import rss from "../public/icons/rss.svg";
 export default function Footer() {
   return (
     <footer data-testid="footer-component">
-      <ul className={styles.footer}>
-        <li className={styles.blog}>
+      <ul className="p-0 list-none text-center text-4xl">
+        <li className="inline text-center pl-4">
           <a
-            className={styles.blog}
+            className="inline text-center pl-4"
             href="https://www.linkedin.com/in/jblewitt/"
             rel="noopener noreferrer"
             target="_blank"
@@ -18,9 +18,9 @@ export default function Footer() {
             <Image priority className={styles.icon} src={linkedIn} />
           </a>
         </li>
-        <li className={styles.blog}>
+        <li className="inline text-center pl-4">
           <a
-            className={styles.blog}
+            className="inline text-center pl-4"
             href="https://bsky.app/profile/joshblewitt.dev"
             rel="noopener noreferrer"
             target="_blank"
@@ -28,9 +28,9 @@ export default function Footer() {
             <Image priority className={styles.icon} src={bluesky} />
           </a>
         </li>
-        <li className={styles.blog}>
+        <li className="inline text-center pl-4">
           <a
-            className={styles.blog}
+            className="inline text-center pl-4"
             href="/rss.xml"
             rel="noopener noreferrer"
             target="_blank"
@@ -39,7 +39,7 @@ export default function Footer() {
           </a>
         </li>
       </ul>
-      <p className={styles.copyright}>© {new Date().getFullYear()}</p>
+      <p className="text-center">© {new Date().getFullYear()}</p>
     </footer>
   );
 }
