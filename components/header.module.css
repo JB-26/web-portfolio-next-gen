@@ -23,18 +23,6 @@
     }
 }
 
-.wrapper {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; /* Space between JB and the links */
-    height: min-content;
-    padding: 0;
-    width: 100%; /* Stretch wrapper to fill the header width */
-    max-width: 1150px; /* Optional: add a max-width to limit stretch */
-    margin: 0 auto; /* Center the header content */
-}
-
 .headerItem:first-of-type {
     margin-right: auto; /* Push the links to the right */
 }
@@ -53,38 +41,6 @@ a:visited.blog {
 
 a:hover.blog {
     text-decoration: underline;
-}
-
-.headerTitle {
-    align-items: flex-start;
-    display: flex;
-    flex: none;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 0px;
-    height: min-content;
-    justify-content: flex-start;
-    overflow: visible;
-    padding: 0;
-    position: relative;
-    width: min-content;
-}
-
-.headerTitle::after {
-    content: "";
-    height: 0.1em;
-    background: bottom;
-    width: 100%;
-    margin-left: -100%;
-    position: absolute;
-    bottom: 0;
-}
-
-.icon {
-    padding-left: 9px;
-    padding-right: 9px;
-    padding-top: 3px;
-    margin-top: 3.5px;
 }
 
 .header {
@@ -112,21 +68,11 @@ a:hover.blog {
     letter-spacing: -0.05rem;
 }
 
-.logo {
-    height: 22px;
-    width: 22px;
-}
-
 @media (min-width: 768px) {
     .headerItem {
         font-size: 1.7rem;
         padding-left: 9px;
         padding-right: 9px;
-    }
-
-    .logo {
-        height: 32px;
-        width: 32px;
     }
 
     .blogTitle {

@@ -3,6 +3,7 @@ import Footer from "../components/footer";
 import styles from "../styles/index.module.css";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import indexImage from "../public/images/profile_photo_2.png";
 
 export default function Home() {
@@ -28,18 +29,62 @@ export default function Home() {
             </span>
           </h1>
           <p className="mt-2 text-lg" data-testid="paragraph">
-            A hobbyist developer, technologist, traveller, amateur photographer,
-            small-time YouTuber, and writer. I have a ten years of experience in
-            the software industry. From testing software to working with
-            stakeholders, my work allows me to analyse business problems, design
-            and deliver technical solutions that deliver value. <br />
+            A hobbyist{" "}
+            <Link
+              href="https://github.com/JB-26"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              developer
+            </Link>
+            , technologist, traveller, amateur{" "}
+            <Link
+              href="https://www.instagram.com/jblw1tt/"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              photographer
+            </Link>
+            , small-time{" "}
+            <Link
+              href="https://www.youtube.com/@joshuablewitt6022"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              YouTuber
+            </Link>
+            , and{" "}
+            <Link
+              href="https://bsky.app/profile/joshblewitt.dev"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              writer
+            </Link>
+            . I have ten years of experience in the software industry. From
+            testing software to working with stakeholders, my work allows me to
+            analyse business problems, design and deliver technical solutions
+            that deliver value. <br />
             Described as a technology advocate, problem solver and curious mind.{" "}
             <br />
-            I&apos;ve worked at major companies such as Domino&apos;s Pizza
-            Group and IQVIA. <br />
-            If I&apos;m not working on my street photography skills, I'm either
-            writing my next blog post, YouTube video, or practicing programming.{" "}
+            I&apos;ve{" "}
+            <Link
+              href="https://www.linkedin.com/in/jblewitt/"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              worked
+            </Link>{" "}
+            at major companies such as Domino&apos;s Pizza Group and IQVIA.{" "}
             <br />
+            If I&apos;m not working on my street photography skills, I&apos;m
+            either writing my next blog post, YouTube video, or practicing
+            programming. <br />
           </p>
         </div>
         <div

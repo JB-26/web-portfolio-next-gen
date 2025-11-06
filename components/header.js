@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <>
       <header data-testid="header-component" className={styles.header}>
-        <div className={styles.wrapper}>
+        <div className="flex items-center flex-row justify-between h-min p-0 w-full max-w-[1150px] m-0-auto">
           <div className={styles.headerItem}>
             <Link href="/" className={styles.blogTitle}>
               JB
