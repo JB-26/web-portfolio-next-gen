@@ -22,11 +22,6 @@ export default function Header() {
             </Link>
           </div>
           <div className={styles.headerItem}>
-            <Link href="/uses/" className={styles.blog}>
-              Uses
-            </Link>
-          </div>
-          <div className={styles.headerItem}>
             <Link href="/contact/" className={styles.blog}>
               Contact
             </Link>

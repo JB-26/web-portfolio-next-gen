@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 html,
 body {
@@ -101,41 +102,4 @@ blockquote {
     line-height: 1.6;
     position: relative;
     background: #ededed;
-}
-
-/* customising font awesome icon */
-.fa-thumbtack {
-    transform: rotate(38deg) !important;
-}
-
-.fa-thumbtack:hover {
-    color: black;
-}
-
-.fa-envelope:hover {
-    color: black;
-}
-
-.fa-magnifying-glass:hover {
-    color: black;
-}
-
-.fa-blog:hover {
-    color: black;
-}
-
-.fa-location-dot:hover {
-    color: black;
-}
-
-.fa-briefcase:hover {
-    color: black;
-}
-
-.fa-file:hover {
-    color: black;
-}
-
-.fa-paper-plane:hover {
-    color: black;
 }

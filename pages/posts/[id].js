@@ -2,7 +2,6 @@ import Layout from "../../components/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
 import Date from "../../components/date";
-import utilStyles from "../../styles/utils.module.css";
 import postStyle from "../../styles/post.module.css";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
@@ -43,20 +42,22 @@ export default function Post({ postData }) {
         <meta property="og:type" content="article" />
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div className={utilStyles.lightText}>
+        <h1 className="text-2xl/9 font-extrabold tracking-tighter mb-3.5 md:text-3xl/9">
+          {postData.title}
+        </h1>
+        <div className="text-[#666] mb-3.5">
           <Date dateString={postData.date} />
         </div>
-        <div className={postStyle.dropCap}>
+        <div className={`${postStyle.dropCap} prose text-black max-w-none`}>
           <ReactMarkdown rehypePlugins={[rehypeRaw]}>
             {postData.contentHtml}
           </ReactMarkdown>
         </div>
       </article>
-      <div className={utilStyles.tags}>
-        <h1 className={utilStyles.headingLg}>Tags: </h1>
+      <div className="mr-1.5">
+        <h1 className="text-2xl/9 mt-4 mb-4 font-extrabold">Tags: </h1>
         {postData.tags.map((tag) => (
-          <Link key={tag} href={`/tags/${tag}`} className={utilStyles.tag}>
+          <Link key={tag} href={`/tags/${tag}`} className="mr-2">
             {tag}
           </Link>
         ))}

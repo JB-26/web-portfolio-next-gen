@@ -2,8 +2,6 @@ import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import Footer from "../components/footer";
 import Date from "../components/date";
-import utilStyles from "../styles/utils.module.css";
-import paginationStyle from "../styles/blog.module.css";
 import { getSortedPostsData, getPostDataByName } from "../lib/posts";
 import Link from "next/link";
 
@@ -44,47 +42,53 @@ export default function Blog({
           name="The personal website of IT Professional, Joshua Blewitt"
         />
       </Head>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <p className={utilStyles.info}>
+      <section className="text-xl">
+        <p className="italic text-lg text-black mb-3.5 md:text-xl">
           The views contained herein are those of my own, not of my employer.
         </p>
-        <h1 data-testid="pinned" className={utilStyles.headingXl}>
+        <h1
+          data-testid="pinned"
+          className="text-2xl/9 font-extrabold tracking-tighter mb-3.5 md:text-3xl/9"
+        >
           Pinned Post
         </h1>
-        <div className={utilStyles.listItem}>
+        <div className="mb-3.5 text-lg md:text-xl">
           <Link href={`/posts/${specificPostData.name}`}>
             {specificPostData.title}
           </Link>
           <br />
-          <small className={utilStyles.lightText}>
+          <small className="text-[#666]">
             {specificPostData.description || "No description available"}
           </small>
           <br />
-          <small className={utilStyles.lightText}>
+          <small className="text-[#666]">
             <Date dateString={specificPostData.date} />
           </small>
         </div>
 
-        <h1 data-testid="blog-posts" className={utilStyles.headingXl}>
+        <h1
+          data-testid="blog-posts"
+          className="text-2xl/9 font-extrabold tracking-tighter mb-3.5 md:text-3xl/9"
+        >
           Blog - {allPostsNum} posts
         </h1>
-        <ul className={utilStyles.list}>
+        <ul className="list-none mb-5">
           {allPostsData.map(({ id, date, title, description }) => (
-            <li className={utilStyles.listItem} key={id}>
+            <li className="mb-3.5" key={id}>
               <Link href={`/posts/${id}`}>{title}</Link>
               <br />
-              <small className={utilStyles.lightText}>
+              <small className="text-[#666]">
                 {description || "No description available."}
               </small>
               <br />
-              <small className={utilStyles.lightText}>
+              <small className="text-[#666]">
                 <Date dateString={date} />
               </small>
             </li>
           ))}
         </ul>
         {/* Pagination links */}
-        <div className={paginationStyle.pagination}>
+        <div className="whitespace-nowrap relative overflow-x-scroll overflow-y-hidden overflow-scroll mb-3.5">
           {Array.from({ length: numPages }, (_, i) => (
             <Link
               style={{ margin: "0.5rem" }}
