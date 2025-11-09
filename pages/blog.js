@@ -74,7 +74,7 @@ export default function Blog({
         </h1>
         <ul className="list-none mb-5">
           {allPostsData.map(({ id, date, title, description }) => (
-            <li className="mb-3.5" key={id}>
+            <li className="mb-3.5 text-lg md:text-xl" key={id}>
               <Link href={`/posts/${id}`}>{title}</Link>
               <br />
               <small className="text-[#666]">
