@@ -1,7 +1,7 @@
 /* header */
 
 .blogTitle {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     display: inline-block; /* Keep the element inline */
     background: linear-gradient(90deg, #ff005e, #7303c0, #ff005e);
     background-size: 400% 400%;
