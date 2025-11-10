@@ -415,7 +415,7 @@ export default function Resume() {
                       Programming
                     </h3>
                     <p className="text-sm text-gray-600">
-                      Let's me exercise my creativity and problem-solving
+                      Let&apos;s me exercise my creativity and problem-solving
                       skills.
                     </p>
                   </div>
