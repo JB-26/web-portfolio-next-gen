@@ -93,7 +93,7 @@ export default function Home() {
         >
           <Image
             priority
-            className="rounded-3xl w-auto h-auto lg:transform-[rotate(1.5deg)]"
+            className="rounded-3xl w-auto h-auto lg:rotate-3 hover:rotate-0 hover:scale-105 transition-transform duration-300"
             src={indexImage}
             alt="Photo of myself, presented in a polaroid frame"
           />
