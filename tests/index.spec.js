@@ -13,18 +13,10 @@ test("Check for important content", async ({ page }) => {
   const heading = await page.textContent('[data-testid="main-heading"]');
   expect(heading).toBe("Hey, I'm Joshua Blewitt   👋");
 
-  // Check if subtitle is present
-  const subtitle = await page.textContent('[data-testid="subtitle"]');
-  expect(subtitle).toBe("But call me JB.");
-
-  // Check if the email button is present
-  const emailButton = await page.textContent('[data-testid="button"]');
-  expect(emailButton).toBe("Email me ");
-
   // Check if paragraph is present
   const paragraph = await page.textContent('[data-testid="paragraph"]');
   expect(paragraph).toBe(
-    "I'm passionate about product, a technology advocate, customer champion, and curious mind. My work allows me to analyse business problems, design and deliver technical solutions that deliver value to stakeholders.",
+    "A hobbyist developer, technologist, traveller, amateur photographer, small-time YouTuber, and writer. I have ten years of experience in the software industry. From testing software to working with stakeholders, my work allows me to analyse business problems, design and deliver technical solutions that deliver value. Described as a technology advocate, problem solver and curious mind. I've worked at major companies such as Domino's Pizza Group and IQVIA. If I'm not working on my street photography skills, I'm either writing my next blog post, YouTube video, or practicing programming. ",
   );
 });
 
