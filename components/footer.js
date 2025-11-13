@@ -18,7 +18,12 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Image priority className={styles.icon} src={linkedIn} />
+            <Image
+              priority
+              className={styles.icon}
+              src={linkedIn}
+              alt="LinkedIn Footer"
+            />
           </a>
         </li>
         <li className="inline text-center">
@@ -28,7 +33,12 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Image priority className={styles.icon} src={github} />
+            <Image
+              priority
+              className={styles.icon}
+              src={github}
+              alt="GitHub Footer"
+            />
           </a>
         </li>
         <li className="inline text-center">
@@ -38,7 +48,12 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Image priority className={styles.icon} src={bluesky} />
+            <Image
+              priority
+              className={styles.icon}
+              src={bluesky}
+              alt="Bluesky Footer"
+            />
           </a>
         </li>
         <li className="inline text-center">
@@ -48,7 +63,12 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Image priority className={styles.icon} src={youtube} />
+            <Image
+              priority
+              className={styles.icon}
+              src={youtube}
+              alt="YouTube Footer"
+            />
           </a>
         </li>
         <li className="inline text-center">
@@ -58,7 +78,12 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Image priority className={styles.icon} src={instagram} />
+            <Image
+              priority
+              className={styles.icon}
+              src={instagram}
+              alt="Instagram Footer"
+            />
           </a>
         </li>
         <li className="inline text-center">
@@ -68,7 +93,12 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Image priority className={styles.icon} src={rss} />
+            <Image
+              priority
+              className={styles.icon}
+              src={rss}
+              alt="RSS Footer"
+            />
           </a>
         </li>
       </ul>

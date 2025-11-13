@@ -41,7 +41,7 @@ export default function Contact() {
                 priority
                 className="max-w-6! max-h-6!"
                 src={email}
-                alt="Email"
+                alt="Email Contact Icon"
               />
             </div>
             <div className="min-w-0 flex-1">
@@ -63,7 +63,7 @@ export default function Contact() {
                 priority
                 className="max-w-6! max-h-6!"
                 src={linkedin}
-                alt="LinkedIn"
+                alt="LinkedIn Contact Icon"
               />
             </div>
             <div className="min-w-0 flex-1">
@@ -83,7 +83,7 @@ export default function Contact() {
                 priority
                 className="max-w-6! max-h-6!"
                 src={youtube}
-                alt="YouTube"
+                alt="YouTube Contact Icon"
               />
             </div>
             <div className="min-w-0 flex-1">
@@ -105,7 +105,7 @@ export default function Contact() {
                 priority
                 className="max-w-6! max-h-6!"
                 src={instagram}
-                alt="Instagram"
+                alt="Instagram Contact Icon"
               />
             </div>
             <div className="min-w-0 flex-1">
@@ -125,7 +125,7 @@ export default function Contact() {
                 priority
                 className="max-w-6! max-h-6!"
                 src={bluesky}
-                alt="Bluesky"
+                alt="Bluesky Contact Icon"
               />
             </div>
             <div className="min-w-0 flex-1">
@@ -145,7 +145,7 @@ export default function Contact() {
                 priority
                 className="max-w-6! max-h-6!"
                 src={rss}
-                alt="RSS"
+                alt="RSS Feed Icon"
               />
             </div>
             <div className="min-w-0 flex-1">

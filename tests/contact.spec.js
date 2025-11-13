@@ -24,12 +24,16 @@ test.describe("Contact Page", () => {
 
   test.describe("Contact Cards", () => {
     test("should display all six contact cards", async ({ page }) => {
-      const emailCard = page.getByRole("link", { name: /Email/i });
-      const linkedinCard = page.getByRole("link", { name: /LinkedIn/i });
-      const youtubeCard = page.getByRole("link", { name: /YouTube/i });
-      const instagramCard = page.getByRole("link", { name: /Instagram/i });
-      const blueskyCard = page.getByRole("link", { name: /Bluesky/i });
-      const rssCard = page.getByRole("link", { name: /RSS/i });
+      const emailCard = page.getByRole("link", { name: /Email Contact/i });
+      const linkedinCard = page.getByRole("link", {
+        name: /LinkedIn Contact/i,
+      });
+      const youtubeCard = page.getByRole("link", { name: /YouTube Contact/i });
+      const instagramCard = page.getByRole("link", {
+        name: /Instagram Contact/i,
+      });
+      const blueskyCard = page.getByRole("link", { name: /Bluesky Contact/i });
+      const rssCard = page.getByRole("link", { name: /RSS Feed/i });
 
       await expect(emailCard).toBeVisible();
       await expect(linkedinCard).toBeVisible();
@@ -52,7 +56,7 @@ test.describe("Contact Page", () => {
 
   test.describe("Email Card", () => {
     test("should have correct email link", async ({ page }) => {
-      const emailLink = page.getByRole("link", { name: /Email/i });
+      const emailLink = page.getByRole("link", { name: /Email Contact/i });
       await expect(emailLink).toHaveAttribute(
         "href",
         "mailto:joshblewitt@protonmail.com",
@@ -65,12 +69,12 @@ test.describe("Contact Page", () => {
     });
 
     test("should have email icon", async ({ page }) => {
-      const emailIcon = page.getByAltText("Email");
+      const emailIcon = page.getByAltText("Email Contact");
       await expect(emailIcon).toBeVisible();
     });
 
     test("should not open in new tab", async ({ page }) => {
-      const emailLink = page.getByRole("link", { name: /Email/i });
+      const emailLink = page.getByRole("link", { name: /Email Contact/i });
       const target = await emailLink.getAttribute("target");
       expect(target).toBeNull();
     });
@@ -78,7 +82,9 @@ test.describe("Contact Page", () => {
 
   test.describe("LinkedIn Card", () => {
     test("should have correct LinkedIn link", async ({ page }) => {
-      const linkedinLink = page.getByRole("link", { name: /LinkedIn/i });
+      const linkedinLink = page.getByRole("link", {
+        name: /LinkedIn Contact/i,
+      });
       await expect(linkedinLink).toHaveAttribute(
         "href",
         "https://www.linkedin.com/in/jblewitt/",
@@ -91,14 +97,16 @@ test.describe("Contact Page", () => {
     });
 
     test("should have LinkedIn icon", async ({ page }) => {
-      const linkedinIcon = page.getByAltText("LinkedIn");
+      const linkedinIcon = page.getByAltText("LinkedIn Contact");
       await expect(linkedinIcon).toBeVisible();
     });
 
     test("should open in new tab with security attributes", async ({
       page,
     }) => {
-      const linkedinLink = page.getByRole("link", { name: /LinkedIn/i });
+      const linkedinLink = page.getByRole("link", {
+        name: /LinkedIn Contact/i,
+      });
       await expect(linkedinLink).toHaveAttribute("target", "_blank");
       await expect(linkedinLink).toHaveAttribute("rel", "noopener noreferrer");
     });
@@ -106,7 +114,7 @@ test.describe("Contact Page", () => {
 
   test.describe("YouTube Card", () => {
     test("should have correct YouTube link", async ({ page }) => {
-      const youtubeLink = page.getByRole("link", { name: /YouTube/i });
+      const youtubeLink = page.getByRole("link", { name: /YouTube Contact/i });
       await expect(youtubeLink).toHaveAttribute(
         "href",
         "https://www.youtube.com/@joshuablewitt6022",
@@ -119,14 +127,14 @@ test.describe("Contact Page", () => {
     });
 
     test("should have YouTube icon", async ({ page }) => {
-      const youtubeIcon = page.getByAltText("YouTube");
+      const youtubeIcon = page.getByAltText("YouTube Contact");
       await expect(youtubeIcon).toBeVisible();
     });
 
     test("should open in new tab with security attributes", async ({
       page,
     }) => {
-      const youtubeLink = page.getByRole("link", { name: /YouTube/i });
+      const youtubeLink = page.getByRole("link", { name: /YouTube Contact/i });
       await expect(youtubeLink).toHaveAttribute("target", "_blank");
       await expect(youtubeLink).toHaveAttribute("rel", "noopener noreferrer");
     });
@@ -134,7 +142,9 @@ test.describe("Contact Page", () => {
 
   test.describe("Instagram Card", () => {
     test("should have correct Instagram link", async ({ page }) => {
-      const instagramLink = page.getByRole("link", { name: /Instagram/i });
+      const instagramLink = page.getByRole("link", {
+        name: /Instagram Contact/i,
+      });
       await expect(instagramLink).toHaveAttribute(
         "href",
         "https://www.instagram.com/jblw1tt/",
@@ -147,14 +157,16 @@ test.describe("Contact Page", () => {
     });
 
     test("should have Instagram icon", async ({ page }) => {
-      const instagramIcon = page.getByAltText("Instagram");
+      const instagramIcon = page.getByAltText("Instagram Contact");
       await expect(instagramIcon).toBeVisible();
     });
 
     test("should open in new tab with security attributes", async ({
       page,
     }) => {
-      const instagramLink = page.getByRole("link", { name: /Instagram/i });
+      const instagramLink = page.getByRole("link", {
+        name: /Instagram Contact/i,
+      });
       await expect(instagramLink).toHaveAttribute("target", "_blank");
       await expect(instagramLink).toHaveAttribute("rel", "noopener noreferrer");
     });
@@ -162,7 +174,7 @@ test.describe("Contact Page", () => {
 
   test.describe("Bluesky Card", () => {
     test("should have correct Bluesky link", async ({ page }) => {
-      const blueskyLink = page.getByRole("link", { name: /Bluesky/i });
+      const blueskyLink = page.getByRole("link", { name: /Bluesky Contact/i });
       await expect(blueskyLink).toHaveAttribute(
         "href",
         "https://bsky.app/profile/joshblewitt.dev",
@@ -175,14 +187,14 @@ test.describe("Contact Page", () => {
     });
 
     test("should have Bluesky icon", async ({ page }) => {
-      const blueskyIcon = page.getByAltText("Bluesky");
+      const blueskyIcon = page.getByAltText("Bluesky Contact");
       await expect(blueskyIcon).toBeVisible();
     });
 
     test("should open in new tab with security attributes", async ({
       page,
     }) => {
-      const blueskyLink = page.getByRole("link", { name: /Bluesky/i });
+      const blueskyLink = page.getByRole("link", { name: /Bluesky Contact/i });
       await expect(blueskyLink).toHaveAttribute("target", "_blank");
       await expect(blueskyLink).toHaveAttribute("rel", "noopener noreferrer");
     });
@@ -190,7 +202,7 @@ test.describe("Contact Page", () => {
 
   test.describe("RSS Card", () => {
     test("should have correct RSS link", async ({ page }) => {
-      const rssLink = page.getByRole("link", { name: /RSS/i });
+      const rssLink = page.getByRole("link", { name: /RSS Feed/i });
       await expect(rssLink).toHaveAttribute("href", "/rss.xml");
     });
 
@@ -200,14 +212,14 @@ test.describe("Contact Page", () => {
     });
 
     test("should have RSS icon", async ({ page }) => {
-      const rssIcon = page.getByAltText("RSS");
+      const rssIcon = page.getByAltText("RSS Feed");
       await expect(rssIcon).toBeVisible();
     });
 
     test("should open in new tab with security attributes", async ({
       page,
     }) => {
-      const rssLink = page.getByRole("link", { name: /RSS/i });
+      const rssLink = page.getByRole("link", { name: /RSS Feed/i });
       await expect(rssLink).toHaveAttribute("target", "_blank");
       await expect(rssLink).toHaveAttribute("rel", "noopener noreferrer");
     });
@@ -215,7 +227,7 @@ test.describe("Contact Page", () => {
 
   test.describe("Card Interactions", () => {
     test("should have shadow effect on all cards", async ({ page }) => {
-      const emailCard = page.getByRole("link", { name: /Email/i });
+      const emailCard = page.getByRole("link", { name: /Email Contact/i });
 
       const boxShadow = await emailCard.evaluate((el) => {
         return window.getComputedStyle(el).boxShadow;
@@ -225,7 +237,7 @@ test.describe("Contact Page", () => {
     });
 
     test("should transform card on hover", async ({ page }) => {
-      const emailCard = page.getByRole("link", { name: /Email/i });
+      const emailCard = page.getByRole("link", { name: /Email Contact/i });
 
       // Get initial transform
       const initialTransform = await emailCard.evaluate((el) => {
@@ -253,8 +265,10 @@ test.describe("Contact Page", () => {
       await expect(gridContainer).toBeVisible();
 
       // All cards should still be visible
-      const emailCard = page.getByRole("link", { name: /Email/i });
-      const linkedinCard = page.getByRole("link", { name: /LinkedIn/i });
+      const emailCard = page.getByRole("link", { name: /Email Contact/i });
+      const linkedinCard = page.getByRole("link", {
+        name: /LinkedIn Contact/i,
+      });
 
       await expect(emailCard).toBeVisible();
       await expect(linkedinCard).toBeVisible();
@@ -289,10 +303,10 @@ test.describe("Contact Page", () => {
 
     test("external links should have security attributes", async ({ page }) => {
       const externalLinks = [
-        page.getByRole("link", { name: /LinkedIn/i }),
-        page.getByRole("link", { name: /YouTube/i }),
-        page.getByRole("link", { name: /Instagram/i }),
-        page.getByRole("link", { name: /Bluesky/i }),
+        page.getByRole("link", { name: /LinkedIn Contact/i }),
+        page.getByRole("link", { name: /YouTube Contact/i }),
+        page.getByRole("link", { name: /Instagram Contact/i }),
+        page.getByRole("link", { name: /Bluesky Contact/i }),
       ];
 
       for (const link of externalLinks) {
@@ -304,7 +318,7 @@ test.describe("Contact Page", () => {
 
   test.describe("Layout and Styling", () => {
     test("should have proper card structure", async ({ page }) => {
-      const emailCard = page.getByRole("link", { name: /Email/i });
+      const emailCard = page.getByRole("link", { name: /Email Contact/i });
 
       // Check for rounded corners
       const borderRadius = await emailCard.evaluate((el) => {
