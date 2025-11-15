@@ -317,6 +317,32 @@ export default function Resume() {
                     </div>
                   </div>
                 </a>
+                <a
+                  className="block group py-2"
+                  href="https://www.linkedin.com/learning/certificates/2780b24ee8c41fc0465b74e61e83af34af75e9bbb2d54401e76c26140726ffcb"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="flex flex-col max-w-fit sm:flex-row sm:items-center sm:justify-between gap-1">
+                    <div>
+                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                        Getting Started as a Business Analyst
+                      </h3>
+                    </div>
+                    <div className="flex flex-wrap gap-2 max-w-fit mt-2 sm:mt-0">
+                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
+                        Business Analysis
+                      </span>
+                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
+                        Business Strategy
+                      </span>
+                      <span className="text-xs px-2 py-1 rounded-full bg-amber-500 text-white">
+                        Business Process Analysis
+                      </span>
+                    </div>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -356,6 +382,12 @@ export default function Resume() {
                       </span>
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
                         Tailwind CSS
+                      </span>
+                      <span className="text-xs px-2 py-1 rounded-full bg-gray-500 text-white">
+                        Markdown
+                      </span>
+                      <span className="text-xs px-2 py-1 rounded-full bg-red-500 text-white">
+                        Playwright
                       </span>
                     </div>
                   </div>
