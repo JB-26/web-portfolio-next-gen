@@ -49,7 +49,23 @@ export default function Post({ postData }) {
           <Date dateString={postData.date} />
         </div>
         <div className={`${postStyle.dropCap} prose text-black max-w-none`}>
-          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+          <ReactMarkdown
+            rehypePlugins={[rehypeRaw]}
+            components={{
+              a: ({ node, href, children, ...props }) => {
+                return (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...props}
+                  >
+                    {children}
+                  </a>
+                );
+              },
+            }}
+          >
             {postData.contentHtml}
           </ReactMarkdown>
         </div>
