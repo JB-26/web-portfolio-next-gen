@@ -197,13 +197,13 @@ export default function Resume() {
                   target="_blank"
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="flex flex-col max-w-fit sm:flex-row sm:items-center sm:justify-between gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center">
                     <div>
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500 sm:w-96">
                         AI Fluency: Framework &amp; Foundations
                       </h3>
                     </div>
-                    <div className="flex flex-wrap gap-2 mt-2 sm:mt-0">
+                    <div className="flex flex-wrap gap-2 mt-2 sm:mt-0 sm:ml-6">
                       <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
                         AI
                       </span>
@@ -220,13 +220,13 @@ export default function Resume() {
                   target="_blank"
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="flex flex-col max-w-fit sm:flex-row sm:items-center sm:justify-between gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center">
                     <div>
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500 sm:w-96">
                         Digital Product Management: Modern Fundamentals
                       </h3>
                     </div>
-                    <div className="flex flex-wrap gap-2 mt-2 sm:mt-0">
+                    <div className="flex flex-wrap gap-2 mt-2 sm:mt-0 sm:ml-6">
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
                         Product
                       </span>
@@ -246,13 +246,13 @@ export default function Resume() {
                   target="_blank"
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="flex flex-col max-w-fit sm:flex-row sm:items-center sm:justify-between gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center">
                     <div>
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500 sm:w-96">
                         Scrum Master
                       </h3>
                     </div>
-                    <div className="flex flex-wrap gap-2 max-w-fit mt-2 sm:mt-0">
+                    <div className="flex flex-wrap gap-2 mt-2 sm:mt-0 sm:ml-6">
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
                         Agile
                       </span>
@@ -272,13 +272,13 @@ export default function Resume() {
                   target="_blank"
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="flex flex-col max-w-fit sm:flex-row sm:items-center sm:justify-between gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center">
                     <div>
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500 sm:w-96">
                         ISTQB-BCS Certified Tester Foundation Level
                       </h3>
                     </div>
-                    <div className="flex flex-wrap gap-2 max-w-fit mt-2 sm:mt-0">
+                    <div className="flex flex-wrap gap-2 mt-2 sm:mt-0 sm:ml-6">
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
                         Manual Testing
                       </span>
@@ -301,13 +301,13 @@ export default function Resume() {
                   target="_blank"
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="flex flex-col max-w-fit sm:flex-row sm:items-center sm:justify-between gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center">
                     <div>
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500 sm:w-96">
                         Responsive Web Design
                       </h3>
                     </div>
-                    <div className="flex flex-wrap gap-2 max-w-fit mt-2 sm:mt-0">
+                    <div className="flex flex-wrap gap-2 mt-2 sm:mt-0 sm:ml-6">
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
                         HTML
                       </span>
@@ -324,13 +324,13 @@ export default function Resume() {
                   target="_blank"
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="flex flex-col max-w-fit sm:flex-row sm:items-center sm:justify-between gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center">
                     <div>
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500 sm:w-96">
                         Getting Started as a Business Analyst
                       </h3>
                     </div>
-                    <div className="flex flex-wrap gap-2 max-w-fit mt-2 sm:mt-0">
+                    <div className="flex flex-wrap gap-2 mt-2 sm:mt-0 sm:ml-6">
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
                         Business Analysis
                       </span>
@@ -361,9 +361,9 @@ export default function Resume() {
                   target="_blank"
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center">
                     <div>
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500 sm:w-96">
                         This website
                       </h3>
                       <p className="text-sm text-gray-600">
@@ -399,9 +399,9 @@ export default function Resume() {
                   target="_blank"
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center">
                     <div>
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500 sm:w-96">
                         Video Game API
                       </h3>
                       <p className="text-sm text-gray-600">
