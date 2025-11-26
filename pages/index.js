@@ -38,7 +38,16 @@ export default function Home() {
             >
               developer
             </Link>
-            , technologist, traveller, amateur{" "}
+            , technologist,{" "}
+            <Link
+              href="https://www.linkedin.com/learning/certificates/2780b24ee8c41fc0465b74e61e83af34af75e9bbb2d54401e76c26140726ffcb"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              business analyst
+            </Link>
+            , traveller, amateur{" "}
             <Link
               href="https://www.instagram.com/jblw1tt/"
               rel="noopener noreferrer"
