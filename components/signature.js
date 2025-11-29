@@ -22,7 +22,7 @@ export default function Signature() {
             Let me know your thoughts!
           </a>
           <br />
-          <Link href="/about/" className={styles.link}>
+          <Link href="/resume/" className={styles.link}>
             More about me
           </Link>
         </div>

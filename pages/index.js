@@ -1,12 +1,10 @@
 import Layout, { siteTitle } from "../components/layout";
 import Footer from "../components/footer";
-import utilStyles from "../styles/utils.module.css";
 import styles from "../styles/index.module.css";
 import Head from "next/head";
 import Image from "next/image";
-import indexImage from "../public/images/profile_photo_2.png";
-import paperPlane from "../public/icons/paper_plane.svg";
 import Link from "next/link";
+import indexImage from "../public/images/profile_photo_2.png";
 
 export default function Home() {
   return (
@@ -18,69 +16,98 @@ export default function Home() {
           name="The personal website of IT Professional, Joshua Blewitt"
         />
       </Head>
-      <section className={utilStyles.headingMd}>
-        <div className={styles.content}>
-          <div className={styles.left}>
-            <h1 data-testid="main-heading" className={utilStyles.heading2Xl}>
-              Hey, I&apos;m{" "}
-              <div className={styles.gradientText}>Joshua Blewitt</div> {"  "}
-              <span role="img" aria-label="string">
-                👋
-              </span>
-            </h1>
-            <p data-testid="subtitle" className={styles.known}>
-              But call me JB.
-            </p>
-            <p>
-              <span role="img" aria-label="string" className={styles.emoji}>
-                📍
-              </span>{" "}
-              {"  "} United Kingdom
-            </p>
-            <p>
-              <span role="img" aria-label="string" className={styles.emoji}>
-                💼
-              </span>{" "}
-              {"  "} Assessment Systems Executive @ ICAEW
-            </p>
-            <p>
-              <span role="img" aria-label="string" className={styles.emoji}>
-                📄
-              </span>{" "}
-              {"  "}
-              <Link
-                href="https://j-blewitt.notion.site/Joshua-Blewitt-Resume-CV-accea10012824431bc7f8654d77590a2?pvs=4"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Online Resume/CV
-              </Link>
-            </p>
-            <p data-testid="paragraph">
-              I&apos;m passionate about product, a technology advocate, customer
-              champion, and curious mind. My work allows me to analyse business
-              problems, design and deliver technical solutions that deliver
-              value to stakeholders.
-            </p>
-          </div>
-          <div data-testid="image" className={styles.right}>
-            <Image
-              priority
-              className={styles.image}
-              src={indexImage}
-              alt="Cartoon image of myself"
-            />
-          </div>
-        </div>
-        <div data-testid="button" className={styles.buttonContainer}>
-          <a
-            className={styles.emailButton}
-            href="mailto:joshblewitt@protonmail.com"
+      <div className="flex flex-col-reverse md:flex-row justify-center mb-2">
+        <div className="max-w-[20rem] md:max-w-none lg:w-[2500px]">
+          <h1
+            data-testid="main-heading"
+            className="text-3xl md:text-[2.5rem]/[1.2] font-extrabold"
           >
-            Email me <Image priority className={styles.icon} src={paperPlane} />
-          </a>
+            Hey, I&apos;m{" "}
+            <div className={styles.gradientText}>Joshua Blewitt</div> {"  "}
+            <span role="img" aria-label="string">
+              👋
+            </span>
+          </h1>
+          <p className="mt-2 text-lg" data-testid="paragraph">
+            A hobbyist{" "}
+            <Link
+              href="https://github.com/JB-26"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              developer
+            </Link>
+            , technologist,{" "}
+            <Link
+              href="https://www.linkedin.com/learning/certificates/2780b24ee8c41fc0465b74e61e83af34af75e9bbb2d54401e76c26140726ffcb"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              business analyst
+            </Link>
+            , traveller, amateur{" "}
+            <Link
+              href="https://www.instagram.com/jblw1tt/"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              photographer
+            </Link>
+            , small-time{" "}
+            <Link
+              href="https://www.youtube.com/@joshuablewitt6022"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              YouTuber
+            </Link>
+            , and{" "}
+            <Link
+              href="https://bsky.app/profile/joshblewitt.dev"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              writer
+            </Link>
+            . I have ten years of experience in the software industry. From
+            testing software to working with stakeholders, my work allows me to
+            analyse business problems, design and deliver technical solutions
+            that deliver value. <br />
+            Described as a technology advocate, problem solver and curious mind.{" "}
+            <br />
+            I&apos;ve{" "}
+            <Link
+              href="https://www.linkedin.com/in/jblewitt/"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-extrabold"
+            >
+              worked
+            </Link>{" "}
+            at major companies such as Domino&apos;s Pizza Group and IQVIA.{" "}
+            <br />
+            If I&apos;m not working on my street photography skills, I&apos;m
+            either writing my next blog post, YouTube video, or practicing
+            programming. <br />
+          </p>
         </div>
-      </section>
+        <div
+          data-testid="image"
+          className="flex justify-center items-center text-center md:w-7xl"
+        >
+          <Image
+            priority
+            className="rounded-3xl w-auto h-auto lg:rotate-3 hover:rotate-0 hover:scale-105 transition-transform duration-300"
+            src={indexImage}
+            alt="Photo of myself, presented in a polaroid frame"
+          />
+        </div>
+      </div>
       <Footer></Footer>
     </Layout>
   );

@@ -2,8 +2,6 @@ import Head from "next/head";
 import Date from "../../components/date";
 import Layout, { siteTitle } from "../../components/layout";
 import Footer from "../../components/footer";
-import utilStyles from "../../styles/utils.module.css";
-import paginationStyle from "../../styles/blog.module.css";
 import { getSortedPostsData } from "../../lib/posts";
 import Link from "next/link";
 
@@ -44,26 +42,27 @@ export default function BlogPage({ currentPosts, numPages, pageNumber }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}></section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h1 className={utilStyles.headingXl}>Blog - Page {pageNumber}</h1>
-        <ul className={utilStyles.list}>
+      <section className="text-xl">
+        <h1 className="text-2xl/9 font-extrabold tracking-tighter mb-3.5 md:text-3xl/9">
+          Blog - Page {pageNumber}
+        </h1>
+        <ul className="list-none mb-5">
           {currentPosts.map(({ id, date, title, description }) => (
-            <li className={utilStyles.listItem} key={id}>
+            <li className="mb-3.5" key={id}>
               <Link href={`/posts/${id}`}>{title}</Link>
               <br />
-              <small className={utilStyles.lightText}>
+              <small className="text-[#666]">
                 {description || "No description available"}
               </small>
               <br />
-              <small className={utilStyles.lightText}>
+              <small className="text-[#666]">
                 <Date dateString={date} />
               </small>
             </li>
           ))}
         </ul>
         {/* Pagination links */}
-        <div className={paginationStyle.pagination}>
+        <div className="whitespace-nowrap relative overflow-x-scroll overflow-y-hidden">
           {Array.from({ length: numPages }, (_, i) => (
             <Link
               style={{ margin: "0.5rem" }}

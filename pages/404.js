@@ -4,8 +4,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { siteTitle } from "../components/layout";
-import styles from "../styles/error.module.css";
-import utilStyles from "../styles/utils.module.css";
 
 export default function Custom404() {
   const router = useRouter();
@@ -20,8 +18,8 @@ export default function Custom404() {
         />
       </Head>
       <Header></Header>
-      <div className={styles.errorMessage}>
-        <h2 className={utilStyles.heading2Xl}>
+      <div className="flex flex-col text-center mt-12 mb-5">
+        <h2 className="text-2xl/9 font-extrabold tracking-tighter mb-3.5 md:text-3xl/9">
           {" "}
           <span role="img" aria-label="string">
             ⁉️
