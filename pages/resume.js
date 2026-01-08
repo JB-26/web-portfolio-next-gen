@@ -142,7 +142,7 @@ export default function Resume() {
                       Domino&apos;s Pizza Group
                     </p>
                     <p className="text-sm text-gray-400 mt-1">
-                      Software Test Engineer
+                      Software Tester
                     </p>
                     <ul className="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1">
                       <li>
