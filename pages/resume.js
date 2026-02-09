@@ -468,6 +468,44 @@ export default function Resume() {
                     </div>
                   </div>
                 </a>
+                <a
+                  className="block group py-2"
+                  href="https://github.com/JB-26/ask-astronaut"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center">
+                    <div>
+                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500 sm:w-96">
+                        Ask Astronaut
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Ask questions about space! Powered by NASA's API and Claude
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 mt-2 sm:mt-0">
+                    <span className="text-xs px-2 py-1 rounded-full bg-amber-600 text-white">
+                        Claude
+                      </span>
+                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
+                        AI
+                      </span>
+                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
+                        TypeScript
+                      </span>
+                      <span className="text-xs px-2 py-1 rounded-full bg-neutral-300 text-black">
+                        Bun
+                      </span>
+                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
+                        Tailwind CSS
+                      </span>
+                      <span className="text-xs px-2 py-1 rounded-full bg-yellow-500 text-white">
+                        Google Cloud
+                      </span>
+                    </div>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
