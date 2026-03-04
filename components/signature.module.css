@@ -93,16 +93,21 @@
 @media (min-width: 768px) {
     .format {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         align-content: center;
     }
 
+    /* In column/stacked mode the image should fill most of the viewport width.
+       min(28rem, 85%) caps at 28rem on wide screens while the 85% leg prevents
+       overflow on narrower tablets. margin: 0 auto centres it when the
+       percentage is narrower than its container. */
     .image {
         border-radius: 3rem;
         height: auto;
-        width: 30rem;
+        width: min(28rem, 85%);
         max-width: 100%;
+        margin: 0 auto;
         padding: 4px;
     }
 
@@ -117,5 +122,21 @@
         line-height: 1.6;
         padding: 19px;
         font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .format {
+        flex-direction: row;
+    }
+
+    .image {
+        width: 22rem;
+    }
+}
+
+@media (min-width: 1100px) {
+    .image {
+        width: 30rem;
     }
 }

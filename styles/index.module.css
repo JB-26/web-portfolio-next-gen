@@ -19,3 +19,10 @@
         background-position: 0% 50%;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .gradientText {
+        animation: none;
+        background-position: 0% 50%;
+    }
+}

@@ -42,7 +42,7 @@ export default function Post({ postData }) {
         <meta property="og:type" content="article" />
       </Head>
       <article>
-        <h1 className="text-2xl/9 font-extrabold tracking-tighter mb-3.5 md:text-3xl/9">
+        <h1 className="text-2xl font-extrabold tracking-tighter leading-tight mb-3.5 md:text-3xl md:leading-snug">
           {postData.title}
         </h1>
         <div className="text-[#666] mb-3.5">
@@ -71,7 +71,7 @@ export default function Post({ postData }) {
         </div>
       </article>
       <div className="mr-1.5">
-        <h1 className="text-2xl/9 mt-4 mb-4 font-extrabold">Tags: </h1>
+        <h2 className="text-2xl font-extrabold leading-snug mt-4 mb-3">Tags</h2>
         {postData.tags.map((tag) => (
           <Link key={tag} href={`/tags/${tag}`} className="mr-2">
             {tag}

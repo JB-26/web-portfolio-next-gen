@@ -16,19 +16,23 @@ export default function Home() {
           name="The personal website of IT Professional, Joshua Blewitt"
         />
       </Head>
-      <div className="flex flex-col-reverse md:flex-row justify-center mb-2">
-        <div className="max-w-[20rem] md:max-w-none lg:w-[2500px]">
+      {/* Hero section: stacks vertically on mobile and tablet (including iPad Mini
+          portrait at 768 px). The side-by-side layout only engages at lg (1024 px)
+          where there is enough horizontal space for both columns to breathe. */}
+      <div className="flex flex-col-reverse lg:flex-row justify-center gap-6 lg:gap-10 mb-2">
+        {/* Text column: flex-1 min-w-0 lets it fill remaining space in row mode
+            without overflowing its parent — the correct flex shrink pattern. */}
+        <div className="flex-1 min-w-0">
           <h1
             data-testid="main-heading"
-            className="text-3xl md:text-[2.5rem]/[1.2] font-extrabold"
+            className="text-3xl md:text-[2.5rem] md:leading-tight font-extrabold"
           >
             Hey, I&apos;m{" "}
-            <div className={styles.gradientText}>Joshua Blewitt</div> {"  "}
-            <span role="img" aria-label="string">
-              👋
-            </span>
+            <div className={styles.gradientText}>Joshua Blewitt</div>{" "}
+            {/* Decorative emoji — hidden from assistive technology */}
+            <span aria-hidden="true">👋</span>
           </h1>
-          <p className="mt-2 text-lg" data-testid="paragraph">
+          <p className="mt-3 text-lg leading-relaxed" data-testid="paragraph">
             A hobbyist{" "}
             <Link
               href="https://github.com/JB-26"
@@ -38,16 +42,7 @@ export default function Home() {
             >
               developer
             </Link>
-            , technologist,{" "}
-            <Link
-              href="https://www.linkedin.com/learning/certificates/2780b24ee8c41fc0465b74e61e83af34af75e9bbb2d54401e76c26140726ffcb"
-              rel="noopener noreferrer"
-              target="_blank"
-              className="font-extrabold"
-            >
-              business analyst
-            </Link>
-            , traveller, amateur{" "}
+            , technologist, traveller, amateur{" "}
             <Link
               href="https://www.instagram.com/jblw1tt/"
               rel="noopener noreferrer"
@@ -96,13 +91,17 @@ export default function Home() {
             programming. <br />
           </p>
         </div>
+        {/* Image column: centred in stacked mode; auto-sized in row mode so it
+            doesn't claim a fixed width that overflows the container.
+            max-w-xs caps the image on small screens; lg:max-w-sm gives it
+            a comfortable ceiling once the row layout is active. */}
         <div
           data-testid="image"
-          className="flex justify-center items-center text-center md:w-7xl"
+          className="flex justify-center items-start"
         >
           <Image
             priority
-            className="rounded-3xl w-auto h-auto lg:rotate-3 hover:rotate-0 hover:scale-105 transition-transform duration-300"
+            className="rounded-3xl w-auto h-auto max-w-xs lg:max-w-sm lg:rotate-3 hover:rotate-0 hover:scale-105 transition-transform duration-300 motion-reduce:transition-none motion-reduce:hover:transform-none"
             src={indexImage}
             alt="Photo of myself, presented in a polaroid frame"
           />
