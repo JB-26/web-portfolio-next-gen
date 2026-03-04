@@ -48,19 +48,15 @@ export default function Blog({
         </p>
         <h1
           data-testid="pinned"
-          className="text-2xl/9 font-extrabold tracking-tighter mb-3.5 md:text-3xl/9"
+          className="text-2xl font-extrabold tracking-tighter leading-tight mb-3.5 md:text-3xl md:leading-snug"
         >
           Pinned Post
         </h1>
-        <div className="mb-3.5 text-lg md:text-xl">
-          <Link href={`/posts/${specificPostData.name}`}>
+        <div className="py-3 text-lg md:text-xl">
+          <Link href={`/posts/${specificPostData.name}`} className="block font-semibold mb-1">
             {specificPostData.title}
           </Link>
-          <br />
-          <small className="text-[#666]">
-            {specificPostData.description || "No description available"}
-          </small>
-          <br />
+          <p className="text-[#666] text-sm m-0">{specificPostData.description || "No description available"}</p>
           <small className="text-[#666]">
             <Date dateString={specificPostData.date} />
           </small>
@@ -68,19 +64,15 @@ export default function Blog({
 
         <h1
           data-testid="blog-posts"
-          className="text-2xl/9 font-extrabold tracking-tighter mb-3.5 md:text-3xl/9"
+          className="text-2xl font-extrabold tracking-tighter leading-tight mb-3.5 md:text-3xl md:leading-snug"
         >
           Blog - {allPostsNum} posts
         </h1>
-        <ul className="list-none mb-5">
+        <ul className="list-none mb-2 divide-y divide-gray-200">
           {allPostsData.map(({ id, date, title, description }) => (
-            <li className="mb-3.5 text-lg md:text-xl" key={id}>
-              <Link href={`/posts/${id}`}>{title}</Link>
-              <br />
-              <small className="text-[#666]">
-                {description || "No description available."}
-              </small>
-              <br />
+            <li className="py-3 text-lg md:text-xl" key={id}>
+              <Link href={`/posts/${id}`} className="block font-semibold mb-1">{title}</Link>
+              <p className="text-[#666] text-sm m-0">{description || "No description available."}</p>
               <small className="text-[#666]">
                 <Date dateString={date} />
               </small>
@@ -88,17 +80,21 @@ export default function Blog({
           ))}
         </ul>
         {/* Pagination links */}
-        <div className="whitespace-nowrap relative overflow-x-scroll overflow-y-hidden overflow-scroll mb-3.5">
-          {Array.from({ length: numPages }, (_, i) => (
-            <Link
-              style={{ margin: "0.5rem" }}
-              href={`/page/${i + 1}`}
-              key={i + 1}
-            >
-              {i + 1}
-            </Link>
-          ))}
-        </div>
+        <nav aria-label="Blog pagination" className="mb-3.5 overflow-hidden">
+          <ol className="flex flex-nowrap overflow-x-auto gap-2 list-none p-0 m-0 pb-1 scrollbar-none">
+            {Array.from({ length: numPages }, (_, i) => (
+              <li key={i + 1}>
+                <Link
+                  href={`/page/${i + 1}`}
+                  aria-label={`Page ${i + 1}`}
+                  className="flex items-center justify-center w-11 h-11 rounded border border-gray-300 text-base font-medium hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+                >
+                  {i + 1}
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </nav>
       </section>
       <Footer></Footer>
     </Layout>
