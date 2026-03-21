@@ -1,5 +1,5 @@
 import Layout from "../../components/layout";
-import { getAllPostIds, getPostData } from "../../lib/posts";
+import { getAllPostIds, getPostData, getRelatedPosts } from "../../lib/posts";
 import Head from "next/head";
 import Date from "../../components/date";
 import postStyle from "../../styles/post.module.css";
@@ -9,10 +9,12 @@ import rehypeRaw from "rehype-raw";
 
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id);
+  const relatedPosts = getRelatedPosts(params.id, postData.tags, 3);
 
   return {
     props: {
       postData,
+      relatedPosts,
     },
   };
 }
@@ -25,7 +27,7 @@ export async function getStaticPaths() {
   };
 }
 
-export default function Post({ postData }) {
+export default function Post({ postData, relatedPosts }) {
   return (
     <Layout>
       <Head>
@@ -45,8 +47,8 @@ export default function Post({ postData }) {
         <h1 className="text-2xl font-extrabold tracking-tighter leading-tight mb-3.5 md:text-3xl md:leading-snug">
           {postData.title}
         </h1>
-        <div className="text-[#666] mb-3.5">
-          <Date dateString={postData.date} />
+        <div className="text-[#666] mb-3.5" data-testid="post-reading-time">
+          <Date dateString={postData.date} /> &middot; {postData.readingTime}
         </div>
         <div className={`${postStyle.dropCap} prose text-black max-w-none`}>
           <ReactMarkdown
@@ -78,6 +80,26 @@ export default function Post({ postData }) {
           </Link>
         ))}
       </div>
+      {relatedPosts.length > 0 && (
+        <div className="mt-8" data-testid="related-posts">
+          <h2 className="text-2xl font-extrabold leading-snug mb-3" data-testid="related-posts-heading">Related Posts</h2>
+          <ul className="list-none divide-y divide-gray-200">
+            {relatedPosts.map((post) => (
+              <li className="py-3 text-lg md:text-xl" key={post.id} data-testid="related-post-item">
+                <Link href={`/posts/${post.id}`} className="block font-semibold mb-1">
+                  {post.title}
+                </Link>
+                <p className="text-[#666] text-sm m-0">
+                  {post.description || "No description available."}
+                </p>
+                <small className="text-[#666]" data-testid="related-post-reading-time">
+                  <Date dateString={post.date} /> &middot; {post.readingTime}
+                </small>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </Layout>
   );
 }

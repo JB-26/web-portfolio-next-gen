@@ -57,8 +57,8 @@ export default function Blog({
             {specificPostData.title}
           </Link>
           <p className="text-[#666] text-sm m-0">{specificPostData.description || "No description available"}</p>
-          <small className="text-[#666]">
-            <Date dateString={specificPostData.date} />
+          <small className="text-[#666]" data-testid="pinned-reading-time">
+            <Date dateString={specificPostData.date} /> &middot; {specificPostData.readingTime}
           </small>
         </div>
 
@@ -69,12 +69,12 @@ export default function Blog({
           Blog - {allPostsNum} posts
         </h1>
         <ul className="list-none mb-2 divide-y divide-gray-200">
-          {allPostsData.map(({ id, date, title, description }) => (
-            <li className="py-3 text-lg md:text-xl" key={id}>
+          {allPostsData.map(({ id, date, title, description, readingTime }) => (
+            <li className="py-3 text-lg md:text-xl" key={id} data-testid="post-list-item">
               <Link href={`/posts/${id}`} className="block font-semibold mb-1">{title}</Link>
               <p className="text-[#666] text-sm m-0">{description || "No description available."}</p>
-              <small className="text-[#666]">
-                <Date dateString={date} />
+              <small className="text-[#666]" data-testid="post-reading-time">
+                <Date dateString={date} /> &middot; {readingTime}
               </small>
             </li>
           ))}
