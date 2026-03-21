@@ -16,3 +16,24 @@ test("Check for important content", async ({ page }) => {
     "Blog",
   );
 });
+
+test("Pinned post shows a reading time estimate", async ({ page }) => {
+  await page.goto("http://localhost:3000/blog");
+
+  const pinnedReadingTime = page.locator('[data-testid="pinned-reading-time"]');
+  await expect(pinnedReadingTime).toBeVisible();
+  await expect(pinnedReadingTime).toContainText("min read");
+});
+
+test("Every post in the blog listing shows a reading time estimate", async ({ page }) => {
+  await page.goto("http://localhost:3000/blog");
+
+  const readingTimes = page.locator('[data-testid="post-reading-time"]');
+  const count = await readingTimes.count();
+  expect(count).toBeGreaterThan(0);
+
+  for (let i = 0; i < count; i++) {
+    await expect(readingTimes.nth(i)).toContainText("min read");
+  }
+});
+

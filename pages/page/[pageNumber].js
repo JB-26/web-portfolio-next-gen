@@ -47,12 +47,12 @@ export default function BlogPage({ currentPosts, numPages, pageNumber }) {
           Blog - Page {pageNumber}
         </h1>
         <ul className="list-none mb-2 divide-y divide-gray-200">
-          {currentPosts.map(({ id, date, title, description }) => (
-            <li className="py-4 text-lg md:text-xl" key={id}>
+          {currentPosts.map(({ id, date, title, description, readingTime }) => (
+            <li className="py-4 text-lg md:text-xl" key={id} data-testid="post-list-item">
               <Link href={`/posts/${id}`} className="block font-semibold mb-1">{title}</Link>
               <p className="text-[#666] text-sm m-0">{description || "No description available"}</p>
-              <small className="text-[#666]">
-                <Date dateString={date} />
+              <small className="text-[#666]" data-testid="post-reading-time">
+                <Date dateString={date} /> &middot; {readingTime}
               </small>
             </li>
           ))}
