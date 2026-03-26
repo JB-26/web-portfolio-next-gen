@@ -12,7 +12,7 @@ export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   const allPostsNum = allPostsData.length;
   const numPages = Math.ceil(allPostsData.length / postsPerPage);
-  const specificPostName = "2025-01-30-scrum"; // Replace with the desired post name, without the .md file extension
+  const specificPostName = "2026-03-26-ai-future"; // Replace with the desired post name, without the .md file extension
   const specificPostData = await getPostDataByName(specificPostName);
 
   return {
