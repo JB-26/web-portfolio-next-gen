@@ -1,5 +1,6 @@
 import styles from "./header.module.css";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   return (
@@ -25,6 +26,9 @@ export default function Header() {
             <Link href="/contact/" className={styles.blog}>
               Contact
             </Link>
+          </div>
+          <div className={styles.headerItem}>
+            <ThemeToggle />
           </div>
         </div>
       </header>

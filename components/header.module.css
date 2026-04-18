@@ -39,6 +39,11 @@ a:visited.blog {
     color: black;
 }
 
+:global(.dark) a:link.blog,
+:global(.dark) a:visited.blog {
+    color: #f1f5f9;
+}
+
 a:hover.blog {
     text-decoration: underline;
 }
@@ -61,12 +66,20 @@ a:hover.blog {
 }
 
 .headerItem {
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 1.5rem;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 1.25rem;
     line-height: 1.3;
     font-weight: 800;
     letter-spacing: -0.05rem;
+}
+
+@media (min-width: 640px) {
+    .headerItem {
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 1.5rem;
+    }
 }
 
 @media (min-width: 1024px) {
