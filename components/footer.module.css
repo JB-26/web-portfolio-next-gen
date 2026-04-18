@@ -10,3 +10,12 @@
     filter: invert(27%) sepia(100%) saturate(7154%) hue-rotate(210deg)
         brightness(99%) contrast(107%);
 }
+
+:global(.dark) .icon {
+    filter: invert(1);
+}
+
+:global(.dark) .icon:hover {
+    filter: invert(47%) sepia(92%) saturate(1672%) hue-rotate(195deg)
+        brightness(100%) contrast(101%);
+}

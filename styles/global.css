@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
 
 html,
 body {
@@ -28,6 +29,26 @@ body {
     overflow-x: hidden;
 }
 
+html {
+    background-color: #ffffff;
+    color: #0f172a;
+    transition-property: color, background-color, border-color;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+}
+
+.dark html,
+html.dark {
+    background-color: #0f172a;
+    color: #f1f5f9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        transition: none;
+    }
+}
+
 iframe {
     width: 100%;
 }
@@ -39,6 +60,10 @@ iframe {
 a {
     color: #0070f3;
     text-decoration: none;
+}
+
+.dark a {
+    color: #60a5fa;
 }
 
 h1 {
@@ -57,6 +82,10 @@ h1::after {
     bottom: 0;
 }
 
+.dark h1::after {
+    background: #60a5fa;
+}
+
 a:hover {
     text-decoration: underline;
 }
@@ -73,8 +102,17 @@ i {
 i:hover {
     color: #0070f3;
 }
+
+.dark i {
+    color: #f1f5f9;
+}
+
+.dark i:hover {
+    color: #60a5fa;
+}
+
 /* displaying code */
-pre {
+:not(.prose) pre {
     background: #ededed;
     border: 1px solid #ddd;
     border-left: 3px solid #f36d33;
@@ -91,8 +129,15 @@ pre {
     word-wrap: break-word;
 }
 
+.dark :not(.prose) pre {
+    background: #1e293b;
+    border-color: #334155;
+    border-left-color: #fb923c;
+    color: #cbd5e1;
+}
+
 /* displaying quotes */
-blockquote {
+:not(.prose) blockquote {
     font-size: 17px;
     margin: 50px auto;
     font-style: italic;
@@ -102,4 +147,17 @@ blockquote {
     line-height: 1.6;
     position: relative;
     background: #ededed;
+}
+
+.dark :not(.prose) blockquote {
+    color: #cbd5e1;
+    background: #1e293b;
+    border-left-color: #2dd4bf;
+}
+
+@media print {
+    html {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
 }

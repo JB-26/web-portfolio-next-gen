@@ -65,7 +65,7 @@ export default function Resume() {
               {/* Single timeline item */}
               <div className="relative pl-8">
                 {/* Blue dot */}
-                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white"></div>
+                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
                 {/* Content */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                   <div className="flex-1">
@@ -90,7 +90,7 @@ export default function Resume() {
               </div>
               <div className="relative pl-8">
                 {/* Blue dot */}
-                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white"></div>
+                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
                 {/* Content */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                   <div className="flex-1">
@@ -113,7 +113,7 @@ export default function Resume() {
               </div>
               <div className="relative pl-8">
                 {/* Blue dot */}
-                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white"></div>
+                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
                 {/* Content */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                   <div className="flex-1">
@@ -135,7 +135,7 @@ export default function Resume() {
               </div>
               <div className="relative pl-8">
                 {/* Blue dot */}
-                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white"></div>
+                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
                 {/* Content */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                   <div className="flex-1">
@@ -159,7 +159,7 @@ export default function Resume() {
               </div>
               <div className="relative pl-8">
                 {/* Blue dot */}
-                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white"></div>
+                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
                 {/* Content */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                   <div className="flex-1">
@@ -192,7 +192,7 @@ export default function Resume() {
             <div className="space-y-4">
               <div className="relative overflow-visible">
               <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
                   href="https://www.udemy.com/certificate/UC-4aae4450-bd4b-4592-953b-2179cdcda331/"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -200,7 +200,7 @@ export default function Resume() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       Google AI Professional Certificate
                       </h3>
                     </div>
@@ -211,14 +211,14 @@ export default function Resume() {
                       <span className="text-xs px-2 py-1 rounded-full bg-cyan-500 text-white">
                         Prompts
                       </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-yellow-500 text-white">
+                      <span className="text-xs px-2 py-1 rounded-full bg-yellow-500 text-black dark:bg-yellow-400 dark:text-black">
                         Generative AI
                       </span>
                     </div>
                   </div>
                 </a>
                 <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
                   href="https://verify.skilljar.com/c/5ah5hmesr4gq"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -226,7 +226,7 @@ export default function Resume() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         AI Fluency: Framework &amp; Foundations
                       </h3>
                     </div>
@@ -238,7 +238,7 @@ export default function Resume() {
                   </div>
                 </a>
                 <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
                   href="https://www.coursera.org/account/accomplishments/verify/LGPKX3EFN3M9"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -246,7 +246,7 @@ export default function Resume() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         Digital Product Management: Modern Fundamentals
                       </h3>
                     </div>
@@ -264,7 +264,7 @@ export default function Resume() {
                   </div>
                 </a>
                 <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
                   href="https://s3.amazonaws.com/scruminc-certs/RSM-8823626"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -272,7 +272,7 @@ export default function Resume() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         Scrum Master
                       </h3>
                     </div>
@@ -290,7 +290,7 @@ export default function Resume() {
                   </div>
                 </a>
                 <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
                   href="https://www.linkedin.com/in/jblewitt/details/certifications/1719413746906/single-media-viewer/?profileId=ACoAABNnSV0BPiMy5z3Y7_cW0HdDAuKeIs7pH0A"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -298,7 +298,7 @@ export default function Resume() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         ISTQB-BCS Certified Tester Foundation Level
                       </h3>
                     </div>
@@ -319,7 +319,7 @@ export default function Resume() {
                   </div>
                 </a>
                 <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
                   href="https://www.freecodecamp.org/certification/fcc2927573c-68b6-4b92-954b-d97d1ea76b7f/responsive-web-design"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -327,7 +327,7 @@ export default function Resume() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         Responsive Web Design
                       </h3>
                     </div>
@@ -342,7 +342,7 @@ export default function Resume() {
                   </div>
                 </a>
                 <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
                   href="https://www.linkedin.com/learning/certificates/2780b24ee8c41fc0465b74e61e83af34af75e9bbb2d54401e76c26140726ffcb"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -350,7 +350,7 @@ export default function Resume() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         Getting Started as a Business Analyst
                       </h3>
                     </div>
@@ -379,7 +379,7 @@ export default function Resume() {
             <div className="space-y-4">
               <div className="relative overflow-visible">
                 <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
                   href="https://www.joshblewitt.dev/"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -387,21 +387,21 @@ export default function Resume() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         This website
                       </h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-slate-400">
                         My portfolio website.
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-2 lg:mt-0">
-                      <span className="text-xs px-2 py-1 rounded-full bg-yellow-500 text-white">
+                      <span className="text-xs px-2 py-1 rounded-full bg-yellow-500 text-black dark:bg-yellow-400 dark:text-black">
                         JavaScript
                       </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white">
+                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
                         Vercel
                       </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white">
+                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
                         Next.js
                       </span>
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
@@ -417,7 +417,7 @@ export default function Resume() {
                   </div>
                 </a>
                 <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
                   href="https://github.com/JB-26/video-game-api-nextjs"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -425,10 +425,10 @@ export default function Resume() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         Video Game API
                       </h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-slate-400">
                         A RESTful API for video games.
                       </p>
                     </div>
@@ -439,10 +439,10 @@ export default function Resume() {
                       <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
                         MongoDB
                       </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white">
+                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
                         Vercel
                       </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white">
+                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
                         Next.js
                       </span>
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
@@ -455,7 +455,7 @@ export default function Resume() {
                   </div>
                 </a>
                 <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
                   href="https://github.com/JB-26/haiku-check"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -463,10 +463,10 @@ export default function Resume() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         Haiku Check
                       </h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-slate-400">
                         Is that a haiku? Check it!
                       </p>
                     </div>
@@ -474,10 +474,10 @@ export default function Resume() {
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
                         TypeScript
                       </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white">
+                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
                         Vercel
                       </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white">
+                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
                         Next.js
                       </span>
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
@@ -493,7 +493,7 @@ export default function Resume() {
                   </div>
                 </a>
                 <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
                   href="https://github.com/JB-26/ask-astronaut"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -501,10 +501,10 @@ export default function Resume() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         Ask Astronaut
                       </h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-slate-400">
                         Ask questions about space! Powered by NASA's API and Claude
                       </p>
                     </div>
@@ -518,13 +518,13 @@ export default function Resume() {
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
                         TypeScript
                       </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-neutral-300 text-black">
+                      <span className="text-xs px-2 py-1 rounded-full bg-neutral-300 text-black dark:bg-neutral-600 dark:text-white">
                         Bun
                       </span>
                       <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
                         Tailwind CSS
                       </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-yellow-500 text-white">
+                      <span className="text-xs px-2 py-1 rounded-full bg-yellow-500 text-black dark:bg-yellow-400 dark:text-black">
                         Google Cloud
                       </span>
                     </div>
@@ -543,10 +543,10 @@ export default function Resume() {
               <div className="relative overflow-visible">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                   <div>
-                    <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                    <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       Programming
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-slate-400">
                       Let&apos;s me exercise my creativity and problem-solving
                       skills.
                     </p>
@@ -554,10 +554,10 @@ export default function Resume() {
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                   <div>
-                    <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                    <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       Photography
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-slate-400">
                       Really enjoy using my Ricoh GR IIIX HDF to capture the
                       world around me.
                     </p>
@@ -565,20 +565,20 @@ export default function Resume() {
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                   <div>
-                    <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                    <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       Traveling
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-slate-400">
                       Love exploring new places and cultures.
                     </p>
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                   <div>
-                    <h3 className="font-medium text-lg text-black group-hover:text-blue-500">
+                    <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       Writing
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-slate-400">
                       Getting thoughts down on paper.
                     </p>
                   </div>
