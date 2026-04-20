@@ -1,18 +1,23 @@
 /**
  * ISO — isOwner() unit tests (Phase 3)
  *
- * Covers the five cases from the QA Test Plan §Unit Test Inventory
- * `isOwner.test.js`:
+ * Covers the QA Test Plan §Unit Test Inventory `isOwner.test.js` cases plus
+ * one extra (ISO-06) added after the Phase 3 security audit flagged that
+ * iron-session's 32-char password minimum was not being enforced in code:
  *   1. Valid session with `isOwner: true` → returns true
  *   2. Session with `isOwner: false`      → returns false
  *   3. No cookie at all                   → returns false
- *   4. IRON_SESSION_PASSWORD unset        → throws a typed AuthConfigError
- *                                           (does NOT crash the process)
+ *   4. IRON_SESSION_PASSWORD unset        → throws AuthConfigError
  *   5. Empty cookie string                → returns false
+ *   6. IRON_SESSION_PASSWORD 31 chars     → throws AuthConfigError
+ *                                           (one char short of the 32-char
+ *                                           minimum — must not silently
+ *                                           fall through to a weakened key)
  *
  * We mock `iron-session` so the test controls what `getIronSession` returns
- * per case. Case 4 is the one test where we do NOT mock iron-session — we
- * let the real `sessionOptions.password` getter throw on a missing env var.
+ * per case. Cases 4 and 6 are the two tests where we do NOT drive
+ * iron-session at all — we let the real `sessionOptions.password` getter
+ * throw on a misconfigured env var.
  */
 
 import { describe, test, expect, vi, beforeEach, afterEach } from "vitest";
@@ -116,5 +121,16 @@ describe("isOwner()", () => {
     const result = await isOwner(req, res);
 
     expect(result).toBe(false);
+  });
+
+  // ISO-06: IRON_SESSION_PASSWORD set to 31 chars → one char under the 32-char
+  //          minimum. The getter must throw AuthConfigError rather than
+  //          silently passing a weakened key to iron-session. Added after the
+  //          Phase 3 security audit (Pre-Merge Checklist #11).
+  test("ISO-06: IRON_SESSION_PASSWORD shorter than 32 chars throws AuthConfigError", () => {
+    process.env.IRON_SESSION_PASSWORD = "a".repeat(31); // 31 chars — one short
+
+    expect(() => sessionOptions.password).toThrowError(AuthConfigError);
+    expect(() => sessionOptions.password).toThrow(/at least 32/);
   });
 });

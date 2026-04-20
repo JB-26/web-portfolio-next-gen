@@ -41,6 +41,25 @@ export interface SessionData {
 
 const COOKIE_NAME = "portfolio_session";
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 7; // 7 days
+const MIN_SESSION_PASSWORD_LENGTH = 32; // iron-session's documented minimum
+
+/**
+ * Whether to mark cookies `Secure`. Covers both local production builds
+ * (`NODE_ENV=production`) and Vercel production deployments (where
+ * `VERCEL_ENV === "production"`). Vercel preview builds may have
+ * `NODE_ENV !== "production"` but are still served over HTTPS — we don't
+ * set `Secure` there because we do not expect owner login on preview URLs,
+ * but if that ever changes the guard is centralised here.
+ *
+ * Exported so the auth route handlers (`login.ts`, `logout.ts`) use the
+ * same rule when building non-httpOnly sentinel cookies — avoids drift.
+ */
+export function isSecureCookieContext(): boolean {
+  return (
+    process.env.NODE_ENV === "production" ||
+    process.env.VERCEL_ENV === "production"
+  );
+}
 
 /**
  * Options passed to `getIronSession`. Read as a getter so env var resolution
@@ -50,21 +69,23 @@ const MAX_AGE_SECONDS = 60 * 60 * 24 * 7; // 7 days
  */
 export const sessionOptions: SessionOptions = {
   cookieName: COOKIE_NAME,
-  // `password` is read lazily via getter so a missing env var throws at
-  // request time (where we can return a clean 500), not at module load
-  // time (which would crash Next on boot and make tests fragile).
+  // `password` is read lazily via getter so a missing / too-short env var
+  // throws at request time (where we can return a clean 500), not at module
+  // load time (which would crash Next on boot and make tests fragile).
+  // Enforces iron-session's 32-char minimum in code, not just in
+  // `.env.example` — see Pre-Merge Security Review Checklist #11.
   get password(): string {
     const pw = process.env.IRON_SESSION_PASSWORD;
-    if (!pw || pw.length === 0) {
+    if (!pw || pw.length < MIN_SESSION_PASSWORD_LENGTH) {
       throw new AuthConfigError(
-        "IRON_SESSION_PASSWORD is not set. Generate one with `openssl rand -hex 32` and add it to .env.local.",
+        `IRON_SESSION_PASSWORD must be at least ${MIN_SESSION_PASSWORD_LENGTH} characters. Generate one with \`openssl rand -hex 32\` and add it to .env.local.`,
       );
     }
     return pw;
   },
   cookieOptions: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: isSecureCookieContext(),
     sameSite: "lax",
     path: "/",
     maxAge: MAX_AGE_SECONDS,

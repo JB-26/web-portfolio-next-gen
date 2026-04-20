@@ -28,9 +28,17 @@ import {
   AuthConfigError,
   generateCsrfToken,
   getSession,
+  isSecureCookieContext,
   verifyOrigin,
 } from "@/lib/auth";
 import type { ApiError, ApiErrorCode } from "@/lib/comments/types";
+
+/**
+ * Minimum length for OWNER_PASSWORD. Documented in `.env.example`; also
+ * enforced at runtime as defence-in-depth against a typo in Vercel env vars
+ * silently weakening authentication.
+ */
+const MIN_OWNER_PASSWORD_LENGTH = 32;
 
 const LoginSchema = z.object({
   password: z.string().min(1).max(512),
@@ -79,7 +87,7 @@ function existingSetCookies(res: NextApiResponse): string[] {
   return [String(current)];
 }
 
-/** Build a Set-Cookie string. Secure flag only in production. */
+/** Build a Set-Cookie string. Secure flag on in any production-like context. */
 function buildCookie(
   name: string,
   value: string,
@@ -91,7 +99,7 @@ function buildCookie(
     "SameSite=Lax",
     `Max-Age=${maxAgeSeconds}`,
   ];
-  if (process.env.NODE_ENV === "production") parts.push("Secure");
+  if (isSecureCookieContext()) parts.push("Secure");
   return parts.join("; ");
 }
 
@@ -117,10 +125,14 @@ export default async function handler(
   }
 
   const expected = process.env.OWNER_PASSWORD;
-  if (!expected || expected.length === 0) {
+  if (!expected || expected.length < MIN_OWNER_PASSWORD_LENGTH) {
     // Treat a misconfigured server like an invalid password — we still refuse
     // the request, but we log loudly so the operator can tell something is off.
-    console.error("[api/auth/login] OWNER_PASSWORD is not set; refusing all logins.");
+    // We do NOT reveal misconfiguration to the caller (identical response to
+    // a wrong-password attempt) so probes can't distinguish the two.
+    console.error(
+      `[api/auth/login] OWNER_PASSWORD is unset or shorter than ${MIN_OWNER_PASSWORD_LENGTH} chars; refusing all logins.`,
+    );
     sendError(res, 401, "UNAUTHORIZED", "Invalid password.");
     return;
   }

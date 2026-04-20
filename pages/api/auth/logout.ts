@@ -8,7 +8,12 @@
  */
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { AuthConfigError, getSession, verifyOrigin } from "@/lib/auth";
+import {
+  AuthConfigError,
+  getSession,
+  isSecureCookieContext,
+  verifyOrigin,
+} from "@/lib/auth";
 import type { ApiError, ApiErrorCode } from "@/lib/comments/types";
 
 interface LogoutSuccess {
@@ -40,7 +45,7 @@ function buildExpiredCookie(name: string): string {
     "SameSite=Lax",
     "Max-Age=0",
   ];
-  if (process.env.NODE_ENV === "production") parts.push("Secure");
+  if (isSecureCookieContext()) parts.push("Secure");
   return parts.join("; ");
 }
 
