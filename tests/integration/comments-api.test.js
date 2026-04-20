@@ -37,12 +37,19 @@ vi.mock("@/lib/mail", () => ({
 }));
 
 vi.mock("@/lib/auth", () => ({
-  // Default: not an owner. Override per-test for DELETE auth cases.
-  isOwner: vi.fn().mockReturnValue(false),
-  requireOwner: vi.fn().mockImplementation((_req, res) => {
-    res.status(401).json({ error: { code: "UNAUTHORIZED", message: "Not authenticated." } });
-    return false;
-  }),
+  // Phase 3 surface:
+  //   - getSession is the load-bearing call in the DELETE handler; tests
+  //     override its resolved value to flip isOwner.
+  //   - isOwner is kept as an async stub for any callers that still reach
+  //     for the wrapper (was sync in Phase 2).
+  //   - verifyOrigin / verifyCsrf default to true so happy-path tests only
+  //     need to override the check they are exercising.
+  //   - generateCsrfToken returns a stable string for snapshotability.
+  getSession: vi.fn().mockResolvedValue({}),
+  isOwner: vi.fn().mockResolvedValue(false),
+  verifyOrigin: vi.fn().mockReturnValue(true),
+  verifyCsrf: vi.fn().mockReturnValue(true),
+  generateCsrfToken: vi.fn().mockReturnValue("test-token"),
 }));
 
 vi.mock("@/lib/rateLimit", () => ({
@@ -144,11 +151,11 @@ beforeEach(() => {
 
   // Restore defaults after per-test overrides.
   rateLimit.checkLimit.mockResolvedValue({ allowed: true });
-  auth.isOwner.mockReturnValue(false);
-  auth.requireOwner.mockImplementation((_req, res) => {
-    res.status(401).json({ error: { code: "UNAUTHORIZED", message: "Not authenticated." } });
-    return false;
-  });
+  auth.getSession.mockResolvedValue({}); // no session → not owner
+  auth.isOwner.mockResolvedValue(false);
+  auth.verifyOrigin.mockReturnValue(true);
+  auth.verifyCsrf.mockReturnValue(true);
+  auth.generateCsrfToken.mockReturnValue("test-token");
   mail.notifyOwnerOfComment.mockResolvedValue(undefined);
 });
 
@@ -473,12 +480,13 @@ describe("DELETE /api/comments/[id]", () => {
   test("DELETE-01: authenticated owner deletes comment and returns 200 { ok: true, id }", async () => {
     requireHandler(idHandler, "pages/api/comments/[id].ts");
 
-    // Override requireOwner to succeed (pass through) for this test.
-    auth.requireOwner.mockImplementation(() => true);
-    auth.isOwner.mockReturnValue(true);
+    // Full happy path: session owns, CSRF valid, origin valid.
+    auth.getSession.mockResolvedValue({ isOwner: true, csrfToken: "t" });
+    auth.verifyCsrf.mockReturnValue(true);
+    auth.verifyOrigin.mockReturnValue(true);
     db.remove.mockResolvedValue(true);
 
-    const req = makeDeleteReq(VALID_UUID, { cookie: "iron-session=validtoken" });
+    const req = makeDeleteReq(VALID_UUID, { cookie: "portfolio_session=validtoken" });
     const res = httpMocks.createResponse();
 
     await idHandler(req, res);
@@ -494,7 +502,7 @@ describe("DELETE /api/comments/[id]", () => {
   test("DELETE-02: no auth cookie returns 401 UNAUTHORIZED", async () => {
     requireHandler(idHandler, "pages/api/comments/[id].ts");
 
-    // Default mock: requireOwner writes 401 and returns false.
+    // Default mock: getSession resolves {} → isOwner is undefined → 401.
     const req = makeDeleteReq(VALID_UUID);
     const res = httpMocks.createResponse();
 
@@ -510,12 +518,13 @@ describe("DELETE /api/comments/[id]", () => {
   test("DELETE-03: comment not found returns 404 NOT_FOUND", async () => {
     requireHandler(idHandler, "pages/api/comments/[id].ts");
 
-    auth.requireOwner.mockImplementation(() => true);
-    auth.isOwner.mockReturnValue(true);
+    auth.getSession.mockResolvedValue({ isOwner: true, csrfToken: "t" });
+    auth.verifyCsrf.mockReturnValue(true);
+    auth.verifyOrigin.mockReturnValue(true);
     // db.remove returns false → no row was deleted.
     db.remove.mockResolvedValue(false);
 
-    const req = makeDeleteReq(VALID_UUID, { cookie: "iron-session=validtoken" });
+    const req = makeDeleteReq(VALID_UUID, { cookie: "portfolio_session=validtoken" });
     const res = httpMocks.createResponse();
 
     await idHandler(req, res);
@@ -529,13 +538,12 @@ describe("DELETE /api/comments/[id]", () => {
   test("DELETE-04: non-UUID id returns 400 VALIDATION", async () => {
     requireHandler(idHandler, "pages/api/comments/[id].ts");
 
-    // Auth should not matter when the ID is structurally invalid; but even if
-    // the handler checks auth first, the end result must be an error response.
-    // Allow requireOwner to pass so the validation check is exercised.
-    auth.requireOwner.mockImplementation(() => true);
-    auth.isOwner.mockReturnValue(true);
+    // Allow auth/CSRF/origin to pass so the validation check is exercised.
+    auth.getSession.mockResolvedValue({ isOwner: true, csrfToken: "t" });
+    auth.verifyCsrf.mockReturnValue(true);
+    auth.verifyOrigin.mockReturnValue(true);
 
-    const req = makeDeleteReq(INVALID_UUID, { cookie: "iron-session=validtoken" });
+    const req = makeDeleteReq(INVALID_UUID, { cookie: "portfolio_session=validtoken" });
     const res = httpMocks.createResponse();
 
     await idHandler(req, res);
@@ -561,5 +569,43 @@ describe("DELETE /api/comments/[id]", () => {
     expect(res.statusCode).toBe(405);
     const body = res._getJSONData();
     expect(body.error.code).toBe("METHOD_NOT_ALLOWED");
+  });
+
+  // DELETE-06: authed but origin check fails → 403 FORBIDDEN, db.remove NOT called
+  test("DELETE-06: authed owner but cross-origin request returns 403 FORBIDDEN", async () => {
+    requireHandler(idHandler, "pages/api/comments/[id].ts");
+
+    auth.getSession.mockResolvedValue({ isOwner: true, csrfToken: "t" });
+    auth.verifyOrigin.mockReturnValue(false); // the check under test
+    auth.verifyCsrf.mockReturnValue(true);
+
+    const req = makeDeleteReq(VALID_UUID, { cookie: "portfolio_session=validtoken" });
+    const res = httpMocks.createResponse();
+
+    await idHandler(req, res);
+
+    expect(res.statusCode).toBe(403);
+    const body = res._getJSONData();
+    expect(body.error.code).toBe("FORBIDDEN");
+    expect(db.remove).not.toHaveBeenCalled();
+  });
+
+  // DELETE-07: authed + origin ok but CSRF check fails → 403 FORBIDDEN
+  test("DELETE-07: authed owner with invalid CSRF token returns 403 FORBIDDEN", async () => {
+    requireHandler(idHandler, "pages/api/comments/[id].ts");
+
+    auth.getSession.mockResolvedValue({ isOwner: true, csrfToken: "t" });
+    auth.verifyOrigin.mockReturnValue(true);
+    auth.verifyCsrf.mockReturnValue(false); // the check under test
+
+    const req = makeDeleteReq(VALID_UUID, { cookie: "portfolio_session=validtoken" });
+    const res = httpMocks.createResponse();
+
+    await idHandler(req, res);
+
+    expect(res.statusCode).toBe(403);
+    const body = res._getJSONData();
+    expect(body.error.code).toBe("FORBIDDEN");
+    expect(db.remove).not.toHaveBeenCalled();
   });
 });
