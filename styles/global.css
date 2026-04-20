@@ -47,6 +47,10 @@ html.dark {
     html {
         transition: none;
     }
+    /* Suppress the comment skeleton shimmer for users who prefer reduced motion */
+    .animate-pulse {
+        animation: none;
+    }
 }
 
 iframe {
