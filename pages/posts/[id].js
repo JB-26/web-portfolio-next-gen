@@ -6,6 +6,15 @@ import postStyle from "../../styles/post.module.css";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
+
+// Lazy-load CommentsSection so it is excluded from the post's initial JS bundle.
+// ssr: false avoids hydration mismatches (isOwner is cookie-derived client-side).
+const CommentsSection = dynamic(
+  () => import("../../components/comments/CommentsSection"),
+  { ssr: false, loading: () => null },
+);
 
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id);
@@ -28,6 +37,14 @@ export async function getStaticPaths() {
 }
 
 export default function Post({ postData, relatedPosts }) {
+  // isOwner is detected client-side from the non-httpOnly sentinel cookie set
+  // at login. The CommentsSection uses ssr: false so there is no hydration
+  // mismatch — the server always renders null for this component.
+  const [isOwner, setIsOwner] = useState(false);
+  useEffect(() => {
+    setIsOwner(document.cookie.includes("owner_ui=1"));
+  }, []);
+
   return (
     <Layout>
       <Head>
@@ -100,6 +117,17 @@ export default function Post({ postData, relatedPosts }) {
           </ul>
         </div>
       )}
+
+      {/* Comments — lazy-loaded, client-only, isolated from the post SSG */}
+      <section aria-labelledby="comments-heading" className="mt-10">
+        <h2
+          id="comments-heading"
+          className="text-2xl font-extrabold leading-snug mb-5"
+        >
+          Comments
+        </h2>
+        <CommentsSection postId={postData.id} isOwner={isOwner} />
+      </section>
     </Layout>
   );
 }

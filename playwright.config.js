@@ -12,6 +12,10 @@ const { defineConfig, devices } = require('@playwright/test');
  */
 module.exports = defineConfig({
   testDir: './tests',
+  /* Only pick up Playwright specs — Vitest unit/integration tests use `*.test.js`
+   * and must not be discovered here. Without this, Playwright tries to `require()`
+   * those files (which import from "vitest") and fails on ESM/top-level-await. */
+  testMatch: /.*\.spec\.js$/,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
