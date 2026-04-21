@@ -109,6 +109,25 @@ export async function insert(input: NewCommentInput): Promise<Comment> {
   return toComment(rows[0]);
 }
 
+/**
+ * Fetch a single comment by id. Returns `null` if no row matches.
+ *
+ * Used by the owner-delete confirmation page to show a preview before the
+ * owner commits to the delete. This reads ALL rows regardless of `status`
+ * — moderation-hidden comments must still be deletable via the email link.
+ */
+export async function getById(id: string): Promise<Comment | null> {
+  const sql = getSql();
+  const rows = (await sql`
+    SELECT id, post_id, author, body, created_at, status
+    FROM comments
+    WHERE id = ${id}
+    LIMIT 1
+  `) as CommentRow[];
+  if (rows.length === 0) return null;
+  return toComment(rows[0]);
+}
+
 /** Hard-delete a comment by UUID. Returns `true` if a row was removed. */
 export async function remove(id: string): Promise<boolean> {
   const sql = getSql();
