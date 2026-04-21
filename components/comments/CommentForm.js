@@ -201,9 +201,7 @@ export default function CommentForm({ postId, onSuccess }) {
           }
         } else {
           setFormState("server_error");
-          setServerError(
-            "Something went wrong. Please try again in a moment.",
-          );
+          setServerError("Something went wrong. Please try again in a moment.");
         }
       } else {
         setFormState("server_error");
@@ -228,7 +226,7 @@ export default function CommentForm({ postId, onSuccess }) {
   return (
     <div data-testid="comment-form">
       {/* Privacy notice — one sentence, above the form */}
-      <p className="text-sm text-gray-600 dark:text-slate-400 mb-3">
+      <p className="font-bold text-sm text-gray-600 dark:text-slate-400 mb-3">
         Comments are public. Your name will be shown; don&apos;t include
         personal info you wouldn&apos;t put online.
       </p>
@@ -360,11 +358,7 @@ export default function CommentForm({ postId, onSuccess }) {
           </div>
 
           {/* Polite live region — only announces at threshold values to avoid per-keystroke noise */}
-          <p
-            aria-live="polite"
-            className="sr-only"
-            aria-atomic="true"
-          >
+          <p aria-live="polite" className="sr-only" aria-atomic="true">
             {announcedRemaining !== null
               ? `${announcedRemaining} characters remaining`
               : ""}
