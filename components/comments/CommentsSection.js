@@ -56,6 +56,7 @@ class CommentErrorBoundary extends Component {
       return (
         <p
           role="alert"
+          data-testid="comments-error"
           className="text-red-600 dark:text-red-400 text-base py-4"
         >
           Comments could not be loaded. Refresh the page to try again.

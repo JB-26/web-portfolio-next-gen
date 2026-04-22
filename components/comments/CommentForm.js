@@ -226,9 +226,9 @@ export default function CommentForm({ postId, onSuccess }) {
   return (
     <div data-testid="comment-form">
       {/* Privacy notice — one sentence, above the form */}
-      <p className="font-bold text-sm text-gray-600 dark:text-slate-400 mb-3">
-        Comments are public. Your name will be shown; don&apos;t include
-        personal info you wouldn&apos;t put online.
+      <p className="text-sm text-gray-600 dark:text-slate-400 mb-3">
+        Comments are public and permanent. Your display name will be visible
+        to all readers. No email address or IP address is stored.
       </p>
 
       {/* Top-of-form server / profanity / links / rate-limit error */}

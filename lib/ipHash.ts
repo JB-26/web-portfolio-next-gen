@@ -87,6 +87,13 @@ export function hashIp(ip: string): string {
  *
  * Returns a RAW IP. The caller is responsible for hashing it before it
  * touches Redis, Postgres, or a log line.
+ *
+ * CURRENT IMPLEMENTATION NOTE: This module does NOT persist IP data (raw
+ * or hashed) to Postgres. IPs are used only transiently as Upstash Redis
+ * keys (always hashed via `hashIp`). This is a deliberate privacy choice
+ * — documented in docs/comments-phase-6-plan.md §6B. If a future phase
+ * adds IP data to the DB for abuse investigation, it MUST use `hashIp`
+ * and MUST update this comment.
  */
 export function extractClientIp(req: NextApiRequest): string {
   const xff = req.headers["x-forwarded-for"];
