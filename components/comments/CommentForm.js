@@ -30,7 +30,7 @@
  *   - Fires track("comment_submitted") from @vercel/analytics on success.
  */
 import { useEffect, useRef, useState } from "react";
-import { track } from "@vercel/analytics";
+import { trackEvent } from "../../lib/analytics";
 import { submitComment, CommentApiError } from "../../lib/comments";
 
 const MAX_BODY = 1000;
@@ -160,7 +160,7 @@ export default function CommentForm({ postId, onSuccess }) {
       });
 
       setFormState("success");
-      track("comment_submitted");
+      trackEvent("comment_submitted");
       onSuccess(newComment);
 
       // Reset form after 3 s

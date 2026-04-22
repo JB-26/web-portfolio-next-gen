@@ -1,4 +1,4 @@
-name: Run Playwright Tests
+name: Run Tests
 
 on:
   push:
@@ -7,17 +7,56 @@ on:
   pull_request:
 
 jobs:
-  test:
+  test-unit:
     runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set Up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.9.0
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Vitest (unit + integration)
+        run: npm run test:unit
+        env:
+          # Load-bearing test values. Integration tests override these in
+          # `beforeEach`; these workflow-level values only need to satisfy the
+          # minimum-length guards in lib/auth.ts, lib/deleteToken.ts, lib/ipHash.ts
+          # and pages/api/auth/login.ts so module import does not throw.
+          # Deliberately NOT secrets: test-only, ephemeral CI, never touches real data.
+          IP_HASH_SALT: "ci-test-salt-aaaaaaaaaaaaaaaaaaaa"
+          DELETE_TOKEN_SECRET: "ci-test-secret-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          IRON_SESSION_PASSWORD: "ci-test-session-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          OWNER_PASSWORD: "ci-test-owner-password-aaaaaaaaaaaaaaaaaa"
+          # Non-load-bearing: integration tests mock the Upstash and Resend SDKs
+          # directly (see tests/integration/comments-api-phase5.test.js).
+          UPSTASH_REDIS_REST_URL: "https://ci-placeholder.upstash.io"
+          UPSTASH_REDIS_REST_TOKEN: "ci-placeholder-token"
+          RESEND_API_KEY: "re_ci_placeholder"
+          OWNER_NOTIFY_EMAIL: "test@example.com"
+          OWNER_FROM_EMAIL: "test@example.com"
+          NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+
+  test:
+    runs-on: ubuntu-22.04
+    needs: test-unit
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.9.0
+          cache: npm
 
       - name: Update apt and Install Missing Dependencies
         run: |
@@ -25,7 +64,7 @@ jobs:
           sudo apt-get install -y libicu-dev libasound2 libffi-dev libx264-dev
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Install sharp
         run: npm install --cpu=wasm32 sharp
@@ -38,20 +77,6 @@ jobs:
 
       - name: Install Playwright browsers
         run: npx playwright install
-
-      - name: Run NextJS application
-        run: npm run start &
-
-      - name: Wait for NextJS app to start
-        run: |
-          timeout=0
-          until [[ $timeout -eq 30 ]]; do
-            if nc -z localhost 3000; then
-              break
-            fi
-            timeout=$((timeout + 1))
-            sleep 1
-          done
 
       - name: Run Playwright Tests
         run: npx playwright test

@@ -36,6 +36,37 @@ export async function getServerSideProps(context) {
   const rawToken = context.query?.token;
   const token = Array.isArray(rawToken) ? rawToken[0] : rawToken;
 
+  // Test seam: when running under Playwright, skip the real Neon call and
+  // return a deterministic preview. Honours verifyDeleteToken so the four
+  // token states (VALID / EXPIRED / BAD_SIGNATURE / MALFORMED) still render
+  // the right messages. Gated on a non-public env var so this can never be
+  // enabled in production builds. Documented in comments-phase-6-qa-plan.md §3.
+  if (process.env.PLAYWRIGHT_TEST_COMMENT_PREVIEW === "1") {
+    if (typeof token !== "string" || token.length === 0) {
+      return {
+        props: { tokenStatus: "MALFORMED", token: "", commentPreview: null },
+      };
+    }
+    const r = verifyDeleteToken(token);
+    if (!r.ok) {
+      return {
+        props: { tokenStatus: r.reason, token, commentPreview: null },
+      };
+    }
+    return {
+      props: {
+        tokenStatus: "VALID",
+        token,
+        commentPreview: {
+          postId: "2025-01-30-scrum",
+          author: "Test Commenter",
+          body: "Test body for Playwright assertion.",
+          createdAt: new Date("2026-04-22T12:00:00Z").toISOString(),
+        },
+      },
+    };
+  }
+
   if (typeof token !== "string" || token.length === 0) {
     return {
       props: {

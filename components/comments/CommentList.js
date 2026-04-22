@@ -20,7 +20,7 @@
  *   - Fires `track("comment_load_more")` from @vercel/analytics on each click.
  */
 import { useRef, useState, useEffect } from "react";
-import { track } from "@vercel/analytics";
+import { trackEvent } from "../../lib/analytics";
 import CommentItem from "./CommentItem";
 
 const INITIAL_COUNT = 5;
@@ -51,7 +51,7 @@ export default function CommentList({ comments, isOwner, onDelete }) {
   }, [visibleCount]);
 
   function handleShowMore() {
-    track("comment_load_more");
+    trackEvent("comment_load_more");
     setVisibleCount((c) => c + INCREMENT);
   }
 
