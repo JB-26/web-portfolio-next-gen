@@ -98,3 +98,33 @@ jobs:
 
       - name: Run Playwright Tests
         run: npx playwright test
+        env:
+          # Log-noise guard: the Playwright `webServer` runs
+          # `npm run start` without DATABASE_URL. Tests that care about the
+          # comment list stub `/api/comments` via `page.route()`, but
+          # unrelated specs (blog / theme) merely navigate to post pages
+          # and the eagerly-firing CommentsSection fetch would otherwise
+          # log a `DatabaseConfigError` stack trace on every page load.
+          # The API handler checks this flag and short-circuits to an
+          # empty list. Production builds do not set this.
+          PLAYWRIGHT_TEST_COMMENT_STUB: "1"
+          # Activates the Playwright seam in pages/owner/comments/delete.js
+          # so CMT-E2E-22..26 can assert token-state UI without a real
+          # Neon row. Same non-prod guard pattern.
+          PLAYWRIGHT_TEST_COMMENT_PREVIEW: "1"
+          # Test-only values — these only need to satisfy min-length
+          # guards so modules don't throw on import / first use. Same
+          # values as the test-unit job for consistency; never touch real
+          # data. `DELETE_TOKEN_SECRET` is additionally read by the
+          # `signToken()` helper in tests/comments.spec.js for
+          # CMT-E2E-23 / -25.
+          DELETE_TOKEN_SECRET: "ci-test-secret-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          IP_HASH_SALT: "ci-test-salt-aaaaaaaaaaaaaaaaaaaa"
+          IRON_SESSION_PASSWORD: "ci-test-session-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          OWNER_PASSWORD: "ci-test-owner-password-aaaaaaaaaaaaaaaaaa"
+          UPSTASH_REDIS_REST_URL: "https://ci-placeholder.upstash.io"
+          UPSTASH_REDIS_REST_TOKEN: "ci-placeholder-token"
+          RESEND_API_KEY: "re_ci_placeholder"
+          OWNER_NOTIFY_EMAIL: "test@example.com"
+          OWNER_FROM_EMAIL: "test@example.com"
+          NEXT_PUBLIC_SITE_URL: "http://localhost:3000"

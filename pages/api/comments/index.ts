@@ -77,6 +77,23 @@ async function handleGet(
     sendError(res, 400, "VALIDATION", "postId query parameter is required.");
     return;
   }
+
+  // Test seam: when running the Playwright suite against `npm run start`,
+  // `DATABASE_URL` is not set on CI and we must not hit a real Neon
+  // database. Tests that care about the comment list stub `/api/comments`
+  // explicitly via `page.route()`, which intercepts before this handler
+  // runs, so the seam only affects unrelated tests (blog / theme specs)
+  // that navigate through post pages and would otherwise log a spurious
+  // `DatabaseConfigError` stack trace on every page load.
+  //
+  // Gated on a non-public env var so production builds can never enable
+  // it. Mirrors the `PLAYWRIGHT_TEST_COMMENT_PREVIEW` seam in
+  // `pages/owner/comments/delete.js`.
+  if (process.env.PLAYWRIGHT_TEST_COMMENT_STUB === "1") {
+    res.status(200).json({ comments: [], total: 0 });
+    return;
+  }
+
   const rawLimit = parsePositiveInt(req.query.limit, DEFAULT_LIMIT);
   const limit = Math.min(Math.max(rawLimit, 1), MAX_LIMIT);
   const offset = parsePositiveInt(req.query.offset, DEFAULT_OFFSET);
