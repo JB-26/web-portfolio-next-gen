@@ -36,6 +36,37 @@ export async function getServerSideProps(context) {
   const rawToken = context.query?.token;
   const token = Array.isArray(rawToken) ? rawToken[0] : rawToken;
 
+  // Test seam: when running under Playwright, skip the real Neon call and
+  // return a deterministic preview. Honours verifyDeleteToken so the four
+  // token states (VALID / EXPIRED / BAD_SIGNATURE / MALFORMED) still render
+  // the right messages. Gated on a non-public env var so this can never be
+  // enabled in production builds. Documented in comments-phase-6-qa-plan.md §3.
+  if (process.env.PLAYWRIGHT_TEST_COMMENT_PREVIEW === "1") {
+    if (typeof token !== "string" || token.length === 0) {
+      return {
+        props: { tokenStatus: "MALFORMED", token: "", commentPreview: null },
+      };
+    }
+    const r = verifyDeleteToken(token);
+    if (!r.ok) {
+      return {
+        props: { tokenStatus: r.reason, token, commentPreview: null },
+      };
+    }
+    return {
+      props: {
+        tokenStatus: "VALID",
+        token,
+        commentPreview: {
+          postId: "2025-01-30-scrum",
+          author: "Test Commenter",
+          body: "Test body for Playwright assertion.",
+          createdAt: new Date("2026-04-22T12:00:00Z").toISOString(),
+        },
+      },
+    };
+  }
+
   if (typeof token !== "string" || token.length === 0) {
     return {
       props: {
@@ -178,6 +209,7 @@ export default function OwnerDeletePage({ tokenStatus, token, commentPreview }) 
       {uiState === "success" && (
         <p
           role="status"
+          data-testid="delete-success"
           className="text-green-700 dark:text-green-400 text-base py-4"
         >
           Comment deleted. You can close this tab.
@@ -187,7 +219,10 @@ export default function OwnerDeletePage({ tokenStatus, token, commentPreview }) 
       {/* Valid token, comment present, pre-delete UI */}
       {tokenStatus === "VALID" && commentPreview !== null && uiState !== "success" && (
         <section aria-label="Delete comment confirmation">
-          <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-4 mb-4">
+          <div
+            data-testid="delete-preview"
+            className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-4 mb-4"
+          >
             <p className="text-sm text-gray-500 dark:text-slate-400 mb-1">
               On post: <span className="font-mono">{commentPreview.postId}</span>
             </p>
@@ -217,6 +252,7 @@ export default function OwnerDeletePage({ tokenStatus, token, commentPreview }) 
 
           <button
             type="button"
+            data-testid="confirm-token-delete"
             onClick={handleDelete}
             disabled={uiState === "submitting"}
             className="bg-red-600 dark:bg-red-500 text-white font-medium px-5 py-2.5 rounded-md hover:bg-red-700 dark:hover:bg-red-400 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 dark:focus-visible:outline-red-400"

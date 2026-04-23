@@ -1,4 +1,4 @@
-name: Run Playwright Tests
+name: Run Tests
 
 on:
   push:
@@ -7,17 +7,74 @@ on:
   pull_request:
 
 jobs:
-  test:
+  test-unit:
     runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set Up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 20.9.0
+          # Vitest 4.x bundles rolldown, which:
+          #   1. Imports `styleText` from `node:util` — stable from Node 22.
+          #   2. Ships platform-specific native bindings (e.g.
+          #      `@rolldown/binding-linux-x64-gnu`) with
+          #      `engines: { node: "^20.19.0 || >=22.12.0" }`. Pinning below
+          #      that floor causes `npm ci` to skip the optional dep and
+          #      the test process throws `Cannot find native binding`.
+          # `22.12.0` is the minimum that satisfies both — bump freely to
+          # any newer 22.x LTS patch.
+          node-version: 22.12.0
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Vitest (unit + integration)
+        run: npm run test:unit
+        env:
+          # Load-bearing test values. Integration tests override these in
+          # `beforeEach`; these workflow-level values only need to satisfy the
+          # minimum-length guards in lib/auth.ts, lib/deleteToken.ts, lib/ipHash.ts
+          # and pages/api/auth/login.ts so module import does not throw.
+          # Deliberately NOT secrets: test-only, ephemeral CI, never touches real data.
+          IP_HASH_SALT: "ci-test-salt-aaaaaaaaaaaaaaaaaaaa"
+          DELETE_TOKEN_SECRET: "ci-test-secret-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          IRON_SESSION_PASSWORD: "ci-test-session-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          OWNER_PASSWORD: "ci-test-owner-password-aaaaaaaaaaaaaaaaaa"
+          # Non-load-bearing: integration tests mock the Upstash and Resend SDKs
+          # directly (see tests/integration/comments-api-phase5.test.js).
+          UPSTASH_REDIS_REST_URL: "https://ci-placeholder.upstash.io"
+          UPSTASH_REDIS_REST_TOKEN: "ci-placeholder-token"
+          RESEND_API_KEY: "re_ci_placeholder"
+          OWNER_NOTIFY_EMAIL: "test@example.com"
+          OWNER_FROM_EMAIL: "test@example.com"
+          NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+
+  test:
+    runs-on: ubuntu-22.04
+    needs: test-unit
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          # Vitest 4.x bundles rolldown, which:
+          #   1. Imports `styleText` from `node:util` — stable from Node 22.
+          #   2. Ships platform-specific native bindings (e.g.
+          #      `@rolldown/binding-linux-x64-gnu`) with
+          #      `engines: { node: "^20.19.0 || >=22.12.0" }`. Pinning below
+          #      that floor causes `npm ci` to skip the optional dep and
+          #      the test process throws `Cannot find native binding`.
+          # `22.12.0` is the minimum that satisfies both — bump freely to
+          # any newer 22.x LTS patch.
+          node-version: 22.12.0
+          cache: npm
 
       - name: Update apt and Install Missing Dependencies
         run: |
@@ -25,7 +82,7 @@ jobs:
           sudo apt-get install -y libicu-dev libasound2 libffi-dev libx264-dev
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Install sharp
         run: npm install --cpu=wasm32 sharp
@@ -39,19 +96,35 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install
 
-      - name: Run NextJS application
-        run: npm run start &
-
-      - name: Wait for NextJS app to start
-        run: |
-          timeout=0
-          until [[ $timeout -eq 30 ]]; do
-            if nc -z localhost 3000; then
-              break
-            fi
-            timeout=$((timeout + 1))
-            sleep 1
-          done
-
       - name: Run Playwright Tests
         run: npx playwright test
+        env:
+          # Log-noise guard: the Playwright `webServer` runs
+          # `npm run start` without DATABASE_URL. Tests that care about the
+          # comment list stub `/api/comments` via `page.route()`, but
+          # unrelated specs (blog / theme) merely navigate to post pages
+          # and the eagerly-firing CommentsSection fetch would otherwise
+          # log a `DatabaseConfigError` stack trace on every page load.
+          # The API handler checks this flag and short-circuits to an
+          # empty list. Production builds do not set this.
+          PLAYWRIGHT_TEST_COMMENT_STUB: "1"
+          # Activates the Playwright seam in pages/owner/comments/delete.js
+          # so CMT-E2E-22..26 can assert token-state UI without a real
+          # Neon row. Same non-prod guard pattern.
+          PLAYWRIGHT_TEST_COMMENT_PREVIEW: "1"
+          # Test-only values — these only need to satisfy min-length
+          # guards so modules don't throw on import / first use. Same
+          # values as the test-unit job for consistency; never touch real
+          # data. `DELETE_TOKEN_SECRET` is additionally read by the
+          # `signToken()` helper in tests/comments.spec.js for
+          # CMT-E2E-23 / -25.
+          DELETE_TOKEN_SECRET: "ci-test-secret-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          IP_HASH_SALT: "ci-test-salt-aaaaaaaaaaaaaaaaaaaa"
+          IRON_SESSION_PASSWORD: "ci-test-session-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          OWNER_PASSWORD: "ci-test-owner-password-aaaaaaaaaaaaaaaaaa"
+          UPSTASH_REDIS_REST_URL: "https://ci-placeholder.upstash.io"
+          UPSTASH_REDIS_REST_TOKEN: "ci-placeholder-token"
+          RESEND_API_KEY: "re_ci_placeholder"
+          OWNER_NOTIFY_EMAIL: "test@example.com"
+          OWNER_FROM_EMAIL: "test@example.com"
+          NEXT_PUBLIC_SITE_URL: "http://localhost:3000"

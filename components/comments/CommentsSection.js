@@ -26,7 +26,7 @@
  *   - track("comment_submitted") is fired inside CommentForm.
  */
 import { Component, useEffect, useRef, useState } from "react";
-import { track } from "@vercel/analytics";
+import { trackEvent } from "../../lib/analytics";
 import { fetchComments, deleteComment } from "../../lib/comments";
 import CommentSkeleton from "./CommentSkeleton";
 import CommentList from "./CommentList";
@@ -56,6 +56,7 @@ class CommentErrorBoundary extends Component {
       return (
         <p
           role="alert"
+          data-testid="comments-error"
           className="text-red-600 dark:text-red-400 text-base py-4"
         >
           Comments could not be loaded. Refresh the page to try again.
@@ -111,6 +112,13 @@ function CommentsSectionInner({ postId, isOwner }) {
   }, [comments]);
 
   function handleSuccess(newComment) {
+    // Honeypot sentinel: the server returns a fake comment with this fixed
+    // all-zeros UUID when the bot bait field is populated. We must not render
+    // it — otherwise the bot (or a curious dev tools user) sees their fake
+    // submission appear in the list, defeating the deceptive design that the
+    // server's response shape is meant to support.
+    // Server side: see pages/api/comments/index.ts (honeypot branch).
+    if (!newComment || newComment.id === "00000000-0000-0000-0000-000000000000") return;
     shouldFocusNew.current = true;
     setComments((prev) => [newComment, ...prev]);
     setTotal((t) => t + 1);
@@ -124,7 +132,7 @@ function CommentsSectionInner({ postId, isOwner }) {
       setComments((prev) => prev.filter((c) => c.id !== id));
       setTotal((t) => Math.max(t - 1, 0));
       setDeletedAnnounce(true);
-      track("comment_deleted");
+      trackEvent("comment_deleted");
       // Reset the live region after a moment so repeat deletions re-trigger it
       setTimeout(() => setDeletedAnnounce(false), 1500);
     } catch (err) {
