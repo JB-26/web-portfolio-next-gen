@@ -546,8 +546,21 @@ test("CMT-E2E-15: honeypot input is not visible, not tabbable, autoComplete=off"
   // Attached to DOM
   await expect(honeypot).toBeAttached();
 
-  // Not visible to real users (wrapped in sr-only)
-  expect(await honeypot.isVisible()).toBe(false);
+  // Not visible to real users. Playwright's `isVisible()` treats
+  // Tailwind's `sr-only` class (clip-path + 1×1) as visible, so instead
+  // assert the element is inside a wrapper with aria-hidden="true" OR the
+  // sr-only utility class — either is sufficient to hide from sighted
+  // users and (for aria-hidden) from assistive tech.
+  const effectivelyHidden = await honeypot.evaluate((el) => {
+    let cur = el.parentElement;
+    while (cur) {
+      if (cur.getAttribute && cur.getAttribute("aria-hidden") === "true") return true;
+      if (cur.classList && cur.classList.contains("sr-only")) return true;
+      cur = cur.parentElement;
+    }
+    return false;
+  });
+  expect(effectivelyHidden).toBe(true);
 
   // tabIndex = -1 removes it from the tab order
   await expect(honeypot).toHaveAttribute("tabindex", "-1");
@@ -912,7 +925,9 @@ test("CMT-E2E-23: token page — expired token renders expired alert, no delete 
     `${BASE_URL}/owner/comments/delete?token=${encodeURIComponent(token)}`,
   );
 
-  const alert = page.locator('[role="alert"]');
+  // Exclude Next's built-in `#__next-route-announcer__` which also carries
+  // role="alert" and would trip strict mode.
+  const alert = page.locator('[role="alert"]:not(#__next-route-announcer__)');
   await expect(alert).toBeVisible();
   await expect(alert).toContainText("expired");
 
@@ -930,7 +945,9 @@ test("CMT-E2E-24: token page — malformed token renders generic alert", async (
     `${BASE_URL}/owner/comments/delete?token=not-a-valid-token`,
   );
 
-  const alert = page.locator('[role="alert"]');
+  // Exclude Next.js's built-in route announcer (`#__next-route-announcer__`)
+  // which also has role="alert" and would otherwise trip strict mode.
+  const alert = page.locator('[role="alert"]:not(#__next-route-announcer__)');
   await expect(alert).toBeVisible();
   // Malformed copy is distinct from expired copy
   await expect(alert).not.toContainText("expired");
@@ -962,7 +979,9 @@ test("CMT-E2E-25: token page — tampered signature renders BAD_SIGNATURE alert"
     `${BASE_URL}/owner/comments/delete?token=${encodeURIComponent(tamperedToken)}`,
   );
 
-  const alert = page.locator('[role="alert"]');
+  // Exclude Next's built-in `#__next-route-announcer__` which also carries
+  // role="alert" and would trip strict mode.
+  const alert = page.locator('[role="alert"]:not(#__next-route-announcer__)');
   await expect(alert).toBeVisible();
   await expect(alert).toContainText("not valid");
   await expect(page.locator('[data-testid="confirm-token-delete"]')).toHaveCount(0);
@@ -1000,11 +1019,13 @@ test("CMT-E2E-26: admin login — wrong password → alert; correct password →
   // The password field should be focused on mount
   await expect(page.locator("#admin-password")).toBeFocused();
 
-  // Wrong password attempt
+  // Wrong password attempt. Exclude Next's built-in
+  // `#__next-route-announcer__` which also carries role="alert".
+  const alert = page.locator('[role="alert"]:not(#__next-route-announcer__)');
   await page.fill("#admin-password", "wrong-password");
   await page.click('button[type="submit"]');
-  await expect(page.locator('[role="alert"]')).toBeVisible();
-  await expect(page.locator('[role="alert"]')).toContainText("Invalid password");
+  await expect(alert).toBeVisible();
+  await expect(alert).toContainText("Invalid password");
 
   // Correct password — response triggers window.location.reload() so we
   // pre-seed the cookie via the browser context so the reloaded page sees
@@ -1228,9 +1249,10 @@ test("CMT-E2E-31: delete confirm — Cancel closes the confirm row and returns f
   await expect(confirmBtn).toHaveCount(0);
   await expect(deleteBtn).toBeVisible();
 
-  // Focus is returned to the original delete button
-  const activeTestId = await page.evaluate(
-    () => document.activeElement?.getAttribute?.("data-testid") ?? null,
-  );
-  expect(activeTestId).toBe("delete-comment");
+  // Focus is returned to the original delete button. `toBeFocused()` polls
+  // until the assertion passes (or the default timeout elapses), which
+  // correctly awaits the React effect that re-focuses after re-render. A
+  // one-shot `page.evaluate(() => document.activeElement)` would race the
+  // commit and report `<body>` instead.
+  await expect(deleteBtn).toBeFocused();
 });

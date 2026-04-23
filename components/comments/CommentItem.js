@@ -16,7 +16,7 @@
  *     Using CSS `hidden` would leave DOM nodes that could be targeted by
  *     automated attacks; conditional rendering eliminates the surface.
  */
-import { useRef, useState, useEffect } from "react";
+import { useCallback, useRef, useState, useEffect } from "react";
 import Date from "../date";
 
 export default function CommentItem({ comment, isOwner, onDelete }) {
@@ -25,8 +25,27 @@ export default function CommentItem({ comment, isOwner, onDelete }) {
   // Refs for focus management during inline confirm flow
   const deleteButtonRef = useRef(null);
   const cancelButtonRef = useRef(null);
+  // Only restore focus to the delete button after the user cancels — NOT
+  // after `setConfirming(false)` caused by a successful delete (that path
+  // unmounts this item entirely).
+  const shouldFocusDelete = useRef(false);
 
-  // Move focus to Cancel button when confirm row opens
+  // Ref callback for the delete button: fires synchronously when React
+  // attaches / detaches the DOM node. This is more reliable than a post-
+  // commit `useEffect` because it guarantees we focus the button at the
+  // exact moment it remounts — no race with the browser moving focus to
+  // <body> after the Cancel button unmounts.
+  const setDeleteButtonRef = useCallback((node) => {
+    deleteButtonRef.current = node;
+    if (node && shouldFocusDelete.current) {
+      node.focus();
+      shouldFocusDelete.current = false;
+    }
+  }, []);
+
+  // Move focus to Cancel button when the confirm row opens. (The opposite
+  // direction — Cancel → delete — is handled by setDeleteButtonRef above
+  // because the delete button is conditionally rendered.)
   useEffect(() => {
     if (confirming && cancelButtonRef.current) {
       cancelButtonRef.current.focus();
@@ -38,11 +57,9 @@ export default function CommentItem({ comment, isOwner, onDelete }) {
   }
 
   function handleCancel() {
+    // The ref callback on the re-mounting delete button will focus it.
+    shouldFocusDelete.current = true;
     setConfirming(false);
-    // Return focus to the original delete trigger
-    if (deleteButtonRef.current) {
-      deleteButtonRef.current.focus();
-    }
   }
 
   function handleConfirm() {
@@ -71,7 +88,7 @@ export default function CommentItem({ comment, isOwner, onDelete }) {
         {/* Delete affordance — ONLY rendered when isOwner === true */}
         {isOwner && !confirming && (
           <button
-            ref={deleteButtonRef}
+            ref={setDeleteButtonRef}
             type="button"
             onClick={handleDeleteClick}
             aria-label={`Delete comment by ${comment.author}`}
