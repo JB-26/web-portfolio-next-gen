@@ -17,11 +17,16 @@ jobs:
       - name: Set Up Node.js
         uses: actions/setup-node@v4
         with:
-          # Vitest 4.x bundles rolldown, which imports `styleText` from
-          # `node:util`. That helper is only exported as stable in Node 22+
-          # (it landed experimental in 20.12 and was gated behind an export
-          # flag before that). Pin to the current active 22 LTS line.
-          node-version: 22.11.0
+          # Vitest 4.x bundles rolldown, which:
+          #   1. Imports `styleText` from `node:util` — stable from Node 22.
+          #   2. Ships platform-specific native bindings (e.g.
+          #      `@rolldown/binding-linux-x64-gnu`) with
+          #      `engines: { node: "^20.19.0 || >=22.12.0" }`. Pinning below
+          #      that floor causes `npm ci` to skip the optional dep and
+          #      the test process throws `Cannot find native binding`.
+          # `22.12.0` is the minimum that satisfies both — bump freely to
+          # any newer 22.x LTS patch.
+          node-version: 22.12.0
           cache: npm
 
       - name: Install Dependencies
@@ -59,11 +64,16 @@ jobs:
       - name: Set Up Node.js
         uses: actions/setup-node@v4
         with:
-          # Vitest 4.x bundles rolldown, which imports `styleText` from
-          # `node:util`. That helper is only exported as stable in Node 22+
-          # (it landed experimental in 20.12 and was gated behind an export
-          # flag before that). Pin to the current active 22 LTS line.
-          node-version: 22.11.0
+          # Vitest 4.x bundles rolldown, which:
+          #   1. Imports `styleText` from `node:util` — stable from Node 22.
+          #   2. Ships platform-specific native bindings (e.g.
+          #      `@rolldown/binding-linux-x64-gnu`) with
+          #      `engines: { node: "^20.19.0 || >=22.12.0" }`. Pinning below
+          #      that floor causes `npm ci` to skip the optional dep and
+          #      the test process throws `Cannot find native binding`.
+          # `22.12.0` is the minimum that satisfies both — bump freely to
+          # any newer 22.x LTS patch.
+          node-version: 22.12.0
           cache: npm
 
       - name: Update apt and Install Missing Dependencies
