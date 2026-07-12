@@ -1,18 +1,28 @@
 import Layout from "../../components/layout";
-import { getPostsByTag } from "../../lib/posts"; // Import the function
+import { getPostsByTag, getAllTags } from "../../lib/posts"; // Import the function
 import Link from "next/link";
 import Head from "next/head";
 import Footer from "../../components/footer";
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   const tag = params.tag;
-  const posts = await getPostsByTag(tag);
+  const posts = getPostsByTag(tag);
 
   return {
     props: {
       tag,
       posts,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const tags = getAllTags();
+  const paths = tags.map((tag) => ({ params: { tag } }));
+
+  return {
+    paths,
+    fallback: false,
   };
 }
 
