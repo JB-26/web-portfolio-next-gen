@@ -26,8 +26,6 @@ export default function Resume() {
               priority
               src={photo3}
               alt="Top Golf"
-              width={500}
-              height={500}
               className="w-full h-auto"
             />
           </div>
@@ -35,8 +33,6 @@ export default function Resume() {
             <Image
               src={photo2}
               alt="Natural History Museum"
-              width={500}
-              height={500}
               className="w-full h-auto"
             />
           </div>
@@ -44,8 +40,6 @@ export default function Resume() {
             <Image
               src={photo1}
               alt="Louvre"
-              width={500}
-              height={500}
               className="w-full h-auto"
             />
           </div>

@@ -38,7 +38,6 @@ export default function Contact() {
           >
             <div className="flex-0">
               <Image
-                priority
                 className="max-w-6! max-h-6! dark:invert"
                 src={email}
                 alt="Email Contact Icon"
@@ -60,7 +59,6 @@ export default function Contact() {
           >
             <div className="flex-0">
               <Image
-                priority
                 className="max-w-6! max-h-6! dark:invert"
                 src={linkedin}
                 alt="LinkedIn Contact Icon"
@@ -80,7 +78,6 @@ export default function Contact() {
           >
             <div className="flex-0">
               <Image
-                priority
                 className="max-w-6! max-h-6! dark:invert"
                 src={youtube}
                 alt="YouTube Contact Icon"
@@ -102,7 +99,6 @@ export default function Contact() {
           >
             <div className="flex-0">
               <Image
-                priority
                 className="max-w-6! max-h-6! dark:invert"
                 src={instagram}
                 alt="Instagram Contact Icon"
@@ -122,7 +118,6 @@ export default function Contact() {
           >
             <div className="flex-0">
               <Image
-                priority
                 className="max-w-6! max-h-6! dark:invert"
                 src={bluesky}
                 alt="Bluesky Contact Icon"
@@ -142,7 +137,6 @@ export default function Contact() {
           >
             <div className="flex-0">
               <Image
-                priority
                 className="max-w-6! max-h-6! dark:invert"
                 src={rss}
                 alt="RSS Feed Icon"

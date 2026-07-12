@@ -83,6 +83,18 @@ export default function Post({ postData, relatedPosts }) {
                   </a>
                 );
               },
+              // Markdown images can't safely use next/image — arbitrary
+              // author-supplied images have no known dimensions at build
+              // time, and next/image requires either explicit width/height
+              // or `fill` inside a sized parent. Instead, defer loading and
+              // decoding for these (necessarily below-the-fold, non-LCP)
+              // images so they don't compete with the page's real LCP
+              // element for network/main-thread priority.
+              img: ({ node, alt, ...props }) => {
+                return (
+                  <img alt={alt || ""} loading="lazy" decoding="async" {...props} />
+                );
+              },
             }}
           >
             {postData.contentHtml}
