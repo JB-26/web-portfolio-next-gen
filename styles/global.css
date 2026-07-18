@@ -86,12 +86,14 @@ html {
    specificity and never fights a component's own utilities, and limited to
    the three colour properties so it can't interfere with transform (the
    polaroid rotation) or layout. */
-@media (prefers-reduced-motion: no-preference) {
-    :where(*) {
-        transition:
-            background-color 0.25s ease,
-            border-color 0.25s ease,
-            color 0.25s ease;
+@layer base {
+    @media (prefers-reduced-motion: no-preference) {
+        :where(*) {
+            transition:
+                background-color 0.25s ease,
+                border-color 0.25s ease,
+                color 0.25s ease;
+        }
     }
 }
 

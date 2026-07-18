@@ -31,6 +31,7 @@ export default function Home({ recentPosts }) {
             src={portrait}
             alt="Joshua Blewitt"
             size={200}
+            mobileSize={248}
             rotate={-2}
             // The LCP element on this page.
             priority
@@ -47,11 +48,41 @@ export default function Home({ recentPosts }) {
             data-testid="paragraph"
             className="m-0 max-w-[560px] text-[17.5px] leading-[1.65] text-muted"
           >
-            A hobbyist developer, technologist, traveller, amateur
-            photographer, small-time YouTuber, and writer. I have ten years of
-            experience in the software industry — from testing software to
-            working with stakeholders at companies like Domino&apos;s Pizza
-            Group and IQVIA.
+            A hobbyist{" "}
+            <Link
+              href="https://github.com/JB-26"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              developer
+            </Link>
+            , technologist, traveller, amateur{" "}
+            <Link
+              href="https://www.instagram.com/jblw1tt/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              photographer
+            </Link>
+            , small-time{" "}
+            <Link
+              href="https://www.youtube.com/@joshuablewitt6022"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              YouTuber
+            </Link>
+            , and{" "}
+            <Link
+              href="https://bsky.app/profile/joshblewitt.dev"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              writer
+            </Link>
+            . I have ten years of experience in the software industry — from
+            testing software to working with stakeholders at companies like
+            Domino&apos;s Pizza Group and IQVIA.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
