@@ -1,9 +1,179 @@
-import Layout, { siteTitle } from "../components/layout";
 import Head from "next/head";
 import Image from "next/image";
-import photo1 from "../public/images/about_photo_3.png";
-import photo2 from "../public/images/resume_1.png";
-import photo3 from "../public/images/resume_2.png";
+import Layout, { siteTitle } from "../components/layout";
+import ResumeSection from "../components/ResumeSection";
+import TagPill from "../components/TagPill";
+import photoLouvre from "../public/images/about_photo_3.png";
+import photoMuseum from "../public/images/resume_1.png";
+import photoTopGolf from "../public/images/resume_2.png";
+
+// Content lives in data rather than repeated JSX. The previous version of this
+// page hand-wrote every entry, tag and link as markup — ~585 lines for what is
+// really four lists.
+
+const PHOTOS = [
+  { src: photoTopGolf, alt: "Top Golf", rotate: -3 },
+  { src: photoMuseum, alt: "Natural History Museum", rotate: 1.5 },
+  { src: photoLouvre, alt: "Louvre", rotate: 3.5 },
+];
+
+const WORK = [
+  {
+    company: "Institute of Chartered Accountants in England and Wales",
+    role: "Assessment Systems Executive",
+    dates: "August 2024 - Present",
+    blurb:
+      "Managed releases for key systems, defect lists and resolutions, to ensure that the product meets the needs of the institute.",
+  },
+  {
+    company: "Rightmove",
+    role: "Application Analyst",
+    dates: "September 2023 - April 2024",
+    blurb:
+      "Hired to analyse business problems that would result in increased revenue, inform the design and development of technical solutions",
+  },
+  {
+    company: "IQVIA",
+    role: "Software Test Engineer",
+    dates: "November 2021 - September 2023",
+    blurb:
+      "Worked in an Agile team, to ensure a quality product for the users, on the Human Assisted Review Tool",
+  },
+  {
+    company: "Domino's Pizza Group",
+    role: "Software Tester",
+    dates: "October 2016 - November 2021",
+    blurb:
+      "Championed quality for customers on Domino's ecommerce platform by manually testing releases.",
+  },
+  {
+    company: "EDW Technology",
+    role: "System Test Analyst",
+    dates: "July 2014 - October 2016",
+    blurb:
+      "Tested new releases of ERS (Energy Retail Suite - EDW's bespoke application, written in Java) and provided support to users.",
+  },
+];
+
+const CERTIFICATIONS = [
+  {
+    name: "Google AI Professional Certificate",
+    href: "https://www.udemy.com/certificate/UC-4aae4450-bd4b-4592-953b-2179cdcda331/",
+    tags: ["AI", "Prompts", "Generative AI"],
+  },
+  {
+    name: "AI Fluency: Framework & Foundations",
+    href: "https://verify.skilljar.com/c/5ah5hmesr4gq",
+    tags: ["AI"],
+  },
+  {
+    name: "Digital Product Management: Modern Fundamentals",
+    href: "https://www.coursera.org/account/accomplishments/verify/LGPKX3EFN3M9",
+    tags: ["Product", "Innovation", "Stakeholder Management"],
+  },
+  {
+    name: "Scrum Master",
+    href: "https://s3.amazonaws.com/scruminc-certs/RSM-8823626",
+    tags: ["Agile", "Scrum", "Team Management"],
+  },
+  {
+    name: "ISTQB-BCS Certified Tester Foundation Level",
+    href: "https://www.linkedin.com/in/jblewitt/details/certifications/1719413746906/single-media-viewer/?profileId=ACoAABNnSV0BPiMy5z3Y7_cW0HdDAuKeIs7pH0A",
+    tags: [
+      "Manual Testing",
+      "Regression Testing",
+      "Test Planning",
+      "Test Execution",
+    ],
+  },
+  {
+    name: "Responsive Web Design",
+    href: "https://www.freecodecamp.org/certification/fcc2927573c-68b6-4b92-954b-d97d1ea76b7f/responsive-web-design",
+    tags: ["HTML", "CSS"],
+  },
+  {
+    name: "Getting Started as a Business Analyst",
+    href: "https://www.linkedin.com/learning/certificates/2780b24ee8c41fc0465b74e61e83af34af75e9bbb2d54401e76c26140726ffcb",
+    tags: ["Business Analysis", "Business Strategy", "Business Process Analysis"],
+  },
+];
+
+const PROJECTS = [
+  {
+    name: "This website",
+    description: "My portfolio website.",
+    href: "https://www.joshblewitt.dev/",
+    tags: [
+      "JavaScript",
+      "Vercel",
+      "Next.js",
+      "Tailwind CSS",
+      "Markdown",
+      "Playwright",
+    ],
+  },
+  {
+    name: "Video Game API",
+    description: "A RESTful API for video games.",
+    href: "https://github.com/JB-26/video-game-api-nextjs",
+    tags: ["TypeScript", "MongoDB", "Vercel", "Next.js", "Tailwind CSS", "DaisyUI"],
+  },
+  {
+    name: "Haiku Check",
+    description: "Is that a haiku? Check it!",
+    href: "https://github.com/JB-26/haiku-check",
+    tags: ["TypeScript", "Vercel", "Next.js", "Tailwind CSS", "Playwright", "Jest"],
+  },
+  {
+    name: "Ask Astronaut",
+    description: "Ask questions about space! Powered by NASA's API and Claude",
+    href: "https://github.com/JB-26/ask-astronaut",
+    tags: ["Claude", "AI", "TypeScript", "Bun", "Tailwind CSS", "Google Cloud"],
+  },
+];
+
+const HOBBIES = [
+  {
+    name: "Programming",
+    description: "Let's me exercise my creativity and problem-solving skills.",
+  },
+  {
+    name: "Photography",
+    description:
+      "Really enjoy using my Ricoh GR IIIX HDF to capture the world around me.",
+  },
+  { name: "Traveling", description: "Love exploring new places and cultures." },
+  { name: "Writing", description: "Getting thoughts down on paper." },
+];
+
+// Certifications and projects share a row shape: a name (and optional
+// description) on the left, monochrome tag pills on the right.
+function LinkedRow({ name, description, href, tags }) {
+  return (
+    <a
+      href={href}
+      rel="noopener noreferrer"
+      target="_blank"
+      className="group flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-line py-4 no-underline"
+    >
+      <span className="flex min-w-0 flex-col gap-1">
+        <span className="text-[16px] font-semibold text-ink group-hover:text-accent">
+          {name}
+        </span>
+        {description ? (
+          <span className="text-[14.5px] leading-[1.5] text-muted">
+            {description}
+          </span>
+        ) : null}
+      </span>
+      <span className="flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <TagPill key={tag} label={tag} size="xs" />
+        ))}
+      </span>
+    </a>
+  );
+}
 
 export default function Resume() {
   return (
@@ -15,572 +185,94 @@ export default function Resume() {
           name="The personal website of IT Professional, Joshua Blewitt"
         />
       </Head>
-      <section>
-        <h1 className="text-2xl/9 font-extrabold tracking-tighter mb-3.5 md:text-3xl/9">
+
+      <header className="max-w-[720px] pt-10 pb-2">
+        <h1 className="m-0 mb-2.5 text-[clamp(30px,4vw,38px)] font-bold tracking-[-0.03em] text-ink">
           Resume
         </h1>
-        <div className="flex flex-row justify-center items-center py-6 md:gap-0">
-          <div className="w-1/2 sm:w-1/3 min-w-0 relative -rotate-6 hover:rotate-0 hover:scale-105 transition-transform duration-300 motion-reduce:transition-none motion-reduce:hover:transform-none md:-mr-8 z-10 md:p-4">
-            <Image
-              priority
-              src={photo3}
-              alt="Top Golf"
-              className="w-full h-auto"
-            />
-          </div>
-          <div className="w-1/3 min-w-0 relative p-4 rotate-2 hover:rotate-0 hover:scale-105 transition-transform duration-300 motion-reduce:transition-none motion-reduce:hover:transform-none z-20 hidden sm:flex ">
-            <Image
-              src={photo2}
-              alt="Natural History Museum"
-              className="w-full h-auto"
-            />
-          </div>
-          <div className="w-1/2 sm:w-1/3 min-w-0 relative rotate-6 hover:rotate-0 hover:scale-105 transition-transform duration-300 motion-reduce:transition-none motion-reduce:hover:transform-none md:-ml-8 z-10 md:p-4">
-            <Image
-              src={photo1}
-              alt="Louvre"
-              className="w-full h-auto"
-            />
-          </div>
-        </div>
-        <p className="font-medium text-sm mt-2.5 mb-2.5">
-          Full resume available upon request in a PDF.
+        <p className="m-0 text-[16.5px] leading-[1.6] text-muted">
+          Full resume available upon request as a PDF.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-[130px_1fr] md:grid-cols-[160px_1fr] gap-1 sm:gap-4 md:gap-6">
-          <h2 className="text-2xl/9 font-extrabold tracking-tighter md:text-2xl/9 md:mb-3.5">
-            Work Experience
-          </h2>
-          <div className="relative pt-4 pb-4">
-            {/* Vertical line */}
-            <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-200 dark:bg-gray-700"></div>
-            {/* Timeline items container */}
-            <div className="space-y-8">
-              {/* Single timeline item */}
-              <div className="relative pl-8">
-                {/* Blue dot */}
-                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
-                {/* Content */}
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">
-                      Institute of Chartered Accountants in England and Wales
-                    </p>
-                    <p className="text-sm text-gray-400 mt-1">
-                      Assessment Systems Executive
-                    </p>
-                    <ul className="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1">
-                      <li>
-                        Managed releases for key systems, defect lists and
-                        resolutions, to ensure that the product meets the needs
-                        of the institute.
-                      </li>
-                    </ul>
-                  </div>
-                  <p className="text-sm text-gray-400 whitespace-nowrap shrink-0">
-                    August 2024 - Present
-                  </p>
-                </div>
+      </header>
+
+      {/* These three source images are already photographs *of* polaroids —
+          white frame, texture and the wide bottom border are baked in. Wrapping
+          them in the CSS Polaroid component produced a polaroid inside a
+          polaroid, invisible in light mode and obvious against the dark
+          surface. So they render directly here with only the rotation and
+          shadow the design calls for. Supplying unframed square crops would let
+          this use the real Polaroid component, which themes correctly. */}
+      <div
+        data-testid="resume-photos"
+        className="flex flex-wrap items-center justify-center gap-7 py-10"
+      >
+        {PHOTOS.map((photo, i) => (
+          <Image
+            key={photo.alt}
+            src={photo.src}
+            alt={photo.alt}
+            width={180}
+            height={218}
+            // Exactly one priority image per page — the same rule the previous
+            // version followed, preserving the recent LCP work.
+            priority={i === 0}
+            style={{ "--polaroid-rotate": `${photo.rotate}deg` }}
+            className="h-auto w-[180px] rotate-0 shadow-[0_8px_24px_rgba(33,31,28,0.14)] transition-[rotate] duration-300 motion-reduce:transition-none lg:rotate-[var(--polaroid-rotate)] lg:hover:rotate-0"
+          />
+        ))}
+      </div>
+
+      <ResumeSection heading="Work experience">
+        <ol className="m-0 flex list-none flex-col gap-7 p-0">
+          {WORK.map(({ company, role, dates, blurb }) => (
+            <li key={company} className="border-l-2 border-line pl-5">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 className="m-0 text-[17px] font-semibold text-ink">
+                  {company}
+                </h3>
+                <span className="font-mono text-[12.5px] whitespace-nowrap text-faint">
+                  {dates}
+                </span>
               </div>
-              <div className="relative pl-8">
-                {/* Blue dot */}
-                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
-                {/* Content */}
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">Rightmove</p>
-                    <p className="text-sm text-gray-400 mt-1">
-                      Application Analyst
-                    </p>
-                    <ul className="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1">
-                      <li>
-                        Hired to analyse business problems that would result in
-                        increased revenue, inform the design and development of
-                        technical solutions
-                      </li>
-                    </ul>
-                  </div>
-                  <p className="text-sm text-gray-400 whitespace-nowrap shrink-0">
-                    September 2023 - April 2024
-                  </p>
-                </div>
-              </div>
-              <div className="relative pl-8">
-                {/* Blue dot */}
-                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
-                {/* Content */}
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">IQVIA</p>
-                    <p className="text-sm text-gray-400 mt-1">
-                      Software Test Engineer
-                    </p>
-                    <ul className="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1">
-                      <li>
-                        Worked in an Agile team, to ensure a quality product for
-                        the users, on the Human Assisted Review Tool
-                      </li>
-                    </ul>
-                  </div>
-                  <p className="text-sm text-gray-400 whitespace-nowrap shrink-0">
-                    November 2021 - September 2023
-                  </p>
-                </div>
-              </div>
-              <div className="relative pl-8">
-                {/* Blue dot */}
-                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
-                {/* Content */}
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">
-                      Domino&apos;s Pizza Group
-                    </p>
-                    <p className="text-sm text-gray-400 mt-1">
-                      Software Tester
-                    </p>
-                    <ul className="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1">
-                      <li>
-                        Championed quality for customers on Domino&apos;s
-                        ecommerce platform by manually testing releases.
-                      </li>
-                    </ul>
-                  </div>
-                  <p className="text-sm text-gray-400 whitespace-nowrap shrink-0">
-                    October 2016 - November 2021
-                  </p>
-                </div>
-              </div>
-              <div className="relative pl-8">
-                {/* Blue dot */}
-                <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
-                {/* Content */}
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">EDW Technology</p>
-                    <p className="text-sm text-gray-400 mt-1">
-                      System Test Analyst
-                    </p>
-                    <ul className="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1">
-                      <li>
-                        Tested new releases of ERS (Energy Retail Suite -
-                        EDW&apos;s bespoke application, written in Java) and
-                        provided support to users.
-                      </li>
-                    </ul>
-                  </div>
-                  <p className="text-sm text-gray-400 whitespace-nowrap shrink-0">
-                    July 2014 - October 2016
-                  </p>
-                </div>
-              </div>
-              {/* Add more timeline items here by repeating the structure above */}
-            </div>
-          </div>
+              <p className="m-0 mt-1 text-[15px] font-semibold text-accent">
+                {role}
+              </p>
+              <p className="m-0 mt-1.5 text-[15px] leading-[1.6] text-muted">
+                {blurb}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </ResumeSection>
+
+      <ResumeSection heading="Certifications">
+        <div className="flex flex-col">
+          {CERTIFICATIONS.map((cert) => (
+            <LinkedRow key={cert.name} {...cert} />
+          ))}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-[130px_1fr] md:grid-cols-[160px_1fr] gap-1 sm:gap-4 md:gap-6">
-          <h2 className="text-2xl/9 font-extrabold tracking-tighter md:text-2xl/9 md:mb-3.5">
-            Certifications
-          </h2>
-          <div className="py-4">
-            <div className="space-y-4">
-              <div className="relative overflow-visible">
-              <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
-                  href="https://www.udemy.com/certificate/UC-4aae4450-bd4b-4592-953b-2179cdcda331/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                      Google AI Professional Certificate
-                      </h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:ml-6">
-                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
-                        AI
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-cyan-500 text-white">
-                        Prompts
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-yellow-500 text-black dark:bg-yellow-400 dark:text-black">
-                        Generative AI
-                      </span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
-                  href="https://verify.skilljar.com/c/5ah5hmesr4gq"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                        AI Fluency: Framework &amp; Foundations
-                      </h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:ml-6">
-                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
-                        AI
-                      </span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
-                  href="https://www.coursera.org/account/accomplishments/verify/LGPKX3EFN3M9"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                        Digital Product Management: Modern Fundamentals
-                      </h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:ml-6">
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        Product
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
-                        Innovation
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-orange-500 text-white">
-                        Stakeholder Management
-                      </span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
-                  href="https://s3.amazonaws.com/scruminc-certs/RSM-8823626"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                        Scrum Master
-                      </h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:ml-6">
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        Agile
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
-                        Scrum
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-orange-500 text-white">
-                        Team Management
-                      </span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
-                  href="https://www.linkedin.com/in/jblewitt/details/certifications/1719413746906/single-media-viewer/?profileId=ACoAABNnSV0BPiMy5z3Y7_cW0HdDAuKeIs7pH0A"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                        ISTQB-BCS Certified Tester Foundation Level
-                      </h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:ml-6">
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        Manual Testing
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
-                        Regression Testing
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-orange-500 text-white">
-                        Test Planning
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-purple-500 text-white">
-                        Test Execution
-                      </span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
-                  href="https://www.freecodecamp.org/certification/fcc2927573c-68b6-4b92-954b-d97d1ea76b7f/responsive-web-design"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                        Responsive Web Design
-                      </h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:ml-6">
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        HTML
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
-                        CSS
-                      </span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
-                  href="https://www.linkedin.com/learning/certificates/2780b24ee8c41fc0465b74e61e83af34af75e9bbb2d54401e76c26140726ffcb"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                        Getting Started as a Business Analyst
-                      </h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:ml-6">
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        Business Analysis
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
-                        Business Strategy
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-amber-500 text-white">
-                        Business Process Analysis
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
+      </ResumeSection>
+
+      <ResumeSection heading="Projects">
+        <div className="flex flex-col">
+          {PROJECTS.map((project) => (
+            <LinkedRow key={project.name} {...project} />
+          ))}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-[130px_1fr] md:grid-cols-[160px_1fr] gap-1 sm:gap-4 md:gap-6">
-          <h2 className="text-2xl/9 font-extrabold tracking-tighter md:text-2xl/9 md:mb-3.5">
-            Projects
-          </h2>
-          <div className="py-4">
-            <div className="space-y-4">
-              <div className="relative overflow-visible">
-                <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
-                  href="https://www.joshblewitt.dev/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                        This website
-                      </h3>
-                      <p className="text-sm text-gray-600 dark:text-slate-400">
-                        My portfolio website.
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2 lg:mt-0">
-                      <span className="text-xs px-2 py-1 rounded-full bg-yellow-500 text-black dark:bg-yellow-400 dark:text-black">
-                        JavaScript
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
-                        Vercel
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
-                        Next.js
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        Tailwind CSS
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-gray-500 text-white">
-                        Markdown
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-red-500 text-white">
-                        Playwright
-                      </span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
-                  href="https://github.com/JB-26/video-game-api-nextjs"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                        Video Game API
-                      </h3>
-                      <p className="text-sm text-gray-600 dark:text-slate-400">
-                        A RESTful API for video games.
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2 lg:mt-0">
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        TypeScript
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
-                        MongoDB
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
-                        Vercel
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
-                        Next.js
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        Tailwind CSS
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-amber-500 text-white">
-                        DaisyUI
-                      </span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
-                  href="https://github.com/JB-26/haiku-check"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                        Haiku Check
-                      </h3>
-                      <p className="text-sm text-gray-600 dark:text-slate-400">
-                        Is that a haiku? Check it!
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2 lg:mt-0">
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        TypeScript
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
-                        Vercel
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-slate-600">
-                        Next.js
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        Tailwind CSS
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-red-500 text-white">
-                        Playwright
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
-                        Jest
-                      </span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  className="block group py-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400"
-                  href="https://github.com/JB-26/ask-astronaut"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                        Ask Astronaut
-                      </h3>
-                      <p className="text-sm text-gray-600 dark:text-slate-400">
-                        Ask questions about space! Powered by NASA&apos;s API and Claude
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2 lg:mt-0">
-                    <span className="text-xs px-2 py-1 rounded-full bg-amber-600 text-white">
-                        Claude
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-green-500 text-white">
-                        AI
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        TypeScript
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-neutral-300 text-black dark:bg-neutral-600 dark:text-white">
-                        Bun
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500 text-white">
-                        Tailwind CSS
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-full bg-yellow-500 text-black dark:bg-yellow-400 dark:text-black">
-                        Google Cloud
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </div>
+      </ResumeSection>
+
+      <ResumeSection heading="Hobbies">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6">
+          {HOBBIES.map(({ name, description }) => (
+            <div key={name} className="flex flex-col gap-1">
+              <h3 className="m-0 text-[16px] font-semibold text-ink">{name}</h3>
+              <p className="m-0 text-[14.5px] leading-[1.5] text-muted">
+                {description}
+              </p>
             </div>
-          </div>
+          ))}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-[130px_1fr] md:grid-cols-[160px_1fr] gap-1 sm:gap-4 md:gap-6">
-          <h2 className="text-2xl/9 font-extrabold tracking-tighter md:text-2xl/9 md:mb-3.5">
-            Hobbies
-          </h2>
-          <div className="py-4">
-            <div className="space-y-4">
-              <div className="relative overflow-visible">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                  <div>
-                    <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                      Programming
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-slate-400">
-                      Let&apos;s me exercise my creativity and problem-solving
-                      skills.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                  <div>
-                    <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                      Photography
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-slate-400">
-                      Really enjoy using my Ricoh GR IIIX HDF to capture the
-                      world around me.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                  <div>
-                    <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                      Traveling
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-slate-400">
-                      Love exploring new places and cultures.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                  <div>
-                    <h3 className="font-medium text-lg text-black dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                      Writing
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-slate-400">
-                      Getting thoughts down on paper.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      </ResumeSection>
     </Layout>
   );
 }

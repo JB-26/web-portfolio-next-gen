@@ -31,19 +31,22 @@ test.describe("Resume Page", () => {
       await expect(museumImage).toHaveAttribute("src", /.+/);
     });
 
-    test("should display only center image on mobile", async ({ page }) => {
-      // Set viewport to mobile size
+    test("should wrap all three images on mobile", async ({ page }) => {
+      // The redesign wraps the trio rather than hiding the middle photo, so
+      // all three stay visible and the row simply stacks.
       await page.setViewportSize({ width: 375, height: 667 });
 
-      const museumImage = page.getByAltText("Natural History Museum");
-      await expect(museumImage).toBeHidden();
+      await expect(page.getByAltText("Natural History Museum")).toBeVisible();
+      await expect(page.getByAltText("Top Golf")).toBeVisible();
+      await expect(page.getByAltText("Louvre")).toBeVisible();
 
-      // Check if other images are visible
-      const topGolfImage = page.getByAltText("Top Golf");
-      const louvreImage = page.getByAltText("Louvre");
-
-      await expect(topGolfImage).toBeVisible();
-      await expect(louvreImage).toBeVisible();
+      // Stacked, not side by side.
+      const tops = await page
+        .locator('[data-testid="resume-photos"] img')
+        .evaluateAll((els) =>
+          els.map((el) => Math.round(el.getBoundingClientRect().top)),
+        );
+      expect(new Set(tops).size).toBe(3);
     });
 
     test("should scale image on hover", async ({ page }) => {
@@ -70,7 +73,7 @@ test.describe("Resume Page", () => {
 
   test("should display PDF availability text", async ({ page }) => {
     const pdfText = page.getByText(
-      /full resume available upon request in a pdf/i,
+      /full resume available upon request as a pdf/i,
     );
     await expect(pdfText).toBeVisible();
   });
@@ -81,16 +84,16 @@ test.describe("Resume Page", () => {
       await expect(heading).toBeVisible();
     });
 
-    test("should display timeline with vertical line", async ({ page }) => {
-      // Check for the timeline container
-      const timeline = page.locator(".relative.pt-4.pb-4");
-      await expect(timeline).toBeVisible();
+    test("each work entry carries its own left rule", async ({ page }) => {
+      // The shared vertical line and blue dots are gone; every entry now has a
+      // 2px --line left border of its own.
+      const entries = page.locator("ol li.border-l-2");
+      await expect(entries).toHaveCount(5);
 
-      // Check for vertical line (it should have specific width and background classes)
-      const verticalLine = timeline.locator(
-        ".absolute.left-0.top-0.bottom-0.w-px",
-      );
-      await expect(verticalLine).toBeVisible();
+      const borderWidth = await entries
+        .first()
+        .evaluate((el) => window.getComputedStyle(el).borderLeftWidth);
+      expect(borderWidth).toBe("2px");
     });
 
     test("should display ICAEW job entry", async ({ page }) => {
@@ -109,25 +112,24 @@ test.describe("Resume Page", () => {
       await expect(dateRange).toBeVisible();
     });
 
-    test("should display blue timeline dot for ICAEW entry", async ({
+    test("roles are rendered in the accent colour, not the old blue", async ({
       page,
     }) => {
-      // Find the blue dot (it should have bg-blue-500 class)
-      const blueDot = page.locator(".bg-blue-500.rounded-full").first();
-      await expect(blueDot).toBeVisible();
+      // Regression guard for the palette change: the handoff drops blue
+      // entirely, and the job role is the accent-coloured line.
+      await expect(page.locator(".bg-blue-500")).toHaveCount(0);
 
-      // Check that it has the correct styling
-      const dotStyles = await blueDot.evaluate((el) => {
-        const styles = window.getComputedStyle(el);
-        return {
-          width: styles.width,
-          height: styles.height,
-          borderRadius: styles.borderRadius,
-        };
-      });
-
-      expect(dotStyles.width).toBe("11px");
-      expect(dotStyles.height).toBe("11px");
+      const role = page.getByText("Assessment Systems Executive");
+      const colour = await role.evaluate(
+        (el) => window.getComputedStyle(el).color,
+      );
+      const accent = await page.evaluate(() =>
+        getComputedStyle(document.documentElement)
+          .getPropertyValue("--accent")
+          .trim(),
+      );
+      expect(accent).toBe("#b05730");
+      expect(colour).toBe("rgb(176, 87, 48)");
     });
 
     test("should display job responsibilities", async ({ page }) => {
@@ -136,21 +138,16 @@ test.describe("Resume Page", () => {
       );
       await expect(responsibility).toBeVisible();
 
-      // Check that it's in a list item
+      // Still inside the entry's list item, though the bulleted <ul> is now a
+      // single blurb paragraph.
       const listItem = page.locator("li", {
         hasText: /Managed releases for key systems/i,
       });
       await expect(listItem).toBeVisible();
     });
 
-    test("should have proper spacing between timeline items", async ({
-      page,
-    }) => {
-      const timelineItems = page.locator(".relative.pl-8");
-      const count = await timelineItems.count();
-
-      // Should have at least one timeline item
-      expect(count).toBeGreaterThanOrEqual(1);
+    test("should list every work entry", async ({ page }) => {
+      await expect(page.locator("ol li.border-l-2")).toHaveCount(5);
     });
   });
 
@@ -217,15 +214,19 @@ test.describe("Resume Page", () => {
       await expect(presentText).toBeVisible();
     });
 
-    test("should have list formatting for job duties", async ({ page }) => {
-      const list = page.locator("ul").filter({ hasText: /Managed releases/i });
+    test("job duties read as a blurb paragraph", async ({ page }) => {
+      const list = page.locator("p").filter({ hasText: /Managed releases/i });
       await expect(list).toBeVisible();
 
-      // Check that it has list-disc class (bullet points)
-      const hasListDisc = await list.evaluate((el) => {
-        return el.classList.contains("list-disc");
+      // The design replaces the bulleted <ul> with a single muted blurb, so
+      // assert the typography rather than a bullet style.
+      const styles = await list.evaluate((el) => {
+        const s = window.getComputedStyle(el);
+        return { tag: el.tagName, fontSize: s.fontSize, listStyleType: s.listStyleType };
       });
-      expect(hasListDisc).toBe(true);
+      expect(styles.tag).toBe("P");
+      expect(styles.fontSize).toBe("15px");
+      expect(styles.listStyleType).toBe("none");
     });
   });
 });
