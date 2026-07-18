@@ -43,7 +43,8 @@ export default function BlogIndex({
           Blog
         </h1>
         <p className="m-0 text-[16.5px] leading-[1.6] text-muted">
-          Thoughts on software, testing, AI and the occasional tangent.
+          Thoughts on software, the industry, life and whatever&apos;s on my
+          mind.
         </p>
         <p className="m-0 mt-2 text-[13.5px] leading-[1.5] text-faint italic">
           The views contained herein are those of my own, not of my employer.
