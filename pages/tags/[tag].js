@@ -2,7 +2,6 @@ import Layout from "../../components/layout";
 import { getPostsByTag, getAllTags } from "../../lib/posts"; // Import the function
 import Link from "next/link";
 import Head from "next/head";
-import Footer from "../../components/footer";
 
 export async function getStaticProps({ params }) {
   const tag = params.tag;
@@ -28,7 +27,7 @@ export async function getStaticPaths() {
 
 export default function TagPage({ tag, posts }) {
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>{tag}</title>
       </Head>
@@ -45,7 +44,6 @@ export default function TagPage({ tag, posts }) {
           </li>
         ))}
       </ul>
-      <Footer></Footer>
     </Layout>
   );
 }

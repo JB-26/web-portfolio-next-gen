@@ -1,5 +1,4 @@
 import Layout, { siteTitle } from "../components/layout";
-import Footer from "../components/footer";
 import Head from "next/head";
 import Image from "next/image";
 import photo1 from "../public/images/about_photo_3.png";
@@ -8,7 +7,7 @@ import photo3 from "../public/images/resume_2.png";
 
 export default function Resume() {
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>{siteTitle}</title>
         <meta
@@ -582,7 +581,6 @@ export default function Resume() {
           </div>
         </div>
       </section>
-      <Footer></Footer>
     </Layout>
   );
 }

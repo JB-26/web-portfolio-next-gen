@@ -1,103 +1,36 @@
-import Image from "next/image";
-import styles from "./footer.module.css";
-import linkedIn from "../public/icons/linkedin.svg";
-import bluesky from "../public/icons/bluesky.svg";
-import rss from "../public/icons/rss.svg";
-import github from "../public/icons/github.svg";
-import youtube from "../public/icons/youtube.svg";
-import instagram from "../public/icons/instagram.svg";
+// Text links rather than the previous SVG icon set: fewer requests, and it
+// retires the hardcoded-blue hover-invert CSS filter in footer.module.css,
+// which would have needed re-tuning on every future token change.
+const LINKS = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/jblewitt/" },
+  { label: "GitHub", href: "https://github.com/JB-26" },
+  { label: "Bluesky", href: "https://bsky.app/profile/joshblewitt.dev" },
+  { label: "YouTube", href: "https://www.youtube.com/@joshuablewitt6022" },
+  { label: "Instagram", href: "https://www.instagram.com/jblw1tt/" },
+  { label: "RSS", href: "/rss.xml" },
+];
 
 export default function Footer() {
   return (
-    <footer data-testid="footer-component">
-      <ul className="p-0 list-none flex flex-wrap justify-center gap-1 text-4xl">
-        <li>
-          <a
-            className="inline-flex items-center justify-center p-1.5 min-w-[44px] min-h-[44px]"
-            href="https://www.linkedin.com/in/jblewitt/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            {/* Footer icons are below the fold — no priority preload needed */}
-            <Image
-              className={styles.icon}
-              src={linkedIn}
-              alt="LinkedIn Footer"
-            />
-          </a>
-        </li>
-        <li>
-          <a
-            className="inline-flex items-center justify-center p-1.5 min-w-[44px] min-h-[44px]"
-            href="https://github.com/JB-26"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Image
-              className={styles.icon}
-              src={github}
-              alt="GitHub Footer"
-            />
-          </a>
-        </li>
-        <li>
-          <a
-            className="inline-flex items-center justify-center p-1.5 min-w-[44px] min-h-[44px]"
-            href="https://bsky.app/profile/joshblewitt.dev"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Image
-              className={styles.icon}
-              src={bluesky}
-              alt="Bluesky Footer"
-            />
-          </a>
-        </li>
-        <li>
-          <a
-            className="inline-flex items-center justify-center p-1.5 min-w-[44px] min-h-[44px]"
-            href="https://www.youtube.com/@joshuablewitt6022"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Image
-              className={styles.icon}
-              src={youtube}
-              alt="YouTube Footer"
-            />
-          </a>
-        </li>
-        <li>
-          <a
-            className="inline-flex items-center justify-center p-1.5 min-w-[44px] min-h-[44px]"
-            href="https://www.instagram.com/jblw1tt/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Image
-              className={styles.icon}
-              src={instagram}
-              alt="Instagram Footer"
-            />
-          </a>
-        </li>
-        <li>
-          <a
-            className="inline-flex items-center justify-center p-1.5 min-w-[44px] min-h-[44px]"
-            href="/rss.xml"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Image
-              className={styles.icon}
-              src={rss}
-              alt="RSS Footer"
-            />
-          </a>
-        </li>
-      </ul>
-      <p className="text-center mt-4">© {new Date().getFullYear()}</p>
+    <footer data-testid="footer-component" className="border-t border-line">
+      <div className="mx-auto flex w-full max-w-[1040px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 py-6 text-[14px] text-faint">
+        <p className="m-0">© {new Date().getFullYear()} Joshua Blewitt</p>
+        <ul className="m-0 flex list-none flex-wrap items-center gap-x-5 gap-y-1 p-0">
+          {LINKS.map(({ label, href }) => (
+            <li key={label}>
+              <a
+                href={href}
+                rel="noopener noreferrer"
+                target="_blank"
+                // min-h-11 keeps the mobile touch target at 44px.
+                className="inline-flex min-h-11 items-center text-faint no-underline hover:text-ink lg:min-h-0"
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </footer>
   );
 }

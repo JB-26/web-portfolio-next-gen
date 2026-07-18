@@ -1,5 +1,4 @@
 import Layout, { siteTitle } from "../components/layout";
-import Footer from "../components/footer";
 import styles from "../styles/index.module.css";
 import Head from "next/head";
 import Image from "next/image";
@@ -8,7 +7,7 @@ import indexImage from "../public/images/profile_photo_2.png";
 
 export default function Home() {
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>{siteTitle}</title>
         <meta
@@ -107,7 +106,6 @@ export default function Home() {
           />
         </div>
       </div>
-      <Footer></Footer>
     </Layout>
   );
 }

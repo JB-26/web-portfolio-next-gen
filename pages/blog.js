@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
-import Footer from "../components/footer";
 import Date from "../components/date";
 import { getSortedPostsData, getPostDataByName } from "../lib/posts";
 import Link from "next/link";
@@ -34,7 +33,7 @@ export default function Blog({
   const router = useRouter();
 
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>{siteTitle}</title>
         <meta
@@ -96,7 +95,6 @@ export default function Blog({
           </ol>
         </nav>
       </section>
-      <Footer></Footer>
     </Layout>
   );
 }

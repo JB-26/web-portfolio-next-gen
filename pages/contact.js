@@ -1,5 +1,4 @@
 import Layout, { siteTitle } from "../components/layout";
-import Footer from "../components/footer";
 import Head from "next/head";
 import Image from "next/image";
 import email from "../public/icons/email.svg";
@@ -11,7 +10,7 @@ import rss from "../public/icons/rss.svg";
 
 export default function Contact() {
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>{siteTitle}</title>
         <meta
@@ -151,7 +150,6 @@ export default function Contact() {
           </a>
         </div>
       </section>
-      <Footer></Footer>
     </Layout>
   );
 }
