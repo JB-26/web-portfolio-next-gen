@@ -69,19 +69,19 @@ export default function CommentItem({ comment, isOwner, onDelete }) {
 
   return (
     <article
-      className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-4 mb-3"
+      className="border-b border-line py-5"
       data-testid="comment-item"
     >
       {/* Header row: author, date, and (owner-only) delete affordance */}
       <div className="flex items-start justify-between gap-2 mb-2">
         <div className="min-w-0">
           {/* Author */}
-          <span className="text-sm font-semibold text-gray-900 dark:text-slate-100 block truncate">
+          <span className="block truncate text-[14.5px] font-bold text-ink">
             {comment.author}
           </span>
           {/* Date — uses the existing Date component for formatting */}
-          <span className="text-xs text-gray-500 dark:text-slate-400">
-            <Date dateString={comment.createdAt} />
+          <span className="font-mono text-[12.5px] text-faint">
+            <Date dateString={comment.createdAt} short />
           </span>
         </div>
 
@@ -94,7 +94,7 @@ export default function CommentItem({ comment, isOwner, onDelete }) {
             aria-label={`Delete comment by ${comment.author}`}
             data-testid="delete-comment"
             /* p-2 gives a ~44×44 touch target around the 20px icon */
-            className="text-gray-400 dark:text-slate-500 hover:text-red-500 dark:hover:text-red-400 p-2 rounded flex-shrink-0"
+            className="shrink-0 rounded p-2 text-faint hover:text-red-600 dark:hover:text-red-400"
           >
             {/* Trash icon — inline SVG to keep bundle lean, no extra dep */}
             <svg
@@ -123,7 +123,7 @@ export default function CommentItem({ comment, isOwner, onDelete }) {
       {/* Inline confirm row — shown after the delete icon is clicked */}
       {isOwner && confirming && (
         <div className="flex flex-col gap-2 mb-2" role="group" aria-label="Confirm deletion">
-          <p className="text-sm text-gray-700 dark:text-slate-300">
+          <p className="text-[14.5px] text-muted">
             Delete this comment?
           </p>
           <div className="flex gap-2">
@@ -131,7 +131,7 @@ export default function CommentItem({ comment, isOwner, onDelete }) {
               ref={cancelButtonRef}
               type="button"
               onClick={handleCancel}
-              className="border border-gray-300 dark:border-slate-600 text-gray-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700 rounded px-3 py-1.5 text-sm"
+              className="min-h-11 rounded-lg border border-line px-3 py-1.5 text-[14.5px] text-muted hover:border-accent hover:text-ink lg:min-h-0"
             >
               Cancel
             </button>
@@ -139,7 +139,7 @@ export default function CommentItem({ comment, isOwner, onDelete }) {
               type="button"
               onClick={handleConfirm}
               data-testid="confirm-delete"
-              className="bg-red-600 hover:bg-red-700 text-white rounded px-3 py-1.5 text-sm"
+              className="min-h-11 rounded-lg bg-red-600 px-3 py-1.5 text-[14.5px] text-white hover:bg-red-700 lg:min-h-0"
             >
               Confirm
             </button>
@@ -148,7 +148,7 @@ export default function CommentItem({ comment, isOwner, onDelete }) {
       )}
 
       {/* Comment body — plain text only, never dangerouslySetInnerHTML */}
-      <p className="text-gray-800 dark:text-slate-200 text-base leading-relaxed m-0">
+      <p className="m-0 text-[15.5px] leading-[1.6] text-muted">
         {comment.body}
       </p>
     </article>

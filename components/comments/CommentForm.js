@@ -226,7 +226,7 @@ export default function CommentForm({ postId, onSuccess }) {
   return (
     <div data-testid="comment-form">
       {/* Privacy notice — one sentence, above the form */}
-      <p className="text-sm text-gray-600 dark:text-slate-400 mb-3">
+      <p className="mb-4 text-[13.5px] leading-[1.5] text-faint">
         Comments are public and permanent. Your display name will be visible
         to all readers. No email address or IP address is stored.
       </p>
@@ -235,7 +235,7 @@ export default function CommentForm({ postId, onSuccess }) {
       {showTopAlert && (
         <div
           role="alert"
-          className="mb-4 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-700 p-3 text-red-700 dark:text-red-300 text-sm"
+          className="mb-4 rounded-lg border border-red-300 bg-red-50 p-3 text-[14.5px] text-red-700 dark:border-red-700 dark:bg-red-900/20 dark:text-red-300"
         >
           {serverError}
           {isRateLimited && retryCountdown > 0 && (
@@ -256,7 +256,7 @@ export default function CommentForm({ postId, onSuccess }) {
         <div className="mb-4">
           <label
             htmlFor="comment-author"
-            className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1"
+            className="mb-1.5 block text-[14.5px] font-medium text-muted"
           >
             Name <span aria-hidden="true">*</span>
           </label>
@@ -273,14 +273,13 @@ export default function CommentForm({ postId, onSuccess }) {
             aria-describedby={fieldErrors.author ? "author-error" : undefined}
             aria-required="true"
             className={[
-              "w-full rounded-md border px-3 py-2 text-base",
-              "bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100",
-              "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
-              "focus-visible:outline-blue-600 dark:focus-visible:outline-blue-400",
+              "w-full max-w-[360px] rounded-lg border px-3.5 py-[11px] text-[15.5px]",
+              "bg-card text-ink",
+              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
               "disabled:opacity-50 disabled:cursor-not-allowed",
               fieldErrors.author
-                ? "border-red-500 dark:border-red-400"
-                : "border-gray-300 dark:border-slate-600",
+                ? "border-red-600 dark:border-red-400"
+                : "border-line-strong focus:border-accent",
             ].join(" ")}
           />
           {fieldErrors.author && (
@@ -298,7 +297,7 @@ export default function CommentForm({ postId, onSuccess }) {
         <div className="mb-4">
           <label
             htmlFor="comment-body"
-            className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1"
+            className="mb-1.5 block text-[14.5px] font-medium text-muted"
           >
             Comment <span aria-hidden="true">*</span>
           </label>
@@ -319,43 +318,25 @@ export default function CommentForm({ postId, onSuccess }) {
               .join(" ")}
             aria-required="true"
             className={[
-              "w-full rounded-md border px-3 py-2 text-base",
-              "bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100",
-              "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
-              "focus-visible:outline-blue-600 dark:focus-visible:outline-blue-400",
+              "w-full rounded-lg border px-3.5 py-[11px] text-[15.5px]",
+              "bg-card text-ink",
+              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
               "disabled:opacity-50 disabled:cursor-not-allowed resize-y",
               fieldErrors.body
-                ? "border-red-500 dark:border-red-400"
-                : "border-gray-300 dark:border-slate-600",
+                ? "border-red-600 dark:border-red-400"
+                : "border-line-strong focus:border-accent",
             ].join(" ")}
           />
 
-          {/* Character counter — visible at all times, but aria-live only triggers at thresholds */}
-          <div className="flex justify-between mt-1">
-            {fieldErrors.body ? (
-              <p
-                id="body-error"
-                role="alert"
-                className="text-red-600 dark:text-red-400 text-sm"
-              >
-                {fieldErrors.body}
-              </p>
-            ) : (
-              <span />
-            )}
-            <span
-              id="body-char-count"
-              className={[
-                "text-xs",
-                remaining < 20
-                  ? "text-red-600 dark:text-red-400"
-                  : "text-gray-500 dark:text-slate-400",
-              ].join(" ")}
-              aria-hidden="true"
+          {fieldErrors.body && (
+            <p
+              id="body-error"
+              role="alert"
+              className="mt-1.5 text-[14.5px] text-red-600 dark:text-red-400"
             >
-              {remaining} remaining
-            </span>
-          </div>
+              {fieldErrors.body}
+            </p>
+          )}
 
           {/* Polite live region — only announces at threshold values to avoid per-keystroke noise */}
           <p aria-live="polite" className="sr-only" aria-atomic="true">
@@ -385,15 +366,28 @@ export default function CommentForm({ postId, onSuccess }) {
           />
         </div>
 
-        {/* Submit button */}
-        <button
-          type="submit"
-          data-testid="submit-comment"
-          disabled={isSubmitting || isRateLimited}
-          className="bg-blue-600 dark:bg-blue-500 text-white font-medium px-5 py-2.5 rounded-md hover:bg-blue-700 dark:hover:bg-blue-400 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-        >
-          {isSubmitting ? "Posting…" : "Post comment"}
-        </button>
+        {/* Submit row — the design puts the character counter to the right
+            of the button rather than under the textarea. */}
+        <div className="flex flex-wrap items-center gap-4">
+          <button
+            type="submit"
+            data-testid="submit-comment"
+            disabled={isSubmitting || isRateLimited}
+            className="inline-flex min-h-11 items-center rounded-lg bg-accent px-[22px] py-[11px] text-[15.5px] font-semibold text-accent-contrast hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            {isSubmitting ? "Posting…" : "Post comment"}
+          </button>
+          <span
+            id="body-char-count"
+            className={[
+              "font-mono text-[12.5px]",
+              remaining < 20 ? "text-red-600 dark:text-red-400" : "text-faint",
+            ].join(" ")}
+            aria-hidden="true"
+          >
+            {remaining} remaining
+          </span>
+        </div>
       </form>
     </div>
   );

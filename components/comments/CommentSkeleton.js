@@ -20,9 +20,9 @@ export default function CommentSkeleton() {
 
       {/* Three shimmer cards */}
       <div aria-hidden="true">
-        <div className="animate-pulse bg-gray-200 dark:bg-slate-700 rounded-lg h-20 mb-3" />
-        <div className="animate-pulse bg-gray-200 dark:bg-slate-700 rounded-lg h-20 mb-3" />
-        <div className="animate-pulse bg-gray-200 dark:bg-slate-700 rounded-lg h-20 mb-3" />
+        <div className="mb-3 h-20 animate-pulse rounded-xl bg-line" />
+        <div className="mb-3 h-20 animate-pulse rounded-xl bg-line" />
+        <div className="mb-3 h-20 animate-pulse rounded-xl bg-line" />
       </div>
     </>
   );
