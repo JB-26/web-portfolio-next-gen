@@ -499,7 +499,7 @@ export default function Resume() {
                         Ask Astronaut
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-slate-400">
-                        Ask questions about space! Powered by NASA's API and Claude
+                        Ask questions about space! Powered by NASA&apos;s API and Claude
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-2 lg:mt-0">
