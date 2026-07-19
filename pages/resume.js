@@ -1,11 +1,11 @@
 import Head from "next/head";
-import Image from "next/image";
 import Layout, { siteTitle } from "../components/layout";
+import Polaroid from "../components/Polaroid";
 import ResumeSection from "../components/ResumeSection";
 import TagPill from "../components/TagPill";
-import photoLouvre from "../public/images/about_photo_3.png";
-import photoMuseum from "../public/images/resume_1.png";
-import photoTopGolf from "../public/images/resume_2.png";
+import photoLouvre from "../public/images/resume-louvre.jpg";
+import photoMuseum from "../public/images/resume-museum.jpg";
+import photoTopGolf from "../public/images/resume-topgolf.jpg";
 
 // Content lives in data rather than repeated JSX. The previous version of this
 // page hand-wrote every entry, tag and link as markup — ~585 lines for what is
@@ -195,29 +195,20 @@ export default function Resume() {
         </p>
       </header>
 
-      {/* These three source images are already photographs *of* polaroids —
-          white frame, texture and the wide bottom border are baked in. Wrapping
-          them in the CSS Polaroid component produced a polaroid inside a
-          polaroid, invisible in light mode and obvious against the dark
-          surface. So they render directly here with only the rotation and
-          shadow the design calls for. Supplying unframed square crops would let
-          this use the real Polaroid component, which themes correctly. */}
       <div
         data-testid="resume-photos"
         className="flex flex-wrap items-center justify-center gap-7 py-10"
       >
         {PHOTOS.map((photo, i) => (
-          <Image
+          <Polaroid
             key={photo.alt}
             src={photo.src}
             alt={photo.alt}
-            width={180}
-            height={218}
+            size={180}
+            rotate={photo.rotate}
             // Exactly one priority image per page — the same rule the previous
             // version followed, preserving the recent LCP work.
             priority={i === 0}
-            style={{ "--polaroid-rotate": `${photo.rotate}deg` }}
-            className="h-auto w-[180px] rotate-0 shadow-[0_8px_24px_rgba(33,31,28,0.14)] transition-[rotate] duration-300 motion-reduce:transition-none lg:rotate-[var(--polaroid-rotate)] lg:hover:rotate-0"
           />
         ))}
       </div>
