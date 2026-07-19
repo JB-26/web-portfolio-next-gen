@@ -132,6 +132,7 @@ export default function Post({ postData, relatedPosts }) {
                   // element for network/main-thread priority.
                   img: ({ node, alt, ...props }) => {
                     return (
+                      // eslint-disable-next-line @next/next/no-img-element -- see above: next/image is not usable for arbitrary markdown images
                       <img alt={alt || ""} loading="lazy" decoding="async" {...props} />
                     );
                   },

@@ -10,11 +10,18 @@ const numberBase =
 
 function Arrow({ label, href, disabled }) {
   if (disabled) {
-    return (
-      <span aria-hidden="true" className="text-[15px] text-line">
-        {label}
-      </span>
-    );
+    // The handoff renders disabled arrows in --line. That's a border colour:
+    // as text it lands at 1.21:1 against the page, which axe flags as a
+    // serious violation and which is genuinely unreadable. WCAG exempts
+    // inactive controls from contrast, but "technically exempt" and "nobody
+    // can read it" are different things, so this uses --faint (4.55:1 light,
+    // 5.00:1 dark) — still clearly recessive next to the accent-coloured
+    // active arrow, but legible.
+    //
+    // Not aria-hidden either: a sighted user sees "← Newer" greyed out, so
+    // hiding it from assistive tech would describe a different page. It's
+    // plain text, not a control, which is what it now looks like.
+    return <span className="text-[15px] text-faint">{label}</span>;
   }
   return (
     <Link

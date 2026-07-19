@@ -5,7 +5,7 @@
  * (noindex, nofollow) and does not expose any information to unauthenticated
  * visitors beyond a password prompt.
  *
- * Auth check is entirely client-side (useEffect reads the sentinel cookie).
+ * Auth check is entirely client-side (reads the sentinel cookie).
  * The actual session is validated server-side on every auth API call.
  * No SSR of auth state to avoid hydration mismatches and cookie-timing issues.
  */
@@ -15,14 +15,24 @@ import Layout, { siteTitle } from "../components/layout";
 
 export default function AdminPage() {
   // null = unknown (client not yet mounted), false = logged out, true = logged in
+  //
+  // Deliberately a one-shot read into state rather than useSyncExternalStore.
+  // A store without a real subscription re-reads its snapshot on any incidental
+  // re-render, so simply typing into the password field below would re-check
+  // the cookie and could swap the login form out from under the user
+  // mid-interaction. Stability is the point here: the auth view is decided once
+  // per page load, and both login and logout reload the page to refresh it.
+  // The server re-validates the session on every auth API call regardless.
   const [isOwner, setIsOwner] = useState(null);
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [loginState, setLoginState] = useState("idle"); // idle | submitting | error
   const passwordRef = useRef(null);
 
-  // Detect auth state from the non-httpOnly sentinel cookie
+  // Detect auth state from the non-httpOnly sentinel cookie. See the note on
+  // isOwner above for why this is an effect rather than an external store.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional one-shot snapshot; stability is required here
     setIsOwner(document.cookie.includes("owner_ui=1"));
   }, []);
 

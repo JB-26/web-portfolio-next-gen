@@ -4,9 +4,9 @@ import Layout, { siteTitle } from "../components/layout";
 import Polaroid from "../components/Polaroid";
 import PostCard from "../components/PostCard";
 import { getSortedPostsData } from "../lib/posts";
-// profile_2.png is a clean 400x400 square. profile_photo_2.png has a white
-// polaroid border baked into the image, which double-framed against the CSS
-// polaroid — invisible in light mode, obvious in dark.
+// A clean 400x400 square with no frame of its own — the Polaroid component
+// supplies the frame in CSS so it can follow the theme. A pre-framed source
+// image would double-frame here: invisible in light mode, obvious in dark.
 import portrait from "../public/images/profile_2.png";
 
 const RECENT_POST_COUNT = 4;
