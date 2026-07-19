@@ -44,18 +44,22 @@ test.describe("Resume Page", () => {
       // Filter for visibility inside the browser rather than with Playwright's
       // :visible pseudo — combining it with a child combinator resolves
       // inconsistently and can yield an empty list.
-      const [first, second] = await page
-        .locator('[data-testid="resume-photos"] > div')
-        .evaluateAll((els) =>
-          els
-            .filter((el) => el.offsetParent !== null)
-            .map((el) => {
-              const r = el.getBoundingClientRect();
-              return { left: r.left, right: r.right, top: Math.round(r.top) };
-            }),
-        );
+      const boxes = () =>
+        page
+          .locator('[data-testid="resume-photos"] > div')
+          .evaluateAll((els) =>
+            els
+              .filter((el) => el.offsetParent !== null)
+              .map((el) => {
+                const r = el.getBoundingClientRect();
+                return { left: r.left, right: r.right, top: Math.round(r.top) };
+              }),
+          );
 
-      // Side by side on one row, and actually overlapping.
+      // Side by side on one row, and actually overlapping. Polled, because the
+      // viewport change doesn't apply synchronously.
+      await expect.poll(async () => (await boxes()).length).toBe(2);
+      const [first, second] = await boxes();
       expect(first.top).toBe(second.top);
       expect(second.left).toBeLessThan(first.right);
 
@@ -71,15 +75,19 @@ test.describe("Resume Page", () => {
       // overlapping frames only read as a stack of photos if they're angled.
       await page.setViewportSize({ width: 390, height: 844 });
 
-      const rotations = await page
-        .locator('[data-testid="resume-photos"] > div')
-        .evaluateAll((els) =>
-          els
-            .filter((el) => el.offsetParent !== null)
-            .map((el) => getComputedStyle(el.firstElementChild).rotate),
-        );
-
-      expect(rotations).toEqual(["-4deg", "3.5deg"]);
+      // Poll: a viewport change doesn't take effect synchronously, so a
+      // one-shot read can measure the pre-resize layout under parallel load.
+      await expect
+        .poll(() =>
+          page
+            .locator('[data-testid="resume-photos"] > div')
+            .evaluateAll((els) =>
+              els
+                .filter((el) => el.offsetParent !== null)
+                .map((el) => getComputedStyle(el.firstElementChild).rotate),
+            ),
+        )
+        .toEqual(["-4deg", "3.5deg"]);
     });
 
     test("should scale image on hover", async ({ page }) => {

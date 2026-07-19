@@ -5,6 +5,18 @@ import { test, expect } from "@playwright/test";
 const card = (page, name) =>
   page.locator('[data-testid="contact-card"]').filter({ hasText: name });
 
+// How many distinct columns the cards occupy. Callers poll this: a viewport
+// change doesn't take effect synchronously, so a one-shot read can measure the
+// pre-resize layout when the suite runs under parallel load.
+const distinctColumns = async (page) => {
+  const lefts = await page
+    .locator('[data-testid="contact-card"]')
+    .evaluateAll((els) =>
+      els.map((el) => Math.round(el.getBoundingClientRect().left)),
+    );
+  return new Set(lefts).size;
+};
+
 const CHANNELS = [
   {
     name: "Email",
@@ -144,12 +156,9 @@ test.describe("Contact Page", () => {
     test("should collapse to a single column on mobile", async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
 
-      const lefts = await page
-        .locator('[data-testid="contact-card"]')
-        .evaluateAll((els) =>
-          els.map((el) => Math.round(el.getBoundingClientRect().left)),
-        );
-      expect(new Set(lefts).size).toBe(1);
+      await expect
+        .poll(() => distinctColumns(page))
+        .toBe(1);
 
       const overflows = await page.evaluate(
         () =>
@@ -164,25 +173,22 @@ test.describe("Contact Page", () => {
     }) => {
       await page.setViewportSize({ width: 390, height: 844 });
 
-      const fits = await card(page, "Email").evaluate((el) => {
+      const measure = () => card(page, "Email").evaluate((el) => {
         const handle = el.lastElementChild;
         return (
           Math.round(handle.getBoundingClientRect().right) <=
           Math.round(el.getBoundingClientRect().right)
         );
       });
-      expect(fits).toBe(true);
+      await expect.poll(measure).toBe(true);
     });
 
     test("should show two columns on tablet and up", async ({ page }) => {
       await page.setViewportSize({ width: 768, height: 1024 });
 
-      const lefts = await page
-        .locator('[data-testid="contact-card"]')
-        .evaluateAll((els) =>
-          els.map((el) => Math.round(el.getBoundingClientRect().left)),
-        );
-      expect(new Set(lefts).size).toBe(2);
+      await expect
+        .poll(() => distinctColumns(page))
+        .toBe(2);
     });
   });
 
