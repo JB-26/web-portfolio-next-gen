@@ -1,12 +1,46 @@
-import Layout, { siteTitle } from "../components/layout";
 import Head from "next/head";
-import Image from "next/image";
-import email from "../public/icons/email.svg";
-import linkedin from "../public/icons/linkedin.svg";
-import youtube from "../public/icons/youtube.svg";
-import instagram from "../public/icons/instagram.svg";
-import bluesky from "../public/icons/bluesky.svg";
-import rss from "../public/icons/rss.svg";
+import Layout, { siteTitle } from "../components/layout";
+import ContactCard from "../components/ContactCard";
+
+// The six channels from the handoff, in its order. Email opens the mail client
+// rather than a new tab; everything else is an outbound link.
+const CHANNELS = [
+  {
+    name: "Email",
+    handle: "joshblewitt@protonmail.com",
+    href: "mailto:joshblewitt@protonmail.com",
+  },
+  {
+    name: "LinkedIn",
+    handle: "jblewitt",
+    href: "https://www.linkedin.com/in/jblewitt/",
+    external: true,
+  },
+  {
+    name: "YouTube",
+    handle: "@joshuablewitt6022",
+    href: "https://www.youtube.com/@joshuablewitt6022",
+    external: true,
+  },
+  {
+    name: "Instagram",
+    handle: "jblw1tt",
+    href: "https://www.instagram.com/jblw1tt/",
+    external: true,
+  },
+  {
+    name: "Bluesky",
+    handle: "@joshblewitt.dev",
+    href: "https://bsky.app/profile/joshblewitt.dev",
+    external: true,
+  },
+  {
+    name: "RSS",
+    handle: "Add to your favourite reader",
+    href: "/rss.xml",
+    external: true,
+  },
+];
 
 export default function Contact() {
   return (
@@ -18,138 +52,27 @@ export default function Contact() {
           name="The personal website of IT Professional, Joshua Blewitt"
         />
       </Head>
-      <section>
+
+      <header className="max-w-[720px] pt-10 pb-2">
         <h1
           data-testid="heading1"
-          className="text-2xl/9 font-extrabold tracking-tighter mb-3.5 md:text-3xl/9"
+          className="m-0 mb-2.5 text-[clamp(30px,4vw,38px)] font-bold tracking-[-0.03em] text-ink"
         >
           Contact
         </h1>
-        <p className="mb-4 text-lg">
+        <p className="m-0 text-[16.5px] leading-[1.6] text-muted">
           Drop me a line on the platform of your choice or follow me. No spam,
           please.
         </p>
-        <div className="grid grid-cols-2 gap-5 mb-3.5">
-          <a
-            className="flex items-center space-x-3 p-3 rounded-lg border border-black dark:border-slate-600 shadow-[10px_10px_black] dark:shadow-[10px_10px_rgba(148,163,184,0.25)] origin-center transition-all duration-150 hover:scale-100 hover:-translate-y-[3px] hover:shadow-[15px_15px_0_0_rgba(0,0,0,1)] dark:hover:shadow-[15px_15px_0_0_rgba(148,163,184,0.35)] active:shadow-[5px_5px_0_0_rgba(0,0,0,1)] dark:active:shadow-[5px_5px_0_0_rgba(148,163,184,0.35)] active:scale-[0.99] active:translate-y-px no-underline hover:no-underline"
-            style={{ textDecoration: "none" }}
-            href="mailto:joshblewitt@protonmail.com"
-          >
-            <div className="flex-0">
-              <Image
-                className="max-w-6! max-h-6! dark:invert"
-                src={email}
-                alt="Email Contact Icon"
-              />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-black dark:text-slate-100 text-sm">Email</p>
-              <p className="text-gray-600 dark:text-slate-400 text-xs truncate">
-                joshblewitt@protonmail.com
-              </p>
-            </div>
-          </a>
-          <a
-            className="flex items-center space-x-3 p-3 rounded-lg border border-black dark:border-slate-600 shadow-[10px_10px_black] dark:shadow-[10px_10px_rgba(148,163,184,0.25)] origin-center transition-all duration-150 hover:scale-100 hover:-translate-y-[3px] hover:shadow-[15px_15px_0_0_rgba(0,0,0,1)] dark:hover:shadow-[15px_15px_0_0_rgba(148,163,184,0.35)] active:shadow-[5px_5px_0_0_rgba(0,0,0,1)] dark:active:shadow-[5px_5px_0_0_rgba(148,163,184,0.35)] active:scale-[0.99] active:translate-y-px no-underline hover:no-underline"
-            style={{ textDecoration: "none" }}
-            href="https://www.linkedin.com/in/jblewitt/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <div className="flex-0">
-              <Image
-                className="max-w-6! max-h-6! dark:invert"
-                src={linkedin}
-                alt="LinkedIn Contact Icon"
-              />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-black dark:text-slate-100 text-sm">LinkedIn</p>
-              <p className="text-gray-600 dark:text-slate-400 text-xs truncate">jblewitt</p>
-            </div>
-          </a>
-          <a
-            className="flex items-center space-x-3 p-3 rounded-lg border border-black dark:border-slate-600 shadow-[10px_10px_black] dark:shadow-[10px_10px_rgba(148,163,184,0.25)] origin-center transition-all duration-150 hover:scale-100 hover:-translate-y-[3px] hover:shadow-[15px_15px_0_0_rgba(0,0,0,1)] dark:hover:shadow-[15px_15px_0_0_rgba(148,163,184,0.35)] active:shadow-[5px_5px_0_0_rgba(0,0,0,1)] dark:active:shadow-[5px_5px_0_0_rgba(148,163,184,0.35)] active:scale-[0.99] active:translate-y-px no-underline hover:no-underline"
-            style={{ textDecoration: "none" }}
-            href="https://www.youtube.com/@joshuablewitt6022"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <div className="flex-0">
-              <Image
-                className="max-w-6! max-h-6! dark:invert"
-                src={youtube}
-                alt="YouTube Contact Icon"
-              />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-black dark:text-slate-100 text-sm">YouTube</p>
-              <p className="text-gray-600 dark:text-slate-400 text-xs truncate">
-                @joshuablewitt6022
-              </p>
-            </div>
-          </a>
-          <a
-            className="flex items-center space-x-3 p-3 rounded-lg border border-black dark:border-slate-600 shadow-[10px_10px_black] dark:shadow-[10px_10px_rgba(148,163,184,0.25)] origin-center transition-all duration-150 hover:scale-100 hover:-translate-y-[3px] hover:shadow-[15px_15px_0_0_rgba(0,0,0,1)] dark:hover:shadow-[15px_15px_0_0_rgba(148,163,184,0.35)] active:shadow-[5px_5px_0_0_rgba(0,0,0,1)] dark:active:shadow-[5px_5px_0_0_rgba(148,163,184,0.35)] active:scale-[0.99] active:translate-y-px no-underline hover:no-underline"
-            style={{ textDecoration: "none" }}
-            href="https://www.instagram.com/jblw1tt/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <div className="flex-0">
-              <Image
-                className="max-w-6! max-h-6! dark:invert"
-                src={instagram}
-                alt="Instagram Contact Icon"
-              />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-black dark:text-slate-100 text-sm">Instagram</p>
-              <p className="text-gray-600 dark:text-slate-400 text-xs truncate">jblw1tt</p>
-            </div>
-          </a>
-          <a
-            className="flex items-center space-x-3 p-3 rounded-lg border border-black dark:border-slate-600 shadow-[10px_10px_black] dark:shadow-[10px_10px_rgba(148,163,184,0.25)] origin-center transition-all duration-150 hover:scale-100 hover:-translate-y-[3px] hover:shadow-[15px_15px_0_0_rgba(0,0,0,1)] dark:hover:shadow-[15px_15px_0_0_rgba(148,163,184,0.35)] active:shadow-[5px_5px_0_0_rgba(0,0,0,1)] dark:active:shadow-[5px_5px_0_0_rgba(148,163,184,0.35)] active:scale-[0.99] active:translate-y-px no-underline hover:no-underline"
-            style={{ textDecoration: "none" }}
-            href="https://bsky.app/profile/joshblewitt.dev"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <div className="flex-0">
-              <Image
-                className="max-w-6! max-h-6! dark:invert"
-                src={bluesky}
-                alt="Bluesky Contact Icon"
-              />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-black dark:text-slate-100 text-sm">Bluesky</p>
-              <p className="text-gray-600 dark:text-slate-400 text-xs truncate">@joshblewitt.dev</p>
-            </div>
-          </a>
-          <a
-            className="flex items-center space-x-3 p-3 rounded-lg border border-black dark:border-slate-600 shadow-[10px_10px_black] dark:shadow-[10px_10px_rgba(148,163,184,0.25)] origin-center transition-all duration-150 hover:scale-100 hover:-translate-y-[3px] hover:shadow-[15px_15px_0_0_rgba(0,0,0,1)] dark:hover:shadow-[15px_15px_0_0_rgba(148,163,184,0.35)] active:shadow-[5px_5px_0_0_rgba(0,0,0,1)] dark:active:shadow-[5px_5px_0_0_rgba(148,163,184,0.35)] active:scale-[0.99] active:translate-y-px no-underline hover:no-underline"
-            style={{ textDecoration: "none" }}
-            href="/rss.xml"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <div className="flex-0">
-              <Image
-                className="max-w-6! max-h-6! dark:invert"
-                src={rss}
-                alt="RSS Feed Icon"
-              />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-black dark:text-slate-100 text-sm">RSS</p>
-              <p className="text-gray-600 dark:text-slate-400 text-xs truncate">
-                Add to your favourite reader
-              </p>
-            </div>
-          </a>
-        </div>
-      </section>
+      </header>
+
+      {/* auto-fit + minmax collapses to one column on narrow viewports without
+          needing a breakpoint. */}
+      <div className="mt-8 grid max-w-[800px] grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4">
+        {CHANNELS.map((channel) => (
+          <ContactCard key={channel.name} {...channel} />
+        ))}
+      </div>
     </Layout>
   );
 }

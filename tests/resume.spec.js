@@ -41,13 +41,18 @@ test.describe("Resume Page", () => {
       await expect(page.getByAltText("Top Golf")).toBeVisible();
       await expect(page.getByAltText("Louvre")).toBeVisible();
 
+      // Filter for visibility inside the browser rather than with Playwright's
+      // :visible pseudo — combining it with a child combinator resolves
+      // inconsistently and can yield an empty list.
       const [first, second] = await page
-        .locator('[data-testid="resume-photos"] > div:visible')
+        .locator('[data-testid="resume-photos"] > div')
         .evaluateAll((els) =>
-          els.map((el) => {
-            const r = el.getBoundingClientRect();
-            return { left: r.left, right: r.right, top: Math.round(r.top) };
-          }),
+          els
+            .filter((el) => el.offsetParent !== null)
+            .map((el) => {
+              const r = el.getBoundingClientRect();
+              return { left: r.left, right: r.right, top: Math.round(r.top) };
+            }),
         );
 
       // Side by side on one row, and actually overlapping.
@@ -67,8 +72,12 @@ test.describe("Resume Page", () => {
       await page.setViewportSize({ width: 390, height: 844 });
 
       const rotations = await page
-        .locator('[data-testid="resume-photos"] > div:visible > div')
-        .evaluateAll((els) => els.map((el) => getComputedStyle(el).rotate));
+        .locator('[data-testid="resume-photos"] > div')
+        .evaluateAll((els) =>
+          els
+            .filter((el) => el.offsetParent !== null)
+            .map((el) => getComputedStyle(el.firstElementChild).rotate),
+        );
 
       expect(rotations).toEqual(["-4deg", "3.5deg"]);
     });
