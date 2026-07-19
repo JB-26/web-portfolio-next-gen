@@ -12,8 +12,12 @@ import photoTopGolf from "../public/images/resume-topgolf.jpg";
 // really four lists.
 
 const PHOTOS = [
-  { src: photoTopGolf, alt: "Top Golf", rotate: -3 },
-  { src: photoMuseum, alt: "Natural History Museum", rotate: 1.5 },
+  { src: photoTopGolf, alt: "Top Golf", rotate: -4 },
+  // Hidden on phones only: three frames don't fit a 390px viewport without
+  // shrinking them to postage stamps, so phones show the outer two
+  // overlapping. From sm upward all three fit at the smaller size, which is
+  // also the behaviour the page had before the redesign.
+  { src: photoMuseum, alt: "Natural History Museum", rotate: 1, phoneOnlyHidden: true },
   { src: photoLouvre, alt: "Louvre", rotate: 3.5 },
 ];
 
@@ -197,19 +201,30 @@ export default function Resume() {
 
       <div
         data-testid="resume-photos"
-        className="flex flex-wrap items-center justify-center gap-7 py-10"
+        className="flex flex-wrap items-center justify-center gap-3 py-10"
       >
         {PHOTOS.map((photo, i) => (
-          <Polaroid
+          <div
             key={photo.alt}
-            src={photo.src}
-            alt={photo.alt}
-            size={180}
-            rotate={photo.rotate}
-            // Exactly one priority image per page — the same rule the previous
-            // version followed, preserving the recent LCP work.
-            priority={i === 0}
-          />
+            className={[
+              photo.phoneOnlyHidden ? "hidden sm:block" : "",
+              // The two visible mobile frames tuck into each other so they read
+              // as a scattered stack rather than two separate photos.
+              i === PHOTOS.length - 1 ? "-ml-6 sm:ml-0" : "",
+            ].join(" ")}
+          >
+            <Polaroid
+              src={photo.src}
+              alt={photo.alt}
+              size={220}
+              mobileSize={150}
+              rotate={photo.rotate}
+              rotateOnMobile
+              // Exactly one priority image per page — the same rule the previous
+              // version followed, preserving the recent LCP work.
+              priority={i === 0}
+            />
+          </div>
         ))}
       </div>
 

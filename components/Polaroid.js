@@ -24,6 +24,11 @@ export default function Polaroid({
   size = 200,
   mobileSize,
   rotate = -2,
+  // The hero sits straight on mobile — a lone tilted frame there reads as a
+  // rendering fault, and there is no hover to correct it. The resume trio is
+  // the opposite case: several overlapping frames only read as a scattered
+  // stack of photos if they keep their angles, so it opts in.
+  rotateOnMobile = false,
   priority = false,
   className = "",
 }) {
@@ -39,7 +44,9 @@ export default function Polaroid({
       // never fire and the hover would snap. The colour properties are listed
       // too, because naming any property replaces the global theme-switch
       // transition on this element rather than adding to it.
-      className={`shrink-0 rotate-0 border border-line bg-card p-3 pb-10 shadow-[0_8px_24px_rgba(33,31,28,0.14)] transition-[rotate,background-color,border-color,color] duration-300 motion-reduce:transition-none lg:rotate-[var(--polaroid-rotate)] lg:hover:rotate-0 ${className}`}
+      className={`shrink-0 border border-line bg-card p-3 pb-10 shadow-[0_8px_24px_rgba(33,31,28,0.14)] transition-[rotate,background-color,border-color,color] duration-300 motion-reduce:transition-none lg:rotate-[var(--polaroid-rotate)] lg:hover:rotate-0 ${
+        rotateOnMobile ? "rotate-[var(--polaroid-rotate)]" : "rotate-0"
+      } ${className}`}
       style={{
         "--polaroid-rotate": `${rotate}deg`,
         "--polaroid-size": `${size}px`,

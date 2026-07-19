@@ -31,22 +31,46 @@ test.describe("Resume Page", () => {
       await expect(museumImage).toHaveAttribute("src", /.+/);
     });
 
-    test("should wrap all three images on mobile", async ({ page }) => {
-      // The redesign wraps the trio rather than hiding the middle photo, so
-      // all three stay visible and the row simply stacks.
-      await page.setViewportSize({ width: 375, height: 667 });
+    test("should show the outer two overlapping on mobile", async ({ page }) => {
+      // Three frames at this size don't fit a phone without shrinking them to
+      // postage stamps, so mobile hides the middle photo and tucks the outer
+      // two into each other.
+      await page.setViewportSize({ width: 390, height: 844 });
 
-      await expect(page.getByAltText("Natural History Museum")).toBeVisible();
+      await expect(page.getByAltText("Natural History Museum")).toBeHidden();
       await expect(page.getByAltText("Top Golf")).toBeVisible();
       await expect(page.getByAltText("Louvre")).toBeVisible();
 
-      // Stacked, not side by side.
-      const tops = await page
-        .locator('[data-testid="resume-photos"] img')
+      const [first, second] = await page
+        .locator('[data-testid="resume-photos"] > div:visible')
         .evaluateAll((els) =>
-          els.map((el) => Math.round(el.getBoundingClientRect().top)),
+          els.map((el) => {
+            const r = el.getBoundingClientRect();
+            return { left: r.left, right: r.right, top: Math.round(r.top) };
+          }),
         );
-      expect(new Set(tops).size).toBe(3);
+
+      // Side by side on one row, and actually overlapping.
+      expect(first.top).toBe(second.top);
+      expect(second.left).toBeLessThan(first.right);
+
+      // No horizontal overflow at the narrowest supported width.
+      const overflows = await page.evaluate(
+        () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
+      );
+      expect(overflows).toBe(false);
+    });
+
+    test("frames keep their angle on mobile", async ({ page }) => {
+      // Unlike the hero, the resume frames stay rotated on mobile — several
+      // overlapping frames only read as a stack of photos if they're angled.
+      await page.setViewportSize({ width: 390, height: 844 });
+
+      const rotations = await page
+        .locator('[data-testid="resume-photos"] > div:visible > div')
+        .evaluateAll((els) => els.map((el) => getComputedStyle(el).rotate));
+
+      expect(rotations).toEqual(["-4deg", "3.5deg"]);
     });
 
     test("should scale image on hover", async ({ page }) => {
