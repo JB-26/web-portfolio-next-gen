@@ -34,7 +34,11 @@ export default function Header() {
           JB<span className="text-accent">.</span>
         </Link>
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[15.5px]">
+        {/* The nav row has very little slack on a phone — wordmark, three links
+            and the theme pill come to ~372px of the 390 available on an iPhone
+            12 Pro. The tighter mobile gap is what keeps an iPhone SE (375px) on
+            one line too; the design's spacing returns at lg. */}
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[15.5px] lg:gap-x-6">
           {NAV.map(({ href, label, isActive }) => {
             const active = isActive(pathname);
             return (

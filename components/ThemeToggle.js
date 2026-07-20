@@ -2,10 +2,13 @@ import { useTheme } from "../hooks/useTheme";
 
 // Shared so the placeholder and the real control occupy an identical box.
 // min-h-11 keeps the mobile touch target at 44px; lg: restores the design's
-// compact pill on pointer viewports. min-w covers the wider of the two labels
-// ("Light"), so the pill doesn't resize when the theme changes either.
+// compact pill on pointer viewports.
+//
+// min-w is sized to the wider label ("☀ Light") and no more. The header has
+// almost no slack at 390px — the whole row needs ~380px of the 390 available —
+// so an over-generous reservation here pushes the nav onto a second line.
 const PILL =
-  "inline-flex min-h-11 min-w-[5.25rem] items-center justify-center gap-1.5 rounded-full border border-line px-3 text-[13px] lg:min-h-8";
+  "inline-flex min-h-11 min-w-[4.5rem] items-center justify-center gap-1.5 rounded-full border border-line px-3 text-[13px] lg:min-h-8";
 
 export default function ThemeToggle() {
   const { theme, toggleTheme, mounted } = useTheme();

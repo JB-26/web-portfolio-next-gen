@@ -15,7 +15,12 @@ export default function Footer() {
     <footer data-testid="footer-component" className="border-t border-line">
       <div className="mx-auto flex w-full max-w-[1040px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 py-6 text-[14px] text-faint">
         <p className="m-0">© {new Date().getFullYear()} Joshua Blewitt</p>
-        <ul className="m-0 flex list-none flex-wrap items-center gap-x-5 gap-y-1 p-0">
+        {/* Six links at 14px with a 20px gap need 397px, against 342px of
+            content width on a 390px phone — which orphaned "RSS" onto its own
+            line. Tightening the gap and dropping a point of type on mobile
+            brings the row to ~316px so it stays on one line, with the designed
+            sizing restored from lg. */}
+        <ul className="m-0 flex list-none items-center gap-x-2 p-0 text-[13px] lg:gap-x-5 lg:text-[14px]">
           {LINKS.map(({ label, href }) => (
             <li key={label}>
               <a
