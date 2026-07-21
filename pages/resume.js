@@ -192,7 +192,7 @@ export default function Resume() {
 
       <header className="max-w-[720px] pt-10 pb-2">
         <h1 className="m-0 mb-2.5 text-[clamp(30px,4vw,38px)] font-bold tracking-[-0.03em] text-ink">
-          Resume
+          Resumé
         </h1>
         <p className="m-0 text-[16.5px] leading-[1.6] text-muted">
           Full resume available upon request as a PDF.

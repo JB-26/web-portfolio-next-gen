@@ -11,7 +11,7 @@ const NAV = [
   },
   {
     href: "/resume",
-    label: "Resume",
+    label: "Resumé",
     isActive: (p) => p.startsWith("/resume"),
   },
   {

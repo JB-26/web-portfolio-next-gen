@@ -6,7 +6,7 @@ test.describe("Resume Page", () => {
   });
 
   test("should display the main Resume heading", async ({ page }) => {
-    const heading = page.getByRole("heading", { name: "Resume", level: 1 });
+    const heading = page.getByRole("heading", { name: "Resumé", level: 1 });
     await expect(heading).toBeVisible();
   });
 
@@ -196,7 +196,7 @@ test.describe("Resume Page", () => {
     test("should adjust layout for tablet view", async ({ page }) => {
       await page.setViewportSize({ width: 768, height: 1024 });
 
-      const heading = page.getByRole("heading", { name: "Resume" });
+      const heading = page.getByRole("heading", { name: "Resumé" });
       await expect(heading).toBeVisible();
 
       // Polaroids should still be visible at tablet size
@@ -208,7 +208,7 @@ test.describe("Resume Page", () => {
       await page.setViewportSize({ width: 375, height: 667 });
 
       // Main content should still be visible
-      const heading = page.getByRole("heading", { name: "Resume" });
+      const heading = page.getByRole("heading", { name: "Resumé" });
       await expect(heading).toBeVisible();
 
       // Work experience should be readable on mobile
@@ -220,7 +220,7 @@ test.describe("Resume Page", () => {
   test.describe("Accessibility", () => {
     test("should have proper heading hierarchy", async ({ page }) => {
       // Check that h1 exists
-      const h1 = page.getByRole("heading", { level: 1, name: "Resume" });
+      const h1 = page.getByRole("heading", { level: 1, name: "Resumé" });
       await expect(h1).toBeVisible();
 
       // Check that h2 exists for Work Experience
