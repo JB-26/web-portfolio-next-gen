@@ -57,7 +57,7 @@ class CommentErrorBoundary extends Component {
         <p
           role="alert"
           data-testid="comments-error"
-          className="text-red-600 dark:text-red-400 text-base py-4"
+          className="py-4 text-[15.5px] text-red-600 dark:text-red-400"
         >
           Comments could not be loaded. Refresh the page to try again.
         </p>
@@ -155,7 +155,7 @@ function CommentsSectionInner({ postId, isOwner }) {
       {fetchState === "error" && (
         <p
           role="alert"
-          className="text-red-600 dark:text-red-400 text-base py-4"
+          className="py-4 text-[15.5px] text-red-600 dark:text-red-400"
         >
           Comments could not be loaded. Refresh the page to try again.
         </p>
@@ -180,7 +180,7 @@ function CommentsSectionInner({ postId, isOwner }) {
           )}
 
           {comments.length === 0 && (
-            <p className="text-gray-500 dark:text-slate-400 text-base py-4">
+            <p className="py-4 text-[15.5px] text-faint">
               No comments yet — be the first to share a thought.
             </p>
           )}
@@ -189,7 +189,7 @@ function CommentsSectionInner({ postId, isOwner }) {
 
       {/* Comment form — always rendered so users can post even while loading */}
       <div className="mt-8">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-slate-100 mb-4">
+        <h3 className="mb-4 text-[17px] font-semibold text-ink">
           Leave a comment
         </h3>
         <CommentForm postId={postId} onSuccess={handleSuccess} />

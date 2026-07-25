@@ -58,7 +58,7 @@ export default function CommentList({ comments, isOwner, onDelete }) {
   // Empty state
   if (comments.length === 0) {
     return (
-      <p className="text-gray-500 dark:text-slate-400 text-base py-4">
+      <p className="py-4 text-[15.5px] text-faint">
         No comments yet — be the first to share a thought.
       </p>
     );
@@ -92,7 +92,7 @@ export default function CommentList({ comments, isOwner, onDelete }) {
           type="button"
           onClick={handleShowMore}
           data-testid="show-more"
-          className="mt-4 px-4 py-2 rounded-md text-sm font-medium border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 dark:focus-visible:outline-blue-400 motion-reduce:transition-none"
+          className="mt-5 inline-flex min-h-11 items-center rounded-lg border border-line px-4 py-2 text-[14.5px] font-semibold text-muted hover:border-accent hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none lg:min-h-0"
         >
           Show {remainingCount} more
         </button>

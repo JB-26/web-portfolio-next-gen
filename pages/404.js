@@ -1,15 +1,10 @@
-import Header from "../components/header";
-import Footer from "../components/footer";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { siteTitle } from "../components/layout";
+import Layout, { siteTitle } from "../components/layout";
 
 export default function Custom404() {
-  const router = useRouter();
-
   return (
-    <div>
+    <Layout>
       <Head>
         <title>{siteTitle}</title>
         <meta
@@ -17,21 +12,22 @@ export default function Custom404() {
           name="The personal website of IT Professional, Joshua Blewitt"
         />
       </Head>
-      <Header></Header>
-      <div className="flex flex-col text-center mt-12 mb-5">
-        <h2 className="text-2xl/9 font-extrabold tracking-tighter mb-3.5 md:text-3xl/9">
-          {" "}
-          <span role="img" aria-label="string">
-            ⁉️
-          </span>
-        </h2>
-        <h2 data-testid="error-heading">You&apos;ve found the error page!</h2>
-        <h2>
+      <div className="flex flex-col items-center gap-4 py-16 text-center">
+        {/* Decorative — the heading below carries the meaning. */}
+        <span aria-hidden="true" className="text-4xl">
+          ⁉️
+        </span>
+        <h1
+          data-testid="error-heading"
+          className="m-0 text-[clamp(30px,4vw,38px)] font-bold leading-[1.12] tracking-[-0.03em] text-ink"
+        >
+          You&apos;ve found the error page!
+        </h1>
+        <p className="m-0 text-[16.5px] leading-[1.6] text-muted">
           Why not press this <Link href="/">link</Link> to return to the home
           page
-        </h2>
+        </p>
       </div>
-      <Footer></Footer>
-    </div>
+    </Layout>
   );
 }

@@ -1,51 +1,25 @@
 import { useTheme } from "../hooks/useTheme";
 
-function SunIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      stroke="currentColor"
-      width="20"
-      height="20"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-      />
-    </svg>
-  );
-}
-
-function MoonIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      stroke="currentColor"
-      width="20"
-      height="20"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-      />
-    </svg>
-  );
-}
+// Shared so the placeholder and the real control occupy an identical box.
+// min-h-11 keeps the mobile touch target at 44px; lg: restores the design's
+// compact pill on pointer viewports.
+//
+// min-w is sized to the wider label ("☀ Light") and no more. The header has
+// almost no slack at 390px — the whole row needs ~380px of the 390 available —
+// so an over-generous reservation here pushes the nav onto a second line.
+const PILL =
+  "inline-flex min-h-11 min-w-[4.5rem] items-center justify-center gap-1.5 rounded-full border border-line px-3 text-[13px] lg:min-h-8";
 
 export default function ThemeToggle() {
   const { theme, toggleTheme, mounted } = useTheme();
 
-  if (!mounted) return null;
+  // The server can't know the visitor's theme, so the real control only renders
+  // after hydration. Returning null would leave a gap that fills in a frame
+  // later, reflowing the nav — this reserves the exact same box instead, so
+  // nothing moves.
+  if (!mounted) {
+    return <span aria-hidden="true" className={PILL} />;
+  }
 
   const isDark = theme === "dark";
   const label = isDark ? "Switch to light mode" : "Switch to dark mode";
@@ -58,9 +32,10 @@ export default function ThemeToggle() {
       aria-pressed={isDark}
       title={label}
       onClick={toggleTheme}
-      className="inline-flex items-center justify-center w-11 h-11 rounded-md text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 dark:focus-visible:outline-blue-400 transition-colors duration-200 motion-reduce:transition-none"
+      className={`${PILL} text-muted hover:border-accent hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent`}
     >
-      {isDark ? <SunIcon /> : <MoonIcon />}
+      <span aria-hidden="true">{isDark ? "☀" : "☾"}</span>
+      {isDark ? "Light" : "Dark"}
     </button>
   );
 }

@@ -1,14 +1,19 @@
-import Layout, { siteTitle } from "../components/layout";
-import Footer from "../components/footer";
-import styles from "../styles/index.module.css";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
-import indexImage from "../public/images/profile_photo_2.png";
+import Layout, { siteTitle } from "../components/layout";
+import Polaroid from "../components/Polaroid";
+import PostCard from "../components/PostCard";
+import { getSortedPostsData } from "../lib/posts";
+// A clean 400x400 square with no frame of its own — the Polaroid component
+// supplies the frame in CSS so it can follow the theme. A pre-framed source
+// image would double-frame here: invisible in light mode, obvious in dark.
+import portrait from "../public/images/profile_2.png";
 
-export default function Home() {
+const RECENT_POST_COUNT = 4;
+
+export default function Home({ recentPosts }) {
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>{siteTitle}</title>
         <meta
@@ -16,29 +21,38 @@ export default function Home() {
           name="The personal website of IT Professional, Joshua Blewitt"
         />
       </Head>
-      {/* Hero section: stacks vertically on mobile and tablet (including iPad Mini
-          portrait at 768 px). The side-by-side layout only engages at lg (1024 px)
-          where there is enough horizontal space for both columns to breathe. */}
-      <div className="flex flex-col-reverse lg:flex-row justify-center gap-6 lg:gap-10 mb-2">
-        {/* Text column: flex-1 min-w-0 lets it fill remaining space in row mode
-            without overflowing its parent — the correct flex shrink pattern. */}
-        <div className="flex-1 min-w-0">
+
+      {/* Hero. flex-wrap handles the collapse to a single column on narrow
+          viewports without a breakpoint — the text column's min-w-[300px]
+          decides when there is no longer room for two columns. */}
+      <header className="flex flex-wrap items-center gap-14 py-12 pb-14">
+        <div data-testid="image">
+          <Polaroid
+            src={portrait}
+            alt="Joshua Blewitt"
+            size={200}
+            mobileSize={248}
+            rotate={-2}
+            // The LCP element on this page.
+            priority
+          />
+        </div>
+        <div className="flex min-w-[300px] flex-1 flex-col gap-[18px]">
           <h1
             data-testid="main-heading"
-            className="text-3xl md:text-[2.5rem] md:leading-tight font-extrabold"
+            className="m-0 text-[clamp(34px,5vw,46px)] font-bold leading-[1.08] tracking-[-0.03em] text-ink"
           >
-            Hey, I&apos;m{" "}
-            <div className={styles.gradientText}>Joshua Blewitt</div>{" "}
-            {/* Decorative emoji — hidden from assistive technology */}
-            <span aria-hidden="true">👋</span>
+            Hey, I&apos;m Joshua<span className="text-accent">.</span>
           </h1>
-          <p className="mt-3 text-lg leading-relaxed" data-testid="paragraph">
+          <p
+            data-testid="paragraph"
+            className="m-0 max-w-[560px] text-[17.5px] leading-[1.65] text-muted"
+          >
             A hobbyist{" "}
             <Link
               href="https://github.com/JB-26"
               rel="noopener noreferrer"
               target="_blank"
-              className="font-extrabold"
             >
               developer
             </Link>
@@ -47,7 +61,6 @@ export default function Home() {
               href="https://www.instagram.com/jblw1tt/"
               rel="noopener noreferrer"
               target="_blank"
-              className="font-extrabold"
             >
               photographer
             </Link>
@@ -56,7 +69,6 @@ export default function Home() {
               href="https://www.youtube.com/@joshuablewitt6022"
               rel="noopener noreferrer"
               target="_blank"
-              className="font-extrabold"
             >
               YouTuber
             </Link>
@@ -65,49 +77,62 @@ export default function Home() {
               href="https://bsky.app/profile/joshblewitt.dev"
               rel="noopener noreferrer"
               target="_blank"
-              className="font-extrabold"
             >
               writer
             </Link>
-            . I have ten years of experience in the software industry. From
-            testing software to working with stakeholders, my work allows me to
-            analyse business problems, design and deliver technical solutions
-            that deliver value. <br />
-            Described as a technology advocate, problem solver and curious mind.{" "}
-            <br />
-            I&apos;ve{" "}
-            <Link
-              href="https://www.linkedin.com/in/jblewitt/"
-              rel="noopener noreferrer"
-              target="_blank"
-              className="font-extrabold"
-            >
-              worked
-            </Link>{" "}
-            at major companies such as Domino&apos;s Pizza Group and IQVIA.{" "}
-            <br />
-            If I&apos;m not working on my street photography skills, I&apos;m
-            either writing my next blog post, YouTube video, or practicing
-            programming. <br />
+            . I have ten years of experience in the software industry — from
+            testing software to working with stakeholders at companies like
+            Domino&apos;s Pizza Group and IQVIA.
           </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/blog"
+              className="inline-flex min-h-11 items-center rounded-lg bg-accent px-[22px] py-[11px] text-[15.5px] font-semibold text-accent-contrast no-underline hover:text-accent-contrast"
+            >
+              Read the blog
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex min-h-11 items-center rounded-lg border border-line px-[22px] py-[11px] text-[15.5px] font-semibold text-muted no-underline hover:border-accent hover:text-ink"
+            >
+              Get in touch
+            </Link>
+          </div>
         </div>
-        {/* Image column: centred in stacked mode; auto-sized in row mode so it
-            doesn't claim a fixed width that overflows the container.
-            max-w-xs caps the image on small screens; lg:max-w-sm gives it
-            a comfortable ceiling once the row layout is active. */}
-        <div
-          data-testid="image"
-          className="flex justify-center items-start"
-        >
-          <Image
-            priority
-            className="rounded-3xl w-auto h-auto max-w-xs lg:max-w-sm lg:rotate-3 hover:rotate-0 hover:scale-105 transition-transform duration-300 motion-reduce:transition-none motion-reduce:hover:transform-none"
-            src={indexImage}
-            alt="Photo of myself, presented in a polaroid frame"
-          />
+      </header>
+
+      <section className="flex flex-col gap-5 border-t border-line pt-9">
+        <div className="flex flex-wrap items-baseline justify-between gap-4">
+          <h2 className="m-0 text-[23px] font-bold tracking-[-0.02em] text-ink">
+            Recent posts
+          </h2>
+          <Link
+            href="/blog"
+            className="text-[15px] font-semibold text-accent no-underline hover:text-ink"
+          >
+            View all →
+          </Link>
         </div>
-      </div>
-      <Footer></Footer>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
+          {recentPosts.map((post) => (
+            <PostCard key={post.id} {...post} />
+          ))}
+        </div>
+      </section>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const recentPosts = getSortedPostsData()
+    .slice(0, RECENT_POST_COUNT)
+    .map(({ id, title, date, description = null, readingTime = null }) => ({
+      id,
+      title,
+      date,
+      description,
+      readingTime,
+    }));
+
+  return { props: { recentPosts } };
 }

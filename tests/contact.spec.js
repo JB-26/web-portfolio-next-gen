@@ -1,5 +1,61 @@
 import { test, expect } from "@playwright/test";
 
+// Cards no longer carry icons, so their accessible name is the platform name
+// plus the handle rather than the old icon alt text ("Email Contact Icon").
+const card = (page, name) =>
+  page.locator('[data-testid="contact-card"]').filter({ hasText: name });
+
+// How many distinct columns the cards occupy. Callers poll this: a viewport
+// change doesn't take effect synchronously, so a one-shot read can measure the
+// pre-resize layout when the suite runs under parallel load.
+const distinctColumns = async (page) => {
+  const lefts = await page
+    .locator('[data-testid="contact-card"]')
+    .evaluateAll((els) =>
+      els.map((el) => Math.round(el.getBoundingClientRect().left)),
+    );
+  return new Set(lefts).size;
+};
+
+const CHANNELS = [
+  {
+    name: "Email",
+    handle: "joshblewitt@protonmail.com",
+    href: "mailto:joshblewitt@protonmail.com",
+    external: false,
+  },
+  {
+    name: "LinkedIn",
+    handle: "jblewitt",
+    href: "https://www.linkedin.com/in/jblewitt/",
+    external: true,
+  },
+  {
+    name: "YouTube",
+    handle: "@joshuablewitt6022",
+    href: "https://www.youtube.com/@joshuablewitt6022",
+    external: true,
+  },
+  {
+    name: "Instagram",
+    handle: "jblw1tt",
+    href: "https://www.instagram.com/jblw1tt/",
+    external: true,
+  },
+  {
+    name: "Bluesky",
+    handle: "@joshblewitt.dev",
+    href: "https://bsky.app/profile/joshblewitt.dev",
+    external: true,
+  },
+  {
+    name: "RSS",
+    handle: "Add to your favourite reader",
+    href: "/rss.xml",
+    external: true,
+  },
+];
+
 test.describe("Contact Page", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("http://localhost:3000/contact"); // Adjust the URL path as needed
@@ -24,274 +80,115 @@ test.describe("Contact Page", () => {
 
   test.describe("Contact Cards", () => {
     test("should display all six contact cards", async ({ page }) => {
-      const emailCard = page.getByRole("link", { name: /Email Contact/i });
-      const linkedinCard = page.getByRole("link", {
-        name: /LinkedIn Contact/i,
-      });
-      const youtubeCard = page.getByRole("link", { name: /YouTube Contact/i });
-      const instagramCard = page.getByRole("link", {
-        name: /Instagram Contact/i,
-      });
-      const blueskyCard = page.getByRole("link", { name: /Bluesky Contact/i });
-      const rssCard = page.getByRole("link", { name: /RSS Feed/i });
-
-      await expect(emailCard).toBeVisible();
-      await expect(linkedinCard).toBeVisible();
-      await expect(youtubeCard).toBeVisible();
-      await expect(instagramCard).toBeVisible();
-      await expect(blueskyCard).toBeVisible();
-      await expect(rssCard).toBeVisible();
+      await expect(page.locator('[data-testid="contact-card"]')).toHaveCount(6);
+      for (const { name } of CHANNELS) {
+        await expect(card(page, name)).toBeVisible();
+      }
     });
 
-    test("should have grid layout with two columns", async ({ page }) => {
-      const gridContainer = page.locator(".grid.grid-cols-2");
-      await expect(gridContainer).toBeVisible();
+    test("should lay the cards out as a grid", async ({ page }) => {
+      const grid = page.locator('[data-testid="contact-card"]').first().locator("..");
+      await expect(grid).toHaveCSS("display", "grid");
+      await expect(grid).toHaveCSS("gap", "16px");
+    });
 
-      const gridDisplay = await gridContainer.evaluate((el) => {
-        return window.getComputedStyle(el).display;
-      });
-      expect(gridDisplay).toBe("grid");
+    test("cards carry no icons", async ({ page }) => {
+      // The handoff drops the icon set the previous cards used; this guards
+      // against one creeping back in.
+      await expect(
+        page.locator('[data-testid="contact-card"] img'),
+      ).toHaveCount(0);
     });
   });
 
-  test.describe("Email Card", () => {
-    test("should have correct email link", async ({ page }) => {
-      const emailLink = page.getByRole("link", { name: /Email Contact/i });
-      await expect(emailLink).toHaveAttribute(
-        "href",
-        "mailto:joshblewitt@protonmail.com",
-      );
-    });
-
-    test("should display email address", async ({ page }) => {
-      const emailAddress = page.getByText("joshblewitt@protonmail.com");
-      await expect(emailAddress).toBeVisible();
-    });
-
-    test("should have email icon", async ({ page }) => {
-      const emailIcon = page.getByAltText("Email Contact");
-      await expect(emailIcon).toBeVisible();
-    });
-
-    test("should not open in new tab", async ({ page }) => {
-      const emailLink = page.getByRole("link", { name: /Email Contact/i });
-      const target = await emailLink.getAttribute("target");
-      expect(target).toBeNull();
-    });
-  });
-
-  test.describe("LinkedIn Card", () => {
-    test("should have correct LinkedIn link", async ({ page }) => {
-      const linkedinLink = page.getByRole("link", {
-        name: /LinkedIn Contact/i,
+  // One parameterised block replaces six near-identical describe blocks.
+  for (const { name, handle, href, external } of CHANNELS) {
+    test.describe(`${name} Card`, () => {
+      test(`should have the correct ${name} link`, async ({ page }) => {
+        await expect(card(page, name)).toHaveAttribute("href", href);
       });
-      await expect(linkedinLink).toHaveAttribute(
-        "href",
-        "https://www.linkedin.com/in/jblewitt/",
-      );
-    });
 
-    test("should display LinkedIn username", async ({ page }) => {
-      const username = page.getByText("jblewitt", { exact: true });
-      await expect(username).toBeVisible();
-    });
-
-    test("should have LinkedIn icon", async ({ page }) => {
-      const linkedinIcon = page.getByAltText("LinkedIn Contact");
-      await expect(linkedinIcon).toBeVisible();
-    });
-
-    test("should open in new tab with security attributes", async ({
-      page,
-    }) => {
-      const linkedinLink = page.getByRole("link", {
-        name: /LinkedIn Contact/i,
+      test(`should display the ${name} handle`, async ({ page }) => {
+        await expect(card(page, name)).toContainText(handle);
       });
-      await expect(linkedinLink).toHaveAttribute("target", "_blank");
-      await expect(linkedinLink).toHaveAttribute("rel", "noopener noreferrer");
-    });
-  });
 
-  test.describe("YouTube Card", () => {
-    test("should have correct YouTube link", async ({ page }) => {
-      const youtubeLink = page.getByRole("link", { name: /YouTube Contact/i });
-      await expect(youtubeLink).toHaveAttribute(
-        "href",
-        "https://www.youtube.com/@joshuablewitt6022",
-      );
+      if (external) {
+        test("should open in a new tab with security attributes", async ({
+          page,
+        }) => {
+          await expect(card(page, name)).toHaveAttribute("target", "_blank");
+          await expect(card(page, name)).toHaveAttribute(
+            "rel",
+            "noopener noreferrer",
+          );
+        });
+      } else {
+        test("should not open in a new tab", async ({ page }) => {
+          await expect(card(page, name)).not.toHaveAttribute("target", "_blank");
+        });
+      }
     });
-
-    test("should display YouTube handle", async ({ page }) => {
-      const handle = page.getByText("@joshuablewitt6022");
-      await expect(handle).toBeVisible();
-    });
-
-    test("should have YouTube icon", async ({ page }) => {
-      const youtubeIcon = page.getByAltText("YouTube Contact");
-      await expect(youtubeIcon).toBeVisible();
-    });
-
-    test("should open in new tab with security attributes", async ({
-      page,
-    }) => {
-      const youtubeLink = page.getByRole("link", { name: /YouTube Contact/i });
-      await expect(youtubeLink).toHaveAttribute("target", "_blank");
-      await expect(youtubeLink).toHaveAttribute("rel", "noopener noreferrer");
-    });
-  });
-
-  test.describe("Instagram Card", () => {
-    test("should have correct Instagram link", async ({ page }) => {
-      const instagramLink = page.getByRole("link", {
-        name: /Instagram Contact/i,
-      });
-      await expect(instagramLink).toHaveAttribute(
-        "href",
-        "https://www.instagram.com/jblw1tt/",
-      );
-    });
-
-    test("should display Instagram username", async ({ page }) => {
-      const username = page.getByText("jblw1tt");
-      await expect(username).toBeVisible();
-    });
-
-    test("should have Instagram icon", async ({ page }) => {
-      const instagramIcon = page.getByAltText("Instagram Contact");
-      await expect(instagramIcon).toBeVisible();
-    });
-
-    test("should open in new tab with security attributes", async ({
-      page,
-    }) => {
-      const instagramLink = page.getByRole("link", {
-        name: /Instagram Contact/i,
-      });
-      await expect(instagramLink).toHaveAttribute("target", "_blank");
-      await expect(instagramLink).toHaveAttribute("rel", "noopener noreferrer");
-    });
-  });
-
-  test.describe("Bluesky Card", () => {
-    test("should have correct Bluesky link", async ({ page }) => {
-      const blueskyLink = page.getByRole("link", { name: /Bluesky Contact/i });
-      await expect(blueskyLink).toHaveAttribute(
-        "href",
-        "https://bsky.app/profile/joshblewitt.dev",
-      );
-    });
-
-    test("should display Bluesky handle", async ({ page }) => {
-      const handle = page.getByText("@joshblewitt.dev");
-      await expect(handle).toBeVisible();
-    });
-
-    test("should have Bluesky icon", async ({ page }) => {
-      const blueskyIcon = page.getByAltText("Bluesky Contact");
-      await expect(blueskyIcon).toBeVisible();
-    });
-
-    test("should open in new tab with security attributes", async ({
-      page,
-    }) => {
-      const blueskyLink = page.getByRole("link", { name: /Bluesky Contact/i });
-      await expect(blueskyLink).toHaveAttribute("target", "_blank");
-      await expect(blueskyLink).toHaveAttribute("rel", "noopener noreferrer");
-    });
-  });
-
-  test.describe("RSS Card", () => {
-    test("should have correct RSS link", async ({ page }) => {
-      const rssLink = page.getByRole("link", { name: /RSS Feed/i });
-      await expect(rssLink).toHaveAttribute("href", "/rss.xml");
-    });
-
-    test("should display RSS description", async ({ page }) => {
-      const description = page.getByText("Add to your favourite reader");
-      await expect(description).toBeVisible();
-    });
-
-    test("should have RSS icon", async ({ page }) => {
-      const rssIcon = page.getByAltText("RSS Feed");
-      await expect(rssIcon).toBeVisible();
-    });
-
-    test("should open in new tab with security attributes", async ({
-      page,
-    }) => {
-      const rssLink = page.getByRole("link", { name: /RSS Feed/i });
-      await expect(rssLink).toHaveAttribute("target", "_blank");
-      await expect(rssLink).toHaveAttribute("rel", "noopener noreferrer");
-    });
-  });
+  }
 
   test.describe("Card Interactions", () => {
-    test("should have shadow effect on all cards", async ({ page }) => {
-      const emailCard = page.getByRole("link", { name: /Email Contact/i });
-
-      const boxShadow = await emailCard.evaluate((el) => {
-        return window.getComputedStyle(el).boxShadow;
-      });
-
-      expect(boxShadow).not.toBe("none");
+    test("cards have no shadow — the design reserves those for polaroids", async ({
+      page,
+    }) => {
+      await expect(card(page, "Email")).toHaveCSS("box-shadow", "none");
     });
 
-    test("should transform card on hover", async ({ page }) => {
-      const emailCard = page.getByRole("link", { name: /Email Contact/i });
+    test("hovering a card turns its border to the accent", async ({ page }) => {
+      const emailCard = card(page, "Email");
 
-      // Get initial transform
-      const initialTransform = await emailCard.evaluate((el) => {
-        return window.getComputedStyle(el).transform;
-      });
-
-      // Hover over the card
+      const before = await emailCard.evaluate(
+        (el) => getComputedStyle(el).borderColor,
+      );
       await emailCard.hover();
-
-      // Wait for animation
-      await page.waitForTimeout(200);
-
-      // Get transform after hover
-      const hoveredTransform = await emailCard.evaluate((el) => {
-        return window.getComputedStyle(el).transform;
-      });
+      await expect
+        .poll(async () =>
+          emailCard.evaluate((el) => getComputedStyle(el).borderColor),
+        )
+        .not.toBe(before);
     });
   });
 
   test.describe("Responsive Behavior", () => {
-    test("should maintain grid layout on mobile", async ({ page }) => {
-      await page.setViewportSize({ width: 375, height: 667 });
+    test("should collapse to a single column on mobile", async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
 
-      const gridContainer = page.locator(".grid.grid-cols-2");
-      await expect(gridContainer).toBeVisible();
+      await expect
+        .poll(() => distinctColumns(page))
+        .toBe(1);
 
-      // All cards should still be visible
-      const emailCard = page.getByRole("link", { name: /Email Contact/i });
-      const linkedinCard = page.getByRole("link", {
-        name: /LinkedIn Contact/i,
+      const overflows = await page.evaluate(
+        () =>
+          document.documentElement.scrollWidth >
+          document.documentElement.clientWidth,
+      );
+      expect(overflows).toBe(false);
+    });
+
+    test("long handles wrap rather than overflow their card", async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
+
+      const measure = () => card(page, "Email").evaluate((el) => {
+        const handle = el.lastElementChild;
+        return (
+          Math.round(handle.getBoundingClientRect().right) <=
+          Math.round(el.getBoundingClientRect().right)
+        );
       });
-
-      await expect(emailCard).toBeVisible();
-      await expect(linkedinCard).toBeVisible();
+      await expect.poll(measure).toBe(true);
     });
 
-    test("should truncate long text on small screens", async ({ page }) => {
-      await page.setViewportSize({ width: 375, height: 667 });
-
-      // Check that email address has truncate class
-      const emailText = page
-        .locator(".truncate")
-        .filter({ hasText: "joshblewitt@protonmail.com" });
-      await expect(emailText).toBeVisible();
-    });
-
-    test("should maintain proper spacing on tablet", async ({ page }) => {
+    test("should show two columns on tablet and up", async ({ page }) => {
       await page.setViewportSize({ width: 768, height: 1024 });
 
-      const heading = page.getByTestId("heading1");
-      await expect(heading).toBeVisible();
-
-      const gridContainer = page.locator(".grid.grid-cols-2");
-      await expect(gridContainer).toBeVisible();
+      await expect
+        .poll(() => distinctColumns(page))
+        .toBe(2);
     });
   });
 
@@ -302,54 +199,57 @@ test.describe("Contact Page", () => {
     });
 
     test("external links should have security attributes", async ({ page }) => {
-      const externalLinks = [
-        page.getByRole("link", { name: /LinkedIn Contact/i }),
-        page.getByRole("link", { name: /YouTube Contact/i }),
-        page.getByRole("link", { name: /Instagram Contact/i }),
-        page.getByRole("link", { name: /Bluesky Contact/i }),
-      ];
+      for (const { name } of CHANNELS.filter((c) => c.external)) {
+        await expect(card(page, name)).toHaveAttribute(
+          "rel",
+          "noopener noreferrer",
+        );
+        await expect(card(page, name)).toHaveAttribute("target", "_blank");
+      }
+    });
 
-      for (const link of externalLinks) {
-        await expect(link).toHaveAttribute("rel", "noopener noreferrer");
-        await expect(link).toHaveAttribute("target", "_blank");
+    test("every card is reachable as a link with a meaningful name", async ({
+      page,
+    }) => {
+      for (const { name, handle } of CHANNELS) {
+        const link = page.getByRole("link", {
+          name: new RegExp(`${name}\\s+${handle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`),
+        });
+        await expect(link).toHaveCount(1);
       }
     });
   });
 
   test.describe("Layout and Styling", () => {
     test("should have proper card structure", async ({ page }) => {
-      const emailCard = page.getByRole("link", { name: /Email Contact/i });
-
-      // Check for rounded corners
-      const borderRadius = await emailCard.evaluate((el) => {
-        return window.getComputedStyle(el).borderRadius;
-      });
-      expect(borderRadius).toBeTruthy();
-
-      // Check for border
-      const border = await emailCard.evaluate((el) => {
-        return window.getComputedStyle(el).border;
-      });
-      expect(border).toContain("1px");
+      const emailCard = card(page, "Email");
+      await expect(emailCard).toHaveCSS("border-radius", "12px");
+      await expect(emailCard).toHaveCSS("border-top-width", "1px");
     });
 
     test("should have proper text hierarchy in cards", async ({ page }) => {
-      // Platform name should be more prominent
-      const emailLabel = page
-        .locator("p.text-black.text-sm")
-        .filter({ hasText: "Email" });
-      await expect(emailLabel).toBeVisible();
+      const emailCard = card(page, "Email");
+      const [platform, handle] = await emailCard.evaluate((el) => {
+        const [name, detail] = el.children;
+        const read = (n) => {
+          const s = getComputedStyle(n);
+          return {
+            fontSize: s.fontSize,
+            fontWeight: s.fontWeight,
+            mono: s.fontFamily.includes("Spline Sans Mono"),
+          };
+        };
+        return [read(name), read(detail)];
+      });
 
-      // Detail text should be smaller and gray
-      const emailDetail = page
-        .locator("p.text-gray-600.text-xs")
-        .filter({ hasText: "joshblewitt@protonmail.com" });
-      await expect(emailDetail).toBeVisible();
-    });
+      // Platform name is the prominent line; the handle sits in the mono face
+      // used for metadata across the site.
+      expect(platform.fontSize).toBe("16px");
+      expect(Number(platform.fontWeight)).toBeGreaterThanOrEqual(600);
+      expect(platform.mono).toBe(false);
 
-    test("should have consistent spacing between cards", async ({ page }) => {
-      const gridContainer = page.locator(".grid.grid-cols-2.gap-5");
-      await expect(gridContainer).toBeVisible();
+      expect(handle.fontSize).toBe("13.5px");
+      expect(handle.mono).toBe(true);
     });
   });
 
