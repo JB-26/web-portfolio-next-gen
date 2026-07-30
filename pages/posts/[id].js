@@ -4,9 +4,6 @@ import Head from "next/head";
 import DateFormatter from "../../components/date";
 import postStyle from "../../styles/post.module.css";
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
-import rehypeSlug from "rehype-slug";
 import dynamic from "next/dynamic";
 import { useRef, useSyncExternalStore } from "react";
 import TableOfContents from "../../components/TableOfContents";
@@ -105,42 +102,21 @@ export default function Post({ postData, relatedPosts }) {
               </div>
             )}
 
+            {/*
+              contentHtml is a real HTML string built at compile time by
+              getPostData's unified pipeline (see lib/posts.js), which reproduces
+              the previous <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSlug]}>
+              output — including target/rel on links, loading/decoding on images,
+              and rehype-slug heading ids the TableOfContents reads from this
+              subtree after mount. Rendering the prebuilt string here keeps
+              react-markdown out of this route's client bundle. The markup is
+              first-party (repo-authored posts), the same trust boundary the old
+              rehype-raw + allowDangerousHtml pipeline already relied on.
+            */}
             <div
               className={`${postStyle.dropCap} prose prose-post max-w-none`}
-            >
-              <ReactMarkdown
-                rehypePlugins={[rehypeRaw, rehypeSlug]}
-                components={{
-                  a: ({ node, href, children, ...props }) => {
-                    return (
-                      <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        {...props}
-                      >
-                        {children}
-                      </a>
-                    );
-                  },
-                  // Markdown images can't safely use next/image — arbitrary
-                  // author-supplied images have no known dimensions at build
-                  // time, and next/image requires either explicit width/height
-                  // or `fill` inside a sized parent. Instead, defer loading and
-                  // decoding for these (necessarily below-the-fold, non-LCP)
-                  // images so they don't compete with the page's real LCP
-                  // element for network/main-thread priority.
-                  img: ({ node, alt, ...props }) => {
-                    return (
-                      // eslint-disable-next-line @next/next/no-img-element -- see above: next/image is not usable for arbitrary markdown images
-                      <img alt={alt || ""} loading="lazy" decoding="async" {...props} />
-                    );
-                  },
-                }}
-              >
-                {postData.contentHtml}
-              </ReactMarkdown>
-            </div>
+              dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+            />
           </article>
 
           <AuthorCard />
