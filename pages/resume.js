@@ -17,7 +17,12 @@ const PHOTOS = [
   // shrinking them to postage stamps, so phones show the outer two
   // overlapping. From sm upward all three fit at the smaller size, which is
   // also the behaviour the page had before the redesign.
-  { src: photoMuseum, alt: "Natural History Museum", rotate: 1, phoneOnlyHidden: true },
+  {
+    src: photoMuseum,
+    alt: "Natural History Museum",
+    rotate: 1,
+    phoneOnlyHidden: true,
+  },
   { src: photoLouvre, alt: "Louvre", rotate: 3.5 },
 ];
 
@@ -71,6 +76,17 @@ const CERTIFICATIONS = [
     tags: ["AI"],
   },
   {
+    name: "Microsoft Business Analysis Fundamentals",
+    href: "https://coursera.org/share/e46aca4fd8963ccd9eef79b1faf3081f",
+    tags: [
+      "Business Analysis",
+      "Stakeholder management",
+      "Root Cause Analysis",
+      "Qualitative methods",
+      "Quantitative methods",
+    ],
+  },
+  {
     name: "Digital Product Management: Modern Fundamentals",
     href: "https://www.coursera.org/account/accomplishments/verify/LGPKX3EFN3M9",
     tags: ["Product", "Innovation", "Stakeholder Management"],
@@ -95,11 +111,6 @@ const CERTIFICATIONS = [
     href: "https://www.freecodecamp.org/certification/fcc2927573c-68b6-4b92-954b-d97d1ea76b7f/responsive-web-design",
     tags: ["HTML", "CSS"],
   },
-  {
-    name: "Getting Started as a Business Analyst",
-    href: "https://www.linkedin.com/learning/certificates/2780b24ee8c41fc0465b74e61e83af34af75e9bbb2d54401e76c26140726ffcb",
-    tags: ["Business Analysis", "Business Strategy", "Business Process Analysis"],
-  },
 ];
 
 const PROJECTS = [
@@ -120,13 +131,27 @@ const PROJECTS = [
     name: "Video Game API",
     description: "A RESTful API for video games.",
     href: "https://github.com/JB-26/video-game-api-nextjs",
-    tags: ["TypeScript", "MongoDB", "Vercel", "Next.js", "Tailwind CSS", "DaisyUI"],
+    tags: [
+      "TypeScript",
+      "MongoDB",
+      "Vercel",
+      "Next.js",
+      "Tailwind CSS",
+      "DaisyUI",
+    ],
   },
   {
     name: "Haiku Check",
     description: "Is that a haiku? Check it!",
     href: "https://github.com/JB-26/haiku-check",
-    tags: ["TypeScript", "Vercel", "Next.js", "Tailwind CSS", "Playwright", "Jest"],
+    tags: [
+      "TypeScript",
+      "Vercel",
+      "Next.js",
+      "Tailwind CSS",
+      "Playwright",
+      "Jest",
+    ],
   },
   {
     name: "Ask Astronaut",
