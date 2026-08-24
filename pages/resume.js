@@ -175,31 +175,34 @@ const HOBBIES = [
   { name: "Writing", description: "Getting thoughts down on paper." },
 ];
 
-// Certifications and projects share a row shape: a name (and optional
-// description) on the left, monochrome tag pills on the right.
+// Certifications and projects share a row shape: a name, an optional
+// description, then monochrome tag pills — always stacked in that order.
+// Pills used to sit in a right-hand column that only wrapped underneath when
+// they ran out of room, so short entries put them beside the title and long
+// ones put them below; stacking keeps every row reading the same way.
 function LinkedRow({ name, description, href, tags }) {
   return (
     <a
       href={href}
       rel="noopener noreferrer"
       target="_blank"
-      className="group flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-line py-4 no-underline"
+      className="group flex flex-col items-start gap-1 border-b border-line py-4 no-underline"
     >
-      <span className="flex min-w-0 flex-col gap-1">
-        <span className="text-[16px] font-semibold text-ink group-hover:text-accent">
-          {name}
+      <span className="text-[16px] font-semibold text-ink group-hover:text-accent">
+        {name}
+      </span>
+      {description ? (
+        <span className="text-[14.5px] leading-[1.5] text-muted">
+          {description}
         </span>
-        {description ? (
-          <span className="text-[14.5px] leading-[1.5] text-muted">
-            {description}
-          </span>
-        ) : null}
-      </span>
-      <span className="flex flex-wrap gap-2">
-        {tags.map((tag) => (
-          <TagPill key={tag} label={tag} size="xs" />
-        ))}
-      </span>
+      ) : null}
+      {tags?.length ? (
+        <span className="mt-1.5 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <TagPill key={tag} label={tag} size="xs" />
+          ))}
+        </span>
+      ) : null}
     </a>
   );
 }
