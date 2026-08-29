@@ -42,3 +42,10 @@ template.md
 # zed IDE
 /.zed
 .vercel
+
+# claude folders
+/.claude
+/design_handoff_blog_redesign
+/docs
+/public
+
