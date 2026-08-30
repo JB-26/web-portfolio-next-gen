@@ -167,9 +167,11 @@ test("paginated pages carry a distinct title", async ({ page }) => {
 });
 
 test("every listing page has exactly one meta description", async ({ page }) => {
-  await page.goto(`${BASE}/blog`);
-  const metas = page.locator('head meta[name="description"]');
+  for (const route of ["/blog", "/page/1", "/page/2"]) {
+    await page.goto(`${BASE}${route}`);
+    const metas = page.locator('head meta[name="description"]');
 
-  await expect(metas).toHaveCount(1);
-  await expect(metas).not.toHaveAttribute("content", "");
+    await expect(metas).toHaveCount(1);
+    await expect(metas).not.toHaveAttribute("content", "");
+  }
 });

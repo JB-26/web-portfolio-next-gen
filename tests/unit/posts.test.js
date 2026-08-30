@@ -17,6 +17,7 @@ import {
   getPostsByTag,
   getAllTags,
   getRelatedPosts,
+  buildExcerpt,
 } from "../../lib/posts";
 
 const md = ({ title, date, tags, description, body = "word" }) =>
@@ -220,5 +221,90 @@ describe("getRelatedPosts", () => {
   it("does not leak the internal sharedTags score onto returned posts", () => {
     const related = getRelatedPosts("2024-01-01-alpha", ["Python"]);
     expect(related[0]).not.toHaveProperty("sharedTags");
+  });
+});
+
+describe("buildExcerpt", () => {
+  it("returns an empty string for empty content", () => {
+    expect(buildExcerpt("")).toBe("");
+  });
+
+  it("strips heading markers but keeps the words", () => {
+    expect(buildExcerpt("## A heading\n\nSome prose.")).toBe(
+      "A heading Some prose.",
+    );
+  });
+
+  it("keeps link text and drops the URL", () => {
+    expect(buildExcerpt("See [the docs](https://example.com/x) for more.")).toBe(
+      "See the docs for more.",
+    );
+  });
+
+  it("drops images entirely", () => {
+    expect(buildExcerpt("Before ![alt text](https://x.com/y.png) after.")).toBe(
+      "Before after.",
+    );
+  });
+
+  it("drops fenced code blocks", () => {
+    expect(buildExcerpt("Intro.\n\n```js\nconst x = 1;\n```\n\nOutro.")).toBe(
+      "Intro. Outro.",
+    );
+  });
+
+  it("strips raw HTML tags but keeps their text", () => {
+    expect(buildExcerpt('<div class="x">Hello</div> world')).toBe("Hello world");
+  });
+
+  it("removes emphasis and inline code markers", () => {
+    expect(buildExcerpt("A **bold** and _italic_ and `code` word")).toBe(
+      "A bold and italic and code word",
+    );
+  });
+
+  it("keeps hyphens inside words", () => {
+    expect(buildExcerpt("A state-of-the-art build")).toBe(
+      "A state-of-the-art build",
+    );
+  });
+
+  it("strips list bullets and blockquote markers", () => {
+    expect(buildExcerpt("- one\n- two\n\n> quoted")).toBe("one two quoted");
+  });
+
+  it("truncates on a word boundary and appends an ellipsis", () => {
+    const excerpt = buildExcerpt(`${"word ".repeat(80)}`, 30);
+    expect(excerpt.length).toBeLessThanOrEqual(31);
+    expect(excerpt.endsWith("…")).toBe(true);
+    expect(excerpt).not.toMatch(/wor…$/);
+  });
+
+  it("does not truncate content already within the limit", () => {
+    expect(buildExcerpt("Short enough.", 155)).toBe("Short enough.");
+  });
+});
+
+describe("non-markdown files in the posts directory", () => {
+  it("ignores entries that are not .md", () => {
+    // readdirSync returns every directory entry. Before these were filtered,
+    // a .DS_Store became a post id and readFileSync(".DS_Store.md") threw,
+    // 500ing /rss.xml and /sitemap.xml.
+    fs.readdirSync.mockReturnValue([
+      ".DS_Store",
+      "images",
+      "2024-01-01-alpha.md.swp",
+      "2024-01-01-alpha.md",
+    ]);
+
+    expect(getSortedPostsData().map((p) => p.id)).toEqual(["2024-01-01-alpha"]);
+    expect(getAllPostIds()).toEqual([{ params: { id: "2024-01-01-alpha" } }]);
+  });
+
+  it("keeps a .md.md file, whose id legitimately ends in .md", () => {
+    fs.readdirSync.mockReturnValue(["2021-11-21-coding-problems-two.md.md"]);
+    fs.readFileSync.mockReturnValue(md({ title: "Two", date: "2021-11-21" }));
+
+    expect(getSortedPostsData()[0].id).toBe("2021-11-21-coding-problems-two.md");
   });
 });

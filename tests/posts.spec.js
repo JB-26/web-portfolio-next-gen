@@ -202,3 +202,29 @@ test("Back to blog link sits at the top of the post", async ({ page }) => {
     page.getByRole("link", { name: "← Back to blog" }),
   ).toHaveAttribute("href", "/blog");
 });
+
+test("every post page ships a non-empty description, including untagged and undescribed posts", async ({
+  page,
+}) => {
+  // 71 of 148 posts have no `description` in frontmatter. Layout used to
+  // supply a site-wide one; now that it does not, those posts rely on the
+  // excerpt fallback. Without it they shipped no description at all, and
+  // og:description rendered as a bare tag with no content attribute.
+  for (const url of [POST_WITH_TAGS, POST_WITHOUT_TAGS]) {
+    await page.goto(url);
+
+    const description = page.locator('head meta[name="description"]');
+    await expect(description).toHaveCount(1);
+
+    const content = await description.getAttribute("content");
+    expect(content).toBeTruthy();
+    expect(content.trim().length).toBeGreaterThan(20);
+
+    for (const property of ["og:description", "og:image:alt"]) {
+      const og = await page
+        .locator(`head meta[property="${property}"]`)
+        .getAttribute("content");
+      expect(og).toBeTruthy();
+    }
+  }
+});

@@ -21,9 +21,11 @@ export async function generateRssFeed() {
     description: metadata.description,
     feed_url: `${baseUrl}/rss.xml`,
     site_url: baseUrl,
-    // Was favicon.ico. Feed readers that show a channel image want a real
-    // raster image, not an icon container.
-    image_url: `${baseUrl}/images/opengraph-image.png`,
+    // Was favicon.ico, which is an icon container rather than an image feed
+    // readers can render. The Open Graph banner is the other extreme: RSS 2.0
+    // caps the channel image at 144x400, and that file is 1200x630 / 601 KB.
+    // favicon-32x32.png is a real PNG and inside the cap.
+    image_url: `${baseUrl}/favicon-32x32.png`,
     author: metadata.author,
     language: metadata.language,
   });
@@ -37,7 +39,7 @@ export async function generateRssFeed() {
       return {
         id: post.id,
         title: content.title,
-        description: content.description,
+        description: content.description || content.excerpt,
         contentHtml: content.contentHtml,
         date: content.date,
       };
@@ -50,13 +52,19 @@ export async function generateRssFeed() {
       title: post.title,
       // Readers show this in the item list before the body is opened. Without
       // it the feed rendered as a wall of untitled bodies. 71 posts have no
-      // description in frontmatter, so fall back rather than emit "undefined".
+      // description in frontmatter, so getPostDataRss supplies an excerpt
+      // derived from the opening prose; the title is the last resort.
       description: post.description || post.title,
       custom_elements: [{ "content:encoded": post.contentHtml }],
       url,
-      // guid was the bare slug, which is not globally unique and is not
-      // resolvable. The permalink is both.
-      guid: url,
+      // No explicit `guid`. The rss library derives it from `url` and, because
+      // it was not set by hand, marks it isPermaLink="true" -- setting it
+      // explicitly produced isPermaLink="false", telling readers not to treat
+      // the permalink as a URL. The value is identical either way.
+      //
+      // Note this still differs from the old bare-slug guid, so on the first
+      // fetch after deploy every reader sees 20 unfamiliar identifiers and
+      // marks those posts unread once. That is a deliberate one-off.
       date: post.date,
     });
   });

@@ -14,7 +14,7 @@
 // committed, so it never reaches a deployed sitemap.
 
 import { metadata } from "../../components/siteMetadata";
-import { getSortedPostsData, getAllTags } from "../../lib/posts";
+import { getSortedPostsData, getAllTags, getPostsByTag } from "../../lib/posts";
 
 // Static routes and how strongly to weight them relative to posts.
 const STATIC_ROUTES = [
@@ -77,20 +77,24 @@ export function generateSitemap() {
     ),
     ...posts.map((post) =>
       urlEntry({
-        loc: `${baseUrl}/posts/${post.id}`,
+        loc: `${baseUrl}/posts/${encodeURIComponent(post.id)}`,
         lastModified: lastmod(post.date),
         changefreq: "yearly",
         priority: "0.8",
       }),
     ),
-    ...getAllTags().map((tag) =>
-      urlEntry({
+    ...getAllTags().map((tag) => {
+      // lastmod means "when this URL last changed", so a tag page changes when
+      // its newest post was published -- not when the site last changed.
+      // getPostsByTag is newest-first, like getSortedPostsData.
+      const newestTagged = getPostsByTag(tag)[0];
+      return urlEntry({
         loc: `${baseUrl}/tags/${encodeURIComponent(tag)}`,
-        lastModified: newestDate,
+        lastModified: lastmod(newestTagged?.date),
         changefreq: "weekly",
         priority: "0.4",
-      }),
-    ),
+      });
+    }),
   ];
 
   return `<?xml version="1.0" encoding="UTF-8"?>

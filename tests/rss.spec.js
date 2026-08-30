@@ -24,7 +24,17 @@ test("serves the feed at /rss.xml as XML", async ({ request }) => {
 test("is discoverable from every page via a rel=alternate link", async ({
   page,
 }) => {
-  for (const route of ["/", "/blog", "/contact", "/resume"]) {
+  const routes = [
+    "/",
+    "/blog",
+    "/page/2",
+    "/contact",
+    "/resume",
+    "/tags/Blog",
+    "/posts/2025-01-30-scrum",
+  ];
+
+  for (const route of routes) {
     await page.goto(`${BASE}${route}`);
 
     const feedLink = page.locator(
@@ -75,8 +85,6 @@ test("every item has a title, description and body", async ({ page, request }) =
   for (const item of items) {
     expect(item.title.trim()).not.toBe("");
     expect(item.description.trim()).not.toBe("");
-    // 71 posts have no frontmatter description; the handler falls back to the
-    // title rather than emitting the string "undefined".
     expect(item.description).not.toContain("undefined");
     expect(item.content.trim()).not.toBe("");
   }
@@ -132,22 +140,30 @@ test("channel metadata points at the live site", async ({ page, request }) => {
 
   expect(channel.title.trim()).not.toBe("");
   expect(channel.link).toMatch(/^https:\/\//);
-  // Was favicon.ico, which is not a usable channel image.
+  // Was favicon.ico, which is not a usable channel image. It must also stay
+  // inside RSS 2.0's 144x400 channel-image cap, so it cannot be swapped for
+  // the 1200x630 Open Graph banner -- size is the proxy for that here.
   expect(channel.image).toMatch(/\.(png|jpe?g)$/);
+
+  const image = await request.get(channel.image.replace("https://joshblewitt.dev", BASE));
+  expect(image.status()).toBe(200);
+  expect((await image.body()).length).toBeLessThan(50_000);
 });
 
 test("preserves raw HTML embedded in a post", async ({ page, request }) => {
   const xml = await feedText(request);
 
   // The old pipeline omitted allowDangerousHtml, so author-embedded raw HTML
-  // (iframes, <img> tags) was stripped out of the feed body entirely.
+  // was stripped from the feed body. <img> is NOT evidence of that: markdown
+  // ![alt](url) emits <img> under both pipelines, so an assertion on <img>
+  // passes even after a revert. <iframe> can only come from raw HTML.
   const hasRawHtml = await page.evaluate((source) => {
     const doc = new DOMParser().parseFromString(source, "application/xml");
     return [...doc.querySelectorAll("item")].some((item) => {
       const encoded = [...item.children].find(
         (c) => c.nodeName === "content:encoded",
       );
-      return /<(iframe|img|div)\b/i.test(encoded?.textContent ?? "");
+      return /<iframe\b/i.test(encoded?.textContent ?? "");
     });
   }, xml);
 
