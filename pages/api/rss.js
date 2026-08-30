@@ -66,7 +66,13 @@ export async function generateRssFeed() {
 
 export default async function handler(req, res) {
   const feedXml = await generateRssFeed();
-  res.setHeader("Content-Type", "application/rss+xml; charset=utf-8");
+  // text/xml rather than the stricter application/rss+xml: no browser ships a
+  // feed viewer any more, and application/rss+xml is a type they have no
+  // handler for, so clicking the footer's RSS link downloads the file instead
+  // of showing it. text/xml gets the built-in XML tree view back. Feed readers
+  // accept either, and discovery is handled by the <link rel="alternate"> tag
+  // in components/layout.js.
+  res.setHeader("Content-Type", "text/xml; charset=utf-8");
   // The feed changes only when a post is added, so serve it from the edge
   // cache and let it go stale rather than re-parsing markdown per request.
   res.setHeader(
