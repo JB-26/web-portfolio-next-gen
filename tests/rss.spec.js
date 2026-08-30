@@ -3,9 +3,6 @@ import { test, expect } from "@playwright/test";
 const BASE = "http://localhost:3000";
 const FEED = `${BASE}/rss.xml`;
 
-// Mirrors RSS_ITEM_LIMIT in pages/api/rss.js. The feed used to be unbounded.
-const ITEM_LIMIT = 20;
-
 async function feedText(request) {
   const response = await request.get(FEED);
   expect(response.status()).toBe(200);
@@ -58,12 +55,15 @@ test("is well-formed XML", async ({ page, request }) => {
   expect(parserError).toBeNull();
 });
 
-test("caps the number of items", async ({ request }) => {
+test("carries the full archive, not just recent posts", async ({ request }) => {
   const xml = await feedText(request);
   const items = xml.match(/<item>/g) ?? [];
 
-  expect(items.length).toBeGreaterThan(0);
-  expect(items.length).toBeLessThanOrEqual(ITEM_LIMIT);
+  // Every post is included so a new subscriber gets the whole back catalogue
+  // on first sync. Guards against a cap being reintroduced silently.
+  expect(items.length).toBeGreaterThan(140);
+  // The oldest post on the site, from 2019 — present only if nothing truncates.
+  expect(xml).toContain("/posts/2019-08-10-sega-saturn");
 });
 
 test("every item has a title, description and body", async ({ page, request }) => {
@@ -157,15 +157,29 @@ test("preserves raw HTML embedded in a post", async ({ page, request }) => {
   // was stripped from the feed body. <img> is NOT evidence of that: markdown
   // ![alt](url) emits <img> under both pipelines, so an assertion on <img>
   // passes even after a revert. <iframe> can only come from raw HTML.
-  const hasRawHtml = await page.evaluate((source) => {
+  const result = await page.evaluate((source) => {
     const doc = new DOMParser().parseFromString(source, "application/xml");
-    return [...doc.querySelectorAll("item")].some((item) => {
-      const encoded = [...item.children].find(
-        (c) => c.nodeName === "content:encoded",
-      );
-      return /<iframe\b/i.test(encoded?.textContent ?? "");
-    });
+    const bodyOf = (item) =>
+      [...item.children].find((c) => c.nodeName === "content:encoded")
+        ?.textContent ?? "";
+
+    const items = [...doc.querySelectorAll("item")];
+    // 2019-08-10-sega-saturn is almost entirely raw HTML — it is the post the
+    // fix was written for, and it arrived in readers nearly empty before.
+    const saturn = items.find((i) =>
+      (i.querySelector("link")?.textContent ?? "").includes(
+        "2019-08-10-sega-saturn",
+      ),
+    );
+
+    return {
+      anyIframe: items.some((i) => /<iframe\b/i.test(bodyOf(i))),
+      saturnLength: saturn ? bodyOf(saturn).length : -1,
+    };
   }, xml);
 
-  expect(hasRawHtml).toBe(true);
+  expect(result.anyIframe).toBe(true);
+  // Its markdown is raw HTML end to end; under the old pipeline this collapsed
+  // to almost nothing.
+  expect(result.saturnLength).toBeGreaterThan(1000);
 });

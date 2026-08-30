@@ -6,15 +6,15 @@ import RSS from "rss";
 import { metadata } from "../../components/siteMetadata";
 import { getSortedPostsData, getPostDataRss } from "../../lib/posts";
 
-// The feed used to carry all 148 posts, re-reading and re-parsing every
-// markdown file on the disk twice on every request. Readers only ever show
-// recent items, so cap it: the cap is what makes the handler cheap, because
-// only these posts get their body rendered.
-export const RSS_ITEM_LIMIT = 20;
-
+// The feed carries the full archive, so a new subscriber gets every post on
+// first sync rather than just the recent ones. That costs ~1.2 MB and ~430 ms
+// to build, which is affordable only because of the Cache-Control header on
+// the handler below: the edge serves the cached copy and this runs about once
+// an hour, not once per reader poll. If that caching is ever removed, this
+// needs a cap again.
 export async function generateRssFeed() {
   const baseUrl = metadata.siteUrl;
-  const posts = getSortedPostsData().slice(0, RSS_ITEM_LIMIT);
+  const posts = getSortedPostsData();
 
   const feed = new RSS({
     title: metadata.title,

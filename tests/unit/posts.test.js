@@ -301,6 +301,32 @@ describe("non-markdown files in the posts directory", () => {
     expect(getAllPostIds()).toEqual([{ params: { id: "2024-01-01-alpha" } }]);
   });
 
+  it("excludes template.md, which is scaffolding rather than a post", () => {
+    // Gitignored so it never ships, but present locally, where it would
+    // otherwise render as /posts/template with an empty body and appear in
+    // the blog listing, the sitemap and the feed.
+    fs.readdirSync.mockReturnValue(["template.md", "2024-01-01-alpha.md"]);
+
+    expect(getSortedPostsData().map((p) => p.id)).toEqual(["2024-01-01-alpha"]);
+    expect(getAllPostIds()).toEqual([{ params: { id: "2024-01-01-alpha" } }]);
+  });
+
+  it("keeps posts that are not date-prefixed", () => {
+    // new-website.md and tic-tac-toe-python-07-11-2020.md are real posts, so
+    // filtering on a date prefix would silently drop them.
+    fs.readdirSync.mockReturnValue(["new-website.md", "2024-01-01-alpha.md"]);
+    fs.readFileSync.mockImplementation((path) =>
+      String(path).includes("new-website")
+        ? md({ title: "New website", date: "2020-06-01" })
+        : CORPUS["2024-01-01-alpha.md"],
+    );
+
+    expect(getSortedPostsData().map((p) => p.id).sort()).toEqual([
+      "2024-01-01-alpha",
+      "new-website",
+    ]);
+  });
+
   it("keeps a .md.md file, whose id legitimately ends in .md", () => {
     fs.readdirSync.mockReturnValue(["2021-11-21-coding-problems-two.md.md"]);
     fs.readFileSync.mockReturnValue(md({ title: "Two", date: "2021-11-21" }));
