@@ -16,7 +16,23 @@ test("serves the feed at /rss.xml as XML", async ({ request }) => {
   const response = await request.get(FEED);
 
   expect(response.status()).toBe(200);
-  expect(response.headers()["content-type"]).toContain("xml");
+  // Deliberately text/xml, not application/rss+xml: browsers have no handler
+  // for the latter and download the file rather than displaying it.
+  expect(response.headers()["content-type"]).toContain("text/xml");
+});
+
+test("is discoverable from every page via a rel=alternate link", async ({
+  page,
+}) => {
+  for (const route of ["/", "/blog", "/contact", "/resume"]) {
+    await page.goto(`${BASE}${route}`);
+
+    const feedLink = page.locator(
+      'head link[rel="alternate"][type="application/rss+xml"]',
+    );
+    await expect(feedLink).toHaveCount(1);
+    await expect(feedLink).toHaveAttribute("href", "/rss.xml");
+  }
 });
 
 test("is well-formed XML", async ({ page, request }) => {
