@@ -51,3 +51,58 @@ test("robots.txt points at the sitemap", async ({ request }) => {
     "Sitemap: https://joshblewitt.dev/sitemap.xml",
   );
 });
+
+test("robots.txt blocks AI training crawlers but allows search and user agents", async ({
+  request,
+}) => {
+  const text = await (await request.get(`${BASE}/robots.txt`)).text();
+
+  // Parse into groups so the assertions are about real precedence, not about
+  // a substring appearing somewhere in the file.
+  const groups = {};
+  let current = null;
+  for (const raw of text.split("\n")) {
+    const line = raw.replace(/#.*$/, "").trim();
+    if (!line) continue;
+    const [field, ...rest] = line.split(":");
+    const value = rest.join(":").trim();
+    if (field.toLowerCase() === "user-agent") {
+      current = value;
+      groups[current] ??= [];
+    } else if (current) {
+      groups[current].push(`${field.trim()}: ${value}`);
+    }
+  }
+
+  // GPTBot is not OAI-SearchBot; ClaudeBot is not Claude-SearchBot. The whole
+  // point of this file is that those pairs are treated differently.
+  for (const agent of [
+    "GPTBot",
+    "ClaudeBot",
+    "Google-Extended",
+    "Applebot-Extended",
+    "CCBot",
+  ]) {
+    expect(groups[agent]).toContain("Disallow: /");
+  }
+
+  for (const agent of [
+    "OAI-SearchBot",
+    "Claude-SearchBot",
+    "PerplexityBot",
+    "ChatGPT-User",
+    "Claude-User",
+    "Perplexity-User",
+  ]) {
+    expect(groups[agent]).toContain("Allow: /");
+    expect(groups[agent]).not.toContain("Disallow: /");
+    // A named group does not inherit from "*", so the private paths must be
+    // repeated in each one or they become crawlable for that agent.
+    expect(groups[agent]).toContain("Disallow: /admin");
+    expect(groups[agent]).toContain("Disallow: /owner/");
+    expect(groups[agent]).toContain("Disallow: /api/");
+  }
+
+  expect(groups["*"]).toContain("Allow: /");
+  expect(groups["*"]).not.toContain("Disallow: /");
+});
