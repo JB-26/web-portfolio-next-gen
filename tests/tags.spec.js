@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('Page loads successfully', async ({ page }) => {
     await page.goto('http://localhost:3000/tags/Professional'); // Update the URL as needed
     const title = await page.title();
-    expect(title).toBe('Professional'); // Update with your actual site title
+    expect(title).toBe('Posts tagged Professional · Joshua Blewitt');
 });
 
 

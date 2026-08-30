@@ -25,14 +25,22 @@ export default function BlogIndex({
   numPages,
   totalPosts,
 }) {
+  // Page 1 (/blog) and the paginated pages share this component, so the title
+  // has to distinguish them — otherwise all 30 URLs compete as duplicates.
+  const pageTitle =
+    currentPage > 1
+      ? `Blog · page ${currentPage} · ${siteTitle}`
+      : `Blog · ${siteTitle}`;
+  const pageDescription =
+    currentPage > 1
+      ? `Page ${currentPage} of ${numPages} — posts by Joshua Blewitt on software, the industry and life.`
+      : "Posts by Joshua Blewitt on software, the industry, life and whatever's on my mind.";
+
   return (
     <Layout>
       <Head>
-        <title>{siteTitle}</title>
-        <meta
-          charSet="utf-8"
-          name="The personal website of IT Professional, Joshua Blewitt"
-        />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
       </Head>
 
       <header className="max-w-[720px] pt-10 pb-2">

@@ -15,10 +15,18 @@ export default function Layout({ children }) {
     <div className="flex min-h-screen flex-col">
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="The website of IT Professional, Joshua Blewitt"
+        {/* Feed autodiscovery. This, not the Content-Type the feed is served
+            with, is how readers and browser extensions find it — the site had
+            no such tag, so the only route to the feed was the footer link. */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${siteTitle} — RSS`}
+          href="/rss.xml"
         />
+        {/* No site-wide description here: each page renders its own inside its
+            own <Head>, and emitting one here too would put two
+            <meta name="description"> tags on every page. */}
         <meta
           property="og:image"
           content="https://www.joshblewitt.dev/public/images/opengraph-image.png"

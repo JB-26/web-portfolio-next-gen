@@ -56,19 +56,26 @@ export default function Post({ postData, relatedPosts }) {
   // The TOC reads headings out of this subtree after mount.
   const articleRef = useRef(null);
 
+  const description = postData.description || postData.excerpt;
+
   return (
     <Layout>
       <Head>
         <title>{postData.title}</title>
+        {/* 71 posts have no `description` in frontmatter. Without a fallback
+            they ship no description at all and React drops the `content`
+            attribute entirely, leaving bare <meta property="og:description"/>
+            tags. postData.excerpt is derived from the opening prose. */}
+        <meta name="description" content={description} />
 
         {/* Open Graph meta tags */}
         <meta property="og:title" content={postData.title} />
-        <meta property="og:description" content={postData.description} />
+        <meta property="og:description" content={description} />
         <meta
           property="og:url"
           content={`https://www.joshblewitt.dev/posts/${postData.id}`}
         />
-        <meta property="og:image:alt" content={postData.description} />
+        <meta property="og:image:alt" content={description} />
         <meta property="og:type" content="article" />
       </Head>
 

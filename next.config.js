@@ -12,6 +12,10 @@ module.exports = {
         source: "/rss.xml",
         destination: "/api/rss",
       },
+      {
+        source: "/sitemap.xml",
+        destination: "/api/sitemap",
+      },
     ];
   },
 };

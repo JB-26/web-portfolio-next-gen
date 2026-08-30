@@ -6,11 +6,12 @@ export default function Custom404() {
   return (
     <Layout>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{`Page not found · ${siteTitle}`}</title>
         <meta
-          charSet="utf-8"
-          name="The personal website of IT Professional, Joshua Blewitt"
+          name="description"
+          content="That page doesn't exist. Head back to the blog to find what you were looking for."
         />
+        <meta name="robots" content="noindex" />
       </Head>
       <div className="flex flex-col items-center gap-4 py-16 text-center">
         {/* Decorative — the heading below carries the meaning. */}

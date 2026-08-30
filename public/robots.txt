@@ -1,0 +1,109 @@
+# robots.txt for joshblewitt.dev
+#
+# This file is a request, not an enforcement mechanism: well-behaved crawlers
+# honour it, and everything else ignores it. Enforcement lives in the Vercel
+# firewall. The two work together — with AI bots set to "log" rather than
+# "deny" there, the firewall logs show which crawlers actually respect the
+# rules below and which ignore them.
+#
+# Note on precedence: a crawler obeys the MOST SPECIFIC group matching its
+# user-agent and ignores every other group, including "*". That is why each
+# named group below repeats the private-path rules rather than inheriting them.
+
+# ---------------------------------------------------------------------------
+# Default — open, except for surfaces that are not readable content.
+# ---------------------------------------------------------------------------
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /owner/
+# Comment, auth and search endpoints. /rss.xml and /sitemap.xml are internal
+# rewrites to /api/*, but crawlers request the public paths, so this does not
+# hide the feed or the sitemap.
+Disallow: /api/
+
+# ---------------------------------------------------------------------------
+# AI training crawlers — not welcome.
+#
+# These collect content to train models. They send effectively no readers back:
+# measured crawl-to-referral ratios in 2026 run at roughly 250:1 for OpenAI and
+# 1,900:1 for Anthropic, against Google's 4.7:1. Blocking them costs no traffic.
+#
+# Google-Extended and Applebot-Extended are not crawlers — they are opt-out
+# tokens that govern whether content already fetched by Googlebot/Applebot may
+# be used for AI training. They belong here, not in the allowed groups.
+# ---------------------------------------------------------------------------
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# ---------------------------------------------------------------------------
+# AI search and retrieval indexes — welcome.
+#
+# These build the indexes that assistants cite from, and they link back. They
+# are the AI-era equivalent of Googlebot, and are deliberately distinct from
+# their vendors' training crawlers above: GPTBot is not OAI-SearchBot, and
+# ClaudeBot is not Claude-SearchBot. Blocking these would make the site absent
+# from AI search while gaining nothing.
+# ---------------------------------------------------------------------------
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin
+Disallow: /owner/
+Disallow: /api/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /admin
+Disallow: /owner/
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+Disallow: /owner/
+Disallow: /api/
+
+# ---------------------------------------------------------------------------
+# User-triggered agents — welcome.
+#
+# These fetch a page because a person has just asked about it. Blocking them is
+# closer to blocking a browser than to blocking a scraper, and they are a real
+# and growing referral channel.
+# ---------------------------------------------------------------------------
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin
+Disallow: /owner/
+Disallow: /api/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /admin
+Disallow: /owner/
+Disallow: /api/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /admin
+Disallow: /owner/
+Disallow: /api/
+
+Sitemap: https://joshblewitt.dev/sitemap.xml
