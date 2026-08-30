@@ -46,10 +46,10 @@ export default function Contact() {
   return (
     <Layout>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{`Contact · ${siteTitle}`}</title>
         <meta
-          charSet="utf-8"
-          name="The personal website of IT Professional, Joshua Blewitt"
+          name="description"
+          content="Get in touch with Joshua Blewitt — email, social links and the best ways to reach me."
         />
       </Head>
 

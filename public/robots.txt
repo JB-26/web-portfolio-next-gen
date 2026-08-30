@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Not indexable content: the comment moderation UI and the owner-only
+# delete-by-token flow.
+Disallow: /admin
+Disallow: /owner/
+
+Sitemap: https://joshblewitt.dev/sitemap.xml

@@ -211,10 +211,10 @@ export default function Resume() {
   return (
     <Layout>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{`Resume · ${siteTitle}`}</title>
         <meta
-          charSet="utf-8"
-          name="The personal website of IT Professional, Joshua Blewitt"
+          name="description"
+          content="The resume of Joshua Blewitt — ten years in the software industry, from testing to working with stakeholders."
         />
       </Head>
 

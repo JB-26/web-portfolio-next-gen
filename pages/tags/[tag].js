@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import Layout from "../../components/layout";
+import Layout, { siteTitle } from "../../components/layout";
 import PostListRow from "../../components/PostListRow";
 import { getPostsByTag, getAllTags } from "../../lib/posts"; // Import the function
 
@@ -37,7 +37,11 @@ export default function TagPage({ tag, posts }) {
   return (
     <Layout>
       <Head>
-        <title>{tag}</title>
+        <title>{`Posts tagged ${tag} · ${siteTitle}`}</title>
+        <meta
+          name="description"
+          content={`Every post by Joshua Blewitt tagged ${tag}.`}
+        />
       </Head>
 
       <header className="max-w-[720px] pt-10 pb-2">

@@ -5,7 +5,7 @@ const BASE = "http://localhost:3000";
 test("Page loads successfully", async ({ page }) => {
   await page.goto(`${BASE}/blog`); // Update the URL as needed
   const title = await page.title();
-  expect(title).toBe("Joshua Blewitt"); // Update with your actual site title
+  expect(title).toBe("Blog · Joshua Blewitt");
 });
 
 test("Check for important content", async ({ page }) => {
@@ -154,4 +154,22 @@ test("Header stays on one line in dark mode, where the toggle label is widest", 
 
   await expect(page.locator('[data-testid="theme-toggle"]')).toContainText("Light");
   await expect.poll(() => rowCount(page, "header nav > *")).toBe(1);
+});
+
+test("paginated pages carry a distinct title", async ({ page }) => {
+  // All 30 paginated URLs used to share the single site title, so they
+  // competed with each other and with /blog as duplicates.
+  await page.goto(`${BASE}/page/2`);
+  expect(await page.title()).toBe("Blog · page 2 · Joshua Blewitt");
+
+  await page.goto(`${BASE}/blog`);
+  expect(await page.title()).toBe("Blog · Joshua Blewitt");
+});
+
+test("every listing page has exactly one meta description", async ({ page }) => {
+  await page.goto(`${BASE}/blog`);
+  const metas = page.locator('head meta[name="description"]');
+
+  await expect(metas).toHaveCount(1);
+  await expect(metas).not.toHaveAttribute("content", "");
 });

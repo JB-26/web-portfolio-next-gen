@@ -60,6 +60,9 @@ export default function Post({ postData, relatedPosts }) {
     <Layout>
       <Head>
         <title>{postData.title}</title>
+        {postData.description && (
+          <meta name="description" content={postData.description} />
+        )}
 
         {/* Open Graph meta tags */}
         <meta property="og:title" content={postData.title} />

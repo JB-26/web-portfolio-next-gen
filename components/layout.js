@@ -15,10 +15,9 @@ export default function Layout({ children }) {
     <div className="flex min-h-screen flex-col">
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="The website of IT Professional, Joshua Blewitt"
-        />
+        {/* No site-wide description here: each page renders its own inside its
+            own <Head>, and emitting one here too would put two
+            <meta name="description"> tags on every page. */}
         <meta
           property="og:image"
           content="https://www.joshblewitt.dev/public/images/opengraph-image.png"
