@@ -22,6 +22,7 @@ const STATIC_ROUTES = [
   { path: "/blog", changefreq: "weekly", priority: "0.9" },
   { path: "/resume", changefreq: "monthly", priority: "0.6" },
   { path: "/contact", changefreq: "yearly", priority: "0.5" },
+  { path: "/blogroll", changefreq: "yearly", priority: "0.5" },
 ];
 
 // & < > " ' are the five characters that are not legal raw inside XML text.
@@ -70,7 +71,8 @@ export function generateSitemap() {
     ...STATIC_ROUTES.map((route) =>
       urlEntry({
         loc: `${baseUrl}${route.path}`,
-        lastModified: route.path === "/" || route.path === "/blog" ? newestDate : null,
+        lastModified:
+          route.path === "/" || route.path === "/blog" ? newestDate : null,
         changefreq: route.changefreq,
         priority: route.priority,
       }),
