@@ -19,6 +19,7 @@ const VIEWS = [
   { name: "blog post", path: "/posts/2026-03-26-ai-future" },
   { name: "resume", path: "/resume" },
   { name: "contact", path: "/contact" },
+  { name: "blogroll", path: "/blogroll" },
   { name: "tag page", path: "/tags/Professional" },
   { name: "404", path: "/definitely-not-a-page" },
 ];
